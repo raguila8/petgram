@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: raguila8
+  name: Choco
+  bio: Good boy
+  animal: Dog
+  user: rodrigo
+
+two:
+  username: fluffy12
+  name: Fluffy
+  bio: fluffy bunny
+  animal: Rabbit
+  user: rodrigo

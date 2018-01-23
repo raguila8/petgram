@@ -1,3 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-
+rodrigo:
+  username: rodrigo11
+  email: random@email.com
+  encrypted_password: foobar

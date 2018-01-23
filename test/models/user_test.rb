@@ -1,9 +1,13 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-=begin
+
 	def setup
-		@user = User.new(username: "raguila8", email: "rodrigoaguilar887@gmail.com")
+		@user = User.new(username: "raguila8", email: "rodrigoaguilar887@gmail.com", password: "foobar", password_confirmation: "foobar")
+		@user1 = users(:rodrigo)
+		@profile1 = profiles(:one)
+		@profile2 =	profiles(:two)
+
 	end
 
 	test "should be valid" do
@@ -61,5 +65,25 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_equal mixed_case_email.downcase, @user.reload.email
   end
-=end
+
+	test "password should be present (nonblank)" do
+		@user.password = @user.password_confirmation = " " * 6
+		assert_not @user.valid?
+	end
+
+	test "password should have a minimum length" do
+		@user.password = @user.password_confirmation = "a" * 5
+		assert_not @user.valid?
+	end
+
+	test "user has_many profiles" do
+		assert_equal 2, @user1.profiles.size
+	end
+
+	test "profiles depend on user" do
+		assert_equal 2, Profile.count
+		@user1.destroy
+		assert_equal 0, Profile.count
+	end
+
 end

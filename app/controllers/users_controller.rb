@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
-  def new
-  end
+	def show
+		@user = params[:id].nil? ? current_user : User.find(params[:id])
+	end
 end

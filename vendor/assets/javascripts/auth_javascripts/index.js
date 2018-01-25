@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require ./modernizr.custom.js
 //= require ./select2.min.js
 //= require ./moment.min.js
 //= require ./daterangepicker.js

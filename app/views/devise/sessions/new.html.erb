@@ -7,10 +7,14 @@
 				</span>
 			</div>
 
-			<%= form_for(resource, :html => { :class => 'login100-form validates-form' }, as: resource_name, url: session_path(resource_name)) do |f| %>
+			<%= form_for(resource, :html => { :class => 'login100-form validates-form', novalidate: :true }, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+				<%= content_tag(:div, flash[:error], :id => "error_explanation") if flash[:error] %>
+<%= content_tag(:div, flash[:notice], :id => "error_explanation") if flash[:notice] %>
+<%= content_tag(:div, flash[:alert], :id => "error_explanation") if flash[:alert] %>
   
 				<div class="field wrap-input100 validate-input m-b-26" data-validate="Email is required">
-					<span class="label-input100">Username</span>
+					<span class="label-input100">Email</span>
     			<%= f.email_field :email,  class: "input100", placeholder: "Enter email"%>
 					<span class="focus-input100"></span>
   			</div>
@@ -25,7 +29,8 @@
     			<div class="flex-sb-m w-full p-b-30">
 						<div class="contact100-form-checkbox">
 
-      				<%= f.check_box :remember_me, class: "input-checkbox100", id: "ckb1" %>
+      				<%# f.check_box :remember_me, class: "input-checkbox100", id: "ckb1" %>
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="user[remember_me]">
 							<label class="label-checkbox100" for="ckb1">
 								Remember me
 							</label>

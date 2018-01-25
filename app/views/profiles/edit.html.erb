@@ -1,0 +1,50 @@
+<div class="limiter">
+	<div class="container-login100">
+		<div class="wrap-login100">
+			<%= render 'shared/edit_account_header' %>	
+
+			<%= form_for(@profile, :url => edit_profile_path, html: { class: 'login100-form validate-form', novalidate: true }) do |f| %>
+				
+				<%= render 'shared/error_messages' %>
+
+				<div class="field wrap-input100 validate-input m-b-26">
+    			<span class="label-input100" style="font-size: 12px; width:90px;">Username</span>
+    			<%= f.text_field :username, class: "input100", autocomplete: "username" %>
+					<span class="focus-input100"></span>
+  			</div>
+
+  			<div class="field wrap-input100 validate-input m-b-26">
+    			<%# f.label :email %>
+					<span class="label-input100" style="font-size: 12px; width:90px;">Name</span>
+    			<%= f.text_field :name, class: "input100", autocomplete: "name" %>
+					<span class="focus-input100"></span>
+  			</div>
+
+				<div class="field wrap-input100 validate-input m-b-26">
+    			<%# f.label :email %>
+					<span class="label-input100" style="font-size: 12px; width:90px;">Animal</span>
+    			<%= f.text_field :animal, class: "input100", autocomplete: "animal" %>
+					<span class="focus-input100"></span>
+  			</div>
+
+				<div class="field wrap-input100 validate-input m-b-26">
+    			<%# f.label :email %>
+					<span class="label-input100" style="font-size: 12px; width:90px;">Bio</span>
+    			<%= f.text_area :bio, class: "input100", autocomplete: "bio" %>
+					<span class="focus-input100"></span>
+  			</div>
+
+				<div class="field wrap-input100 validate-input m-b-26">
+    			<%# f.label :email %>
+					<span class="label-input100" style="font-size: 12px; width:90px;">Email</span>
+    			<%= f.text_field :email, class: "input100", autocomplete: "email" %>
+					<span class="focus-input100"></span>
+  			</div>
+
+				<div class="actions container-login100-form-btn">
+  				<%= f.submit "Submit", class: "login100-form-btn" %>
+  			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

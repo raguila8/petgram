@@ -7,31 +7,31 @@
 				</span>
 			</div>
 
-			<%= form_for(resource, :html => { :class => 'login100-form validate-form' }, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  			<%= devise_error_messages! %>
+			<%= form_for(resource, :html => { :class => 'login100-form validate-form', novalidate: :true }, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  			<%= render 'shared/error_messages' %>
 
-				<div class="field wrap-input100 validate-input m-b-26" data-validate="Username is required">
+				<div class="field wrap-input100 validate-input m-b-26">
 					<%# f.label :username %>
 					<span class="label-input100">Username</span>
 					<%= f.text_field :username, class: "input100", placeholder: "Enter username" %>
 					<span class="focus-input100"></span>
 				</div>
 
-  			<div class="field wrap-input100 validate-input m-b-26" data-validate="Email is required">
+  			<div class="field wrap-input100 m-b-26">
 					<span class="label-input100">Email</span>
     			<%# f.label :email %>
-    			<%= f.email_field :email,  class: "input100", placeholder: "Enter email"%>
+    			<%= f.email_field :email, class: "input100", placeholder: "Enter email"%>
 					<span class="focus-input100"></span>
   			</div>
 
-  			<div class="field wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+  			<div class="field wrap-input100 validate-input m-b-18">
     			<%# f.label :password %>
 					<span class="label-input100">Password</span>
     			<%= f.password_field :password, class: "input100", placeholder: "Enter password" %>
 					<span class="focus-input100"></span>
   			</div>
 
-  			<div class="field wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+  			<div class="field wrap-input100 validate-input m-b-18">
     			<%# f.label :password_confirmation %>
 					<span class="label-input100">Password Confirmation</span>
     			<%= f.password_field :password_confirmation, class: "input100", placeholder: "Re-enter password" %>

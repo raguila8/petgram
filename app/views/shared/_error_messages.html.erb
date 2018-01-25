@@ -1,0 +1,20 @@
+<% if devise_controller? %>
+	<% model = @user %>
+<% elsif controller_name == 'profiles' && (action_name == 'edit' || action_name == 'new' || action_name == 'create') %>
+	<% model = @profile %>
+<% elsif controller_name == 'profiles' && action_name == 'update' %>
+
+<!-- We also need to validate the email field -->
+	<% model = @profile.errors.any? ? @profile : @user %>
+
+<% end %>
+
+<% if model.errors.any? %>
+	<div id="error_explanation">
+		<ul>
+		<li>
+			<%= model.errors.full_messages.first %>
+		</li>
+		</ul>
+	</div>
+<% end %>

@@ -12,4 +12,5 @@
  *
  *= require bootstrap
  *= require auth_stylesheets
+ *= require custom.scss
  */

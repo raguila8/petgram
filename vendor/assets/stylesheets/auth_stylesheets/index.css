@@ -18,4 +18,6 @@
  *= require ./daterangepicker.css
  *= require ./util.css
  *= require ./main.css
+ *= require ./component.css
+ *= require ./normalize.css
  */

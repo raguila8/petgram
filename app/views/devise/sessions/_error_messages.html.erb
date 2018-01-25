@@ -1,0 +1,7 @@
+<% if self.resource.errors.any? %>
+	<div id="error_explanation">
+		<li>
+			<%= self.resource.errors.full_messages.first %>
+		</li>
+	</div>
+<% end %>

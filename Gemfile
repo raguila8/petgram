@@ -14,6 +14,8 @@ gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'devise'
+gem 'carrierwave'
+gem 'mini_magick'
 
 # Javascript display engine for mathematics
 gem 'mathjax-rails'

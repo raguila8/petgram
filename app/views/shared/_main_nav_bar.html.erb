@@ -1,0 +1,110 @@
+<!--<nav class="_68u16 _gft4l" role="navigation">
+	<div class="_axuw9"></div>
+	<div class="_s4gw0 _1arg4">
+		<div class="_tpnch">
+			<div class="_5rnaq">
+				<div class="_iraxg">
+					<div class="_catib">
+						<a class="_giku3 _8scx2 coreSpriteDesktopNavLogoAndWordmark _rujh3" href="/">Instagram</a>
+						<a class="_giku3 _8scx2 _e8tsh coreSpriteGlyphBlack" href="/">Instagram</a>
+					</div>
+				</div>
+				<div class="_5ayw3 _ohiyl">
+					<input type="text" class="_avvq0 _o716c" placeholder="Search" value="">
+					<div class="_jcvs2 _1nn6e">
+						<div class="_eduze _mknn3">
+							<span class="_r86fw coreSpriteSearchIcon"></span>
+							<span class="_96n9j">Search</span>
+						</div>
+					</div>
+				</div>
+				<div class="_devkn">
+					<div class="_qlijk">
+						<div class="_b28md">
+							<a class="_8scx2 _gvoze coreSpriteDesktopNavExplore" href="/explore/">Find People</a>
+						</div>
+						<div class="_b28md">
+							<a href="#" class="_ohbcb _gvoze coreSpriteDesktopNavActivity">
+								<span class="_8scx2">Activity Feed</span>
+							</a>
+						</div>
+						<div class="_b28md">
+							<a class="_8scx2 _gvoze coreSpriteDesktopNavProfile" href="/carlitosfausto/">Profile</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>-->
+
+<!--<nav class="navbar navbar-fixed-top navbar-default">
+  <div class="container-fluid">
+		<div class="container">
+		<div class="row">
+		<div class="col-sm-4">
+    <div class="navbar-header pull-left">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+		</div>
+				
+		<div class="col-sm-4 navbar-collapse collapse" id="navbar-mid-collapse">
+		
+		<form class="navbar-form" role="Search">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+        </span>	
+      </div>
+    </form>
+		</div>
+		<div>
+		<div class="navbar-header pull-right right-nav-buttons">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-mid-collapse">
+      	<span class="sr-only">Toggle navigation</span>
+        <span class="glyphicon glyphicon-search"></span>
+      </button>
+
+      <button href="#">one</button>
+      <button href="#">two</button>
+      <button href="#">three</button>
+		</div>
+		</div>
+
+		</div>
+		</div>
+  </div>
+</nav>-->
+
+
+<nav class="navbar navbar-fixed-top navbar-default">
+  <div class="container-fluid">
+		<div class="container">
+    		<div class="navbar-header">	
+      		<a class="navbar-brand pull-left" href="#">WebSiteName</a>
+				</div>
+				<div class="navbar-header pull-right">
+					<div class="pull-right right-nav-buttons">
+						<button class="navbar-toggle" data-toggle="collapse" data-target="#navbar-mid-collapse">
+      				<span class="sr-only">Toggle navigation</span>
+        			<span class="glyphicon glyphicon-search"></span>
+      			</button>
+      			<button class="glyphicon glyphicon-eye-open" href="#"></button>
+      			<button class="glyphicon glyphicon-heart" href="#"></button>
+      		<a href=<%=profile_path(Profile.find_by(username: current_user.username)) %>><button class="glyphicon glyphicon-user"></button></a>
+					</div>
+				</div>
+					<div class="navbar-collapse collapse" id="navbar-mid-collapse">
+						<form class="navbar-form" role="Search" style="text-align: center;">
+      				<div class="input-group">
+        				<input type="text" class="form-control" placeholder="Search">
+        				<!--<span class="input-group-btn">
+          				<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>-->
+        				</span>	
+      				</div>
+    				</form>
+					</div>	
+		</div>
+  </div>
+</nav>

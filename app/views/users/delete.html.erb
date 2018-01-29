@@ -1,0 +1,37 @@
+<%= render 'shared/main_nav_bar' %>
+<div class="limiter">
+	<div class="container-login100">
+		<div class="wrap-login100 main-form-container">
+			<%# render 'shared/edit_account_header' %>
+			<div class="login100-form-title" style="background-image: url(/bg-09.jpg);">
+				<span class="login100-form-title-1">
+					Select Profile to Delete
+				</span>
+			</div>
+
+			<div class="profiles-gate-container">
+				<div class="centered-div list-profiles-container">	
+					<ul class="choose-profile">
+						<% @user.profiles.each do |profile| %>
+							<li class="profile">
+								<div id="hover-wrapper">
+									<a class="profile-link" href=<%= profile_path(profile) %> data-method="delete", data-confirm="Are you sure?">
+										<!--<div class="avatar-wrapper">-->
+											<div class="profile-icon" style="background-image:url(https://assets.nflxext.com/ffe/profiles/avatars_v2/320x320/PICON_025.png);"></div>
+										<!--</div>-->
+										<span class="profile-name"><%=profile.username%></span>
+									</a>
+								</div>
+							</li>
+						<% end %>
+					</ul>
+				<form action=<%=user_path(current_user)%> method="get">
+					<input type="submit" name="commit" value="Go back" class="login100-form-btn">
+				</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

@@ -1,4 +1,6 @@
 class Profile < ApplicationRecord
+	mount_uploader :profile_image, ImageUploader
+
 	belongs_to :user
 	# This is for the email_field for the form in profiles#edit view.
 	attr_accessor :email

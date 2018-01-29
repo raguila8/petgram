@@ -1,6 +1,7 @@
+<%= render 'shared/main_nav_bar' %>
 <div class="limiter">
 	<div class="container-login100">
-		<div class="wrap-login100">
+		<div class="wrap-login100 main-form-container">
 			<%= render 'shared/edit_account_header' %>	
 
 			<%= form_for(@profile, :url => edit_profile_path, html: { class: 'login100-form validate-form', novalidate: true }) do |f| %>
@@ -9,21 +10,21 @@
 
 				<div class="field wrap-input100 validate-input m-b-26">
     			<span class="label-input100" style="font-size: 12px; width:90px;">Username</span>
-    			<%= f.text_field :username, class: "input100", autocomplete: "username" %>
+    			<%= f.text_field :username, class: "input100", autocomplete: "username", placeholder: "Enter username" %>
 					<span class="focus-input100"></span>
   			</div>
 
   			<div class="field wrap-input100 validate-input m-b-26">
     			<%# f.label :email %>
 					<span class="label-input100" style="font-size: 12px; width:90px;">Name</span>
-    			<%= f.text_field :name, class: "input100", autocomplete: "name" %>
+    			<%= f.text_field :name, class: "input100", autocomplete: "name", placeholder: "Enter Pet name" %>
 					<span class="focus-input100"></span>
   			</div>
 
 				<div class="field wrap-input100 validate-input m-b-26">
     			<%# f.label :email %>
 					<span class="label-input100" style="font-size: 12px; width:90px;">Animal</span>
-    			<%= f.text_field :animal, class: "input100", autocomplete: "animal" %>
+    			<%= f.text_field :animal, class: "input100", autocomplete: "animal", placeholder: "Enter animal type" %>
 					<span class="focus-input100"></span>
   			</div>
 
@@ -37,13 +38,17 @@
 				<div class="field wrap-input100 validate-input m-b-26">
     			<%# f.label :email %>
 					<span class="label-input100" style="font-size: 12px; width:90px;">Email</span>
-    			<%= f.text_field :email, class: "input100", autocomplete: "email" %>
+    			<%= f.text_field :email, class: "input100", autocomplete: "email", placeholder: "Enter email" %>
 					<span class="focus-input100"></span>
   			</div>
 
 				<div class="actions container-login100-form-btn">
   				<%= f.submit "Submit", class: "login100-form-btn" %>
   			</div>
+
+				<div id="signup-login-div">
+					<span id="signup-login-span">Unhappy? <%= link_to "Cancel my account", registration_path(@profile.user), data: { confirm: "Are you sure?" }, method: :delete, id: "signup-login-link" %></span>
+				</div>
 			<% end %>
 		</div>
 	</div>

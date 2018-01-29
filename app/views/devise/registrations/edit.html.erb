@@ -1,6 +1,7 @@
+<%= render 'shared/main_nav_bar' %>
 <div class="limiter">
 	<div class="container-login100">
-		<div class="wrap-login100">
+		<div class="wrap-login100 main-form-container">
 
 			<%= render 'shared/edit_account_header' %>	
 
@@ -15,21 +16,21 @@
   			<div class="field wrap-input100 validate-input m-b-18">
     			<!--<%# f.label :password %> <i>(leave blank if you don't want to change it)</i><br />-->
 					<span class="label-input100" style="font-size: 12px; width:90px;">New Password</span>
-    			<%= f.password_field :password, autocomplete: "off", class: "input100" %>
+    			<%= f.password_field :password, autocomplete: "off", class: "input100", placeholder: "Enter new password" %>
 					<span class="focus-input100"></span>
   			</div>
 
   			<div class="field wrap-input100 validate-input m-b-18">
     			<%# f.label :password_confirmation %>
 					<span class="label-input100" style="font-size: 12px; width:90px;">Confirm New Password</span>
-    			<%= f.password_field :password_confirmation, autocomplete: "off", class: "input100" %>
+    			<%= f.password_field :password_confirmation, autocomplete: "off", class: "input100", placeholder: "Confirm new password" %>
 					<span class="focus-input100"></span>
   			</div>
 
   			<div class="field wrap-input100 validate-input m-b-18">
     			<!--<%# f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />-->
 					<span class="label-input100" style="font-size: 12px; width:90px;">Current Password</span>
-    			<%= f.password_field :current_password, autocomplete: "off", class: "input100" %>
+    			<%= f.password_field :current_password, autocomplete: "off", class: "input100", placeholder: "Enter current password" %>
 					<span class="focus-input100"></span>
   			</div>
 
@@ -41,14 +42,8 @@
   			<!--<div class="actions">
     			<%# f.submit "Update" %>
   			</div>-->
-			<% end %>
 
-			<!--<h3>Cancel my account</h3>
-
-			<p>Unhappy? <%# button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-			<%# link_to "Back", :back %>-->
-
+			<% end %>	
 		</div>
 	</div>
 </div>	

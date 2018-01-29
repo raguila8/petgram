@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
-	before_action :logged_in_user, only: [:edit, :update, :new, :create]
+include ApplicationHelper
+	before_action :logged_in_user, only: [:edit, :update, :new, :create, :show]
 	before_action :correct_user, only: [:edit, :update]
 	def show
 		@profile = Profile.find_by(user_id: current_user.id)	
@@ -34,9 +35,27 @@ class ProfilesController < ApplicationController
 		if @profile.save
 			current_user.username = @profile.username
 			flash[:success] = "New pet profile created!"
-			redirect_to edit_profile_path(@profile.id)
+			#redirect_to edit_profile_path(@profile.id)
+			redirect_to user_path(current_user)
 		else
 			render 'new'
+		end
+	end
+
+	def destroy
+		@user = current_user
+		if @user.profiles.size == 1
+			@user.profiles.first.destroy
+			sign_out
+			@user.destroy
+			redirect_to new_user_registration_path
+		else
+			profile = Profile.find(params[:id])
+			if current_user.username = profile.username
+				current_user.username = current_user.profiles.first.username
+			end
+			profile.destroy
+			redirect_to user_path
 		end
 	end
 
@@ -58,10 +77,12 @@ class ProfilesController < ApplicationController
 		end
 
 			# if user is not logged in, user is redirected to login page
+=begin
 		def logged_in_user
 			unless user_signed_in?
 				flash[:danger] = "Please log in."
 				redirect_to new_user_session_path
 			end
 		end
+=end
 end

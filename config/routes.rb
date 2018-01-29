@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
 	devise_for :users, skip: [:sessions, :registrations]
 	devise_scope :user do
 		get 'sign_in', to: 'devise/sessions#new', as: :new_user_session
@@ -30,12 +31,13 @@ Rails.application.routes.draw do
 	#devise_for :users
 
 	resources :users, only: [:show]
-	resources :profiles, only: [:show, :edit, :new] do 
+	resources :profiles, only: [:show, :edit, :new, :destroy] do 
 		member do
 			patch 'edit', action: :update, :as => :update_edit
 		end
 	end
 	post '/profiles/new', to: 'profiles#create', as: :update_new_profile
+	get '/delete_profiles', to: 'users#delete', as: :delete_profiles
 
 	#patch '/profiles/:id/edit' => 'profiles#update'
 

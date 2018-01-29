@@ -1,3 +1,30 @@
-<h3><%= @profile.username %></h3>
+<%= render 'shared/main_nav_bar' %>
+<article>
+	<section>
+		<div class="content">
+			<div class="header">
+			<div class="header_img">
+				<div class="header_img-container">
+					<!----------- Profile image goes here -------------->
+					<img src="/me.jpg" alt="profile img"/>
+					<div class="avatar">
+						<%= form_for(@profile, :url => profile_path(@profile)) do |f| %>
+							<label class="avatar_change" for="profile_image">
+								<input type="file" name="profile_image" id="photo" style="height: auto;">
+							</label>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<div class="header_data">
+				<div class="header_data-name">
+					<h2><%= @profile.username %></h2>
+					<%= link_to "Edit Profile", edit_profile_path, class: "edit-profile" %>
+				</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</article>
 <%= link_to "Log out", destroy_user_session_path, method: :delete %>
 

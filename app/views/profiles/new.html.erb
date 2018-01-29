@@ -1,28 +1,35 @@
+<%= render 'shared/main_nav_bar' %>
 <div class="limiter">
 	<div class="container-login100">
-		<div class="wrap-login100">
-			<%= render 'shared/edit_account_header' %>	
+		<div class="wrap-login100 main-form-container">
+			<%# render 'shared/edit_account_header' %>	
+			<div class="login100-form-title" style="background-image: url(/bg-09.jpg);">
+				<span class="login100-form-title-1">
+					New Profile
+				</span>
+			</div>
+
 
 			<%= form_for(@profile, :url => new_profile_path, html: { class: 'login100-form validate-form' }) do |f| %>
 				<%= render 'shared/error_messages' %>
 			
 				<div class="field wrap-input100 validate-input m-b-26">
 					<span class="label-input100" style="font-size: 12px; width:90px;">Username</span>
-    			<%= f.text_field :username, class: "input100", autocomplete: "username" %>
+    			<%= f.text_field :username, class: "input100", autocomplete: "username", placeholder: "Enter username" %>
 					<span class="focus-input100"></span>
   			</div>
 
   			<div class="field wrap-input100 validate-input m-b-26">
     			<%# f.label :email %>
 					<span class="label-input100" style="font-size: 12px; width:90px;">Name</span>
-    			<%= f.text_field :name, class: "input100", autocomplete: "name" %>
+    			<%= f.text_field :name, class: "input100", autocomplete: "name", placeholder: "Enter pet name" %>
 					<span class="focus-input100"></span>
   			</div>
 
 				<div class="field wrap-input100 validate-input m-b-26">
     			<%# f.label :email %>
 					<span class="label-input100" style="font-size: 12px; width:90px;">Animal</span>
-    			<%= f.text_field :animal, class: "input100", autocomplete: "animal" %>
+    			<%= f.text_field :animal, class: "input100", autocomplete: "animal", placeholder: "Enter animal type" %>
 					<span class="focus-input100"></span>
   			</div>
 	

@@ -3,8 +3,8 @@
 		<nav class="cl-effect-4">
 			<a class=<%= set_edit_profile_class %> href= <%= edit_profile_path(Profile.find_by(user_id: current_user.id)) %>>Edit Profile</a>
 			<a class= <%= set_edit_password_class %> href=<%= edit_user_registration_path %>>Change Password</a>
-			<a class="non-active-effect-4" href="#">Switch Profile</a>
-			<a class=<%= set_add_profile_class %> href=<%= new_profile_path %>>Add Profile</a>
+			<a class=<%=set_profiles_class%> href=<%=user_path(current_user)%>>Switch Profile</a>
+			<!--<a class=<%= set_add_profile_class %> href=<%= new_profile_path %>>Add Profile</a>-->
 		</nav>
 	</span>
 </div>

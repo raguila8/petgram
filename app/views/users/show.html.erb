@@ -1,5 +1,50 @@
-<h1><%= @user.username %></h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= render 'shared/main_nav_bar' %>
+<div class="limiter">
+	<div class="container-login100">
+		<div class="wrap-login100 main-form-container">
+			<%= render 'shared/edit_account_header' %>
+			<div class="profiles-gate-container">
+				<div class="centered-div list-profiles-container">
+					<span class="login100-form-title-1" id="select-profile-label">
+					Select Profile
+				</span>
+
+					<ul class="choose-profile">
+						<% @user.profiles.each do |profile| %>
+							<li class="profile">
+								<div id="hover-wrapper">
+									<a class="profile-link" href="">
+										<!--<div class="avatar-wrapper">-->
+											<div class="profile-icon" style="background-image:url(https://assets.nflxext.com/ffe/profiles/avatars_v2/320x320/PICON_029.png);"></div>
+										<!--</div>-->
+										<span class="profile-name"><%=profile.username%></span>
+									</a>
+								</div>
+							</li>
+						<% end %>
+						<li class="profile">
+							<div class="hover-wrapper" id="add-profile-li">
+							<a class="profile-link" href=<%=new_profile_path %>>
+								<div class="addProfileIcon">
+									<span class="glyphicon glyphicon-plus-sign"></span>
+								</div>
+								<span class="profile-name">Add Profile</span>
+							</a>
+							</div>
+						</li>
+					</ul>
+					<!--<span class="login100-form-btn">
+						<a href=<%#user_path(current_user)%>>Go back</a
+					</span>-->
+					<form action=<%=delete_profiles_path%> method="get">
+					<input type="submit" name="commit" value="Manage Profiles" class="login100-form-btn">
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
 <%= link_to "Log out", destroy_user_session_path, method: :delete %>
 

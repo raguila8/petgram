@@ -10,8 +10,8 @@
 			<%= form_for(resource, :html => { :class => 'login100-form validates-form', novalidate: :true }, as: resource_name, url: session_path(resource_name)) do |f| %>
 
 				<%= content_tag(:div, flash[:error], :id => "error_explanation") if flash[:error] %>
-<%= content_tag(:div, flash[:notice], :id => "error_explanation") if flash[:notice] %>
-<%= content_tag(:div, flash[:alert], :id => "error_explanation") if flash[:alert] %>
+				<%# content_tag(:div, flash[:notice], :id => "error_explanation") if flash[:notice] %>
+				<%= content_tag(:div, flash[:alert], :id => "error_explanation") if flash[:alert] %>
   
 				<div class="field wrap-input100 validate-input m-b-26" data-validate="Email is required">
 					<span class="label-input100">Email</span>

@@ -1,0 +1,12 @@
+var html1 = "<p><span style=\"clear:both; margin-top: 25px; padding-right: 6px;\", class=\"bold-text\">";
+var html2 = "</span><span class=\"comment-styles\">";
+var html3 = "</span></p>";
+console.log("<%=@comments[0].content.strip%>");
+<% @comments.each do |comment| %>
+	$("#more-comments-<%=@post.id%>").after(html1 + "<%=comment.profile.username%>" + html2 + "<%=comment.content.strip%>" + html3);
+<% end %>
+
+<% if !@more %>
+	$('#more-comments-<%=@post.id%>').html('');
+<% end %>
+

@@ -82,7 +82,7 @@
   <div class="container-fluid">
 		<div class="container">
     		<div class="navbar-header">	
-      		<a class="navbar-brand pull-left" href="#">WebSiteName</a>
+      		<a class="navbar-brand pull-left" href=<%=home_path%>>Home</a>
 				</div>
 				<div class="navbar-header pull-right">
 					<div class="pull-right right-nav-buttons">
@@ -90,6 +90,7 @@
       				<span class="sr-only">Toggle navigation</span>
         			<span class="glyphicon glyphicon-search"></span>
       			</button>
+						<a id="image-upload-toggle"><button class="glyphicon glyphicon-plus" data-toggle="modal" data-target="#image-upload-modal"></button></a>
       			<button class="glyphicon glyphicon-eye-open" href="#"></button>
       			<button class="glyphicon glyphicon-heart" href="#"></button>
       		<a href=<%=profile_path(Profile.find_by(username: current_user.username)) %>><button class="glyphicon glyphicon-user"></button></a>

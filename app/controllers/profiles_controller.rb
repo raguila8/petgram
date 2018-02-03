@@ -3,7 +3,8 @@ include ApplicationHelper
 	before_action :logged_in_user, only: [:edit, :update, :new, :create, :show]
 	before_action :correct_user, only: [:edit, :update]
 	def show
-		@profile = Profile.find_by(user_id: current_user.id)	
+		@profile = Profile.find_by(user_id: current_user.id)
+		@post = Post.new
 	end
 
 	def edit
@@ -76,6 +77,7 @@ include ApplicationHelper
 			redirect_to(root_url) unless @profile.user == current_user
 		end
 
+		
 			# if user is not logged in, user is redirected to login page
 =begin
 		def logged_in_user

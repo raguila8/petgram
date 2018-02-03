@@ -1,30 +1,71 @@
+<%= render 'shared/followers_modal' %>
+<%= render 'shared/following_modal' %>
 <%= render 'shared/main_nav_bar' %>
 <article>
 	<section>
 		<div class="content">
 			<div class="header">
-			<div class="header_img">
-				<div class="header_img-container">
-					<!----------- Profile image goes here -------------->
-					<img src="/me.jpg" alt="profile img"/>
-					<div class="avatar">
-						<%= form_for(@profile, :url => profile_path(@profile)) do |f| %>
-							<label class="avatar_change" for="profile_image">
-								<input type="file" name="profile_image" id="photo" style="height: auto;">
-							</label>
-						<% end %>
+				<div class="header_img">
+					<div class="header_img-container">
+						<!----------- Profile image goes here -------------->
+						<img src="/me.jpg" alt="profile img"/>
+						<div class="avatar">
+							<%= form_for(@profile, :url => profile_path(@profile)) do |f| %>
+								<label class="avatar_change" for="profile_image">
+									<input type="file" name="profile_image" id="photo" style="height: auto;">
+								</label>
+							<% end %>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="header_data">
-				<div class="header_data-name">
-					<h2><%= @profile.username %></h2>
-					<%= link_to "Edit Profile", edit_profile_path, class: "edit-profile" %>
-				</div>
+				<div class="header_data">
+					<div class="header_data-name">
+						<h2><%= @profile.username %></h2>
+						<%= link_to "Edit Profile", edit_profile_path(@profile), class: "edit-profile" %>
+					</div>
+					<div class="profile-stats">
+						<a class="profile-posts">
+							<div class="profile-stat-number"><%=@profile.posts.count %></div>
+							<span>posts</span>
+						</a>
+						<a class="profile-followers">
+							<div class="profile-stat-number"><%=@profile.followers.count %></div>
+							<span>followers</span>
+						</a>
+						<a class="profile-following">
+							<div class="profile-stat-number"><%=@profile.following.count %></div>
+							<span>following</span>
+						</a>
+					</div>
+					<div class="profile-info">
+						<h4 class="profile-name"><%=@profile.name%></h4>
+						<span><%=@profile.bio%></span><br>
+						<h4 class="profile-name"><%=@profile.animal%></h4>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 </article>
+
+<%= render 'shared/image_upload_modal' %>
+
+<div class="container">
+<div class="row">
+	<% @profile.posts.each do |post| %>
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+			<a href="#">
+				<div class="profile-post-container">
+				<%= image_tag post.image.profile_post.url, class: "profile-post-img img-responsive" %>
+				<div class="img-hover-buttons">
+					<a href="#"><%=image_tag "/dog-pawprint-on-a-heart.png", style: "float: left; width: 25px; height: auto;"%></a>
+					<a href="#" class="glyphicon glyphicon-comment" style="float: right; width: 32px; height: auto; font-size: 25px;"></a>
+				</div>
+				</div>
+			</a>
+		</div>
+	<% end %>
+</div>
+</div>
 <%= link_to "Log out", destroy_user_session_path, method: :delete %>
 

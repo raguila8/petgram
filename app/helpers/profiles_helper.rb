@@ -19,4 +19,8 @@ module ProfilesHelper
 	def set_profiles_class
 		((controller_name == "users") && (action_name == "show")) ? "active-effect-4" : "non-active-effect-4" 
 	end
+
+	def current_profile
+		Profile.find_by(username: current_user.username)
+	end
 end

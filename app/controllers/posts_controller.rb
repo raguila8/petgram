@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	include ProfilesHelper
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
@@ -25,13 +26,16 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
-    respond_to do |format|
+		@post.profile_id = current_profile.id
+		respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { 
+					flash[:success] = "New post created!"
+					redirect_to profile_path(current_profile)
+				}
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
+				format.js {}
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -60,6 +64,21 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+	def home
+		respond_to do |format|
+			if signed_in?
+				format.html {
+					@posts = current_profile.posts.build
+					@feed_items = current_profile.feed.order(created_at: :desc)[0..19]
+				}
+
+				format.js {
+				
+				}
+			end
+		end
+	end
 
   private
     # Use callbacks to share common setup or constraints between actions.

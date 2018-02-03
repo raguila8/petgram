@@ -39,6 +39,10 @@ Rails.application.routes.draw do
 	post '/profiles/new', to: 'profiles#create', as: :update_new_profile
 	get '/delete_profiles', to: 'users#delete', as: :delete_profiles
 
+	get '/home', to: 'posts#home', as: :home
+	post '/comments', to: 'comments#create', as: :comments
+	get '/get_comments', to: 'comments#get_comments', as: :get_comments
+
 	#patch '/profiles/:id/edit' => 'profiles#update'
 
 	devise_scope :user do

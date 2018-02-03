@@ -1,0 +1,23 @@
+<div class="followers-modal" id="modal">
+	<div class="modal_content">
+		<div class="modal_header">Followers</div>
+		<ul class="contact-list">
+			<% @profile.followers.each do |profile| %>
+				<li>
+					<a href=<%=profile_path(profile)%>>
+						<% if !profile.profile_image %>
+							<%= image_tag profile.profile_image.thumb.url %>
+						<% else %>
+							<%= image_tag '/profile_default.png', style: "width: 30px; height: 30px;"  %>
+						<% end %>
+					</a>
+					<div class="profile-name">
+						<a href=<%=profile_path(profile)%>><%=profile.name%></a>
+						<span><%=profile.name%></span>
+					</div>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+<div class="modal_overlay"></div>

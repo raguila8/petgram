@@ -40,4 +40,25 @@ class Profile < ApplicationRecord
 							OR profile_id = :profile_id", profile_id: self.id)
 	end
 
+	def search(pattern)
+=begin
+ _following_ids = "SELECT followed_id FROM relationships
+											WHERE follower_id = :profile_id"
+
+		
+		_suggestions = "id FROM profiles 
+		 WHERE username LIKE '#{pattern}'
+		LIMIT 30"
+AND
+		 profile_id IN (#{following_ids})
+		 UNION
+		 SELECT profile_id FROM profiles
+		 WHERE username LIKE '#{pattern}'
+		 LIMIT 30"
+=end
+		result = Profile.where("username = '#{pattern}'").limit(30)
+	
+		return result	
+	end
+
 end

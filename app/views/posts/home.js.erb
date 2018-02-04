@@ -1,0 +1,3 @@
+<% if !@feed_items.nil? %>
+	$('.container').append("<%= escape_javascript render(:partial => '/posts/more_posts', :locals => { @post_count => @post_count, @feed_items => @feed_items}) %>");
+<% end %>

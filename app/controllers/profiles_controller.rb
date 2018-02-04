@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
 include ApplicationHelper
+include ProfilesHelper
 	before_action :logged_in_user, only: [:edit, :update, :new, :create, :show]
 	before_action :correct_user, only: [:edit, :update]
 	def show
@@ -57,6 +58,15 @@ include ApplicationHelper
 			end
 			profile.destroy
 			redirect_to user_path
+		end
+	end
+
+	def autocomplete
+		respond_to do |format|
+			format.json {
+				@suggestions = current_profile.search("%#{params[:query]}%")
+				render json: {suggestions: @suggestions }
+			}
 		end
 	end
 

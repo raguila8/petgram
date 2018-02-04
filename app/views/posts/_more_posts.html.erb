@@ -1,12 +1,4 @@
-<%= javascript_include_tag "home" %>
-<%= render 'shared/followers_modal' %>
-<%= render 'shared/following_modal' %>
-<%= render 'shared/main_nav_bar' %>
-<%= render 'shared/image_upload_modal' %>
-
-<div class="feed-body">
-<div class="container" id="feed-container">
-	<% post_count = 0 %>
+<% post_count = @post_count %>
 	<% @feed_items.each do |post| %>
 		<div class="row">
 			<div class="col-md-offset-2 col-lg-offset-2 col-sm-offset-2 col-xs-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-8 post-container" id="post-count-<%=post_count%>">
@@ -59,5 +51,4 @@
 		</div>
 		<% post_count = post_count + 1 %>
 	<% end %>
-</div>
-</div>
+

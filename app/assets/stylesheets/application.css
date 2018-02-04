@@ -13,6 +13,7 @@
  *= require bootstrap
  *= require auth_stylesheets
  *= require jquery.Jcrop
+ *= require jquery-ui
  *= require custom.scss
  *= require_self
  */

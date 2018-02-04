@@ -1,6 +1,8 @@
 <%= render 'shared/followers_modal' %>
 <%= render 'shared/following_modal' %>
 <%= render 'shared/main_nav_bar' %>
+<%= render 'shared/image_upload_modal' %>
+<div id="profile-body">
 <article>
 	<section>
 		<div class="content">
@@ -48,8 +50,6 @@
 	</section>
 </article>
 
-<%= render 'shared/image_upload_modal' %>
-
 <div class="container">
 <div class="row">
 	<% @profile.posts.each do |post| %>
@@ -68,4 +68,4 @@
 </div>
 </div>
 <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-
+</div>

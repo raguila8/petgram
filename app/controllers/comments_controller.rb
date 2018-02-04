@@ -34,6 +34,10 @@ class CommentsController < ApplicationController
 				}
 
 				format.js {
+					@post = Post.find(params[:post_id])
+					page = params[:page].to_i
+		@more = false
+
 					offset = page * 5 - 1
 					all_comments = @post.comments
 					@comments = all_comments.order(created_at: :desc)[(offset - 4)..offset]

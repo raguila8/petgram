@@ -69,12 +69,17 @@ class PostsController < ApplicationController
 		respond_to do |format|
 			if signed_in?
 				format.html {
+					@profile = current_profile
+					@post = Post.new
 					@posts = current_profile.posts.build
 					@feed_items = current_profile.feed.order(created_at: :desc)[0..19]
 				}
 
 				format.js {
-				
+					page = params[:page].to_i
+					offset = page * 20 - 1
+					@post_count = offset + 1 - 20
+					@feed_items = current_profile.feed.order(created_at: :desc)[(offset - 19)..offset]
 				}
 			end
 		end

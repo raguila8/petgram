@@ -25,10 +25,20 @@
 						<%= image_tag post.image.profile_post1.url, class: "img-responsive feed-img"%>
 					<div class="caption">
 						<p>
-							<a href="#"><%= image_tag "/dog-pawprint-on-a-heart.png", style: "float: left; margin-right: 15px; width: 25px; height: auto;" %></a>
+							<div class="like-container">
+								<a href="<%=vote_path(:post => post)%>" data-remote="true"><%= image_tag "/dog-pawprint-on-a-heart.png", style: "float: left; margin-right: 15px;" %>
+								<% if current_profile.liked? post %>
+									<div class="like-btn like-btn<%=post.id%> liked">
+								<% else %>
+									<div class="like-btn like-btn<%=post.id%>">
+								<% end %>
+										<img src="/dog-pawprint-on-a-heart1.png" style="width: 25px; height: auto;">
+									</div>
+							</div>
+							</a>
 							<a class="glyphicon glyphicon-comment" style="width: 32px; height: auto; cursor: pointer; font-size: 25px;"></a>
 						</p>
-						<span style="clear:both; padding-top: 10px;", class="bold-text"> 0 likes</span><br><br>
+						<span style="clear:both; padding-top: 10px;", class="bold-text likes-count-<%=post.id%>"> <%=post.get_upvotes.size%> <%="like".pluralize(post.get_upvotes.size)%></span><br><br>
 						<% if !post.description.blank? %>
 						<p>
 						<span style="clear:both; margin-top: 25px; padding-right: 6px;", class="bold-text"> <%=post.profile.username%></span> <span class="comment-styles"><%=post.description%></span>

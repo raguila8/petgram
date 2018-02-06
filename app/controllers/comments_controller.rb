@@ -11,7 +11,11 @@ class CommentsController < ApplicationController
 					render json: @comment 
 				}
 				format.js {
-				
+					@notification = Notification.new
+					@notification.notified_by_id = current_profile.id
+					@notification.profile_id = @comment.post.profile_id
+					@notification.post_id = @comment.post.id
+					@notification.notification_type = "comment"
 				}
 			end	
 		end

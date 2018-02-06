@@ -9,7 +9,10 @@ class Profile < ApplicationRecord
 																	dependent: :destroy
 	has_many :following, through: :active_relationships, source: :followed
 	has_many :followers, through: :passive_relationships, source: :follower
+	has_many :notifications, dependent: :destroy
+
 	belongs_to :user
+	acts_as_voter
 	# This is for the email_field for the form in profiles#edit view.
 	attr_accessor :email
 
@@ -56,7 +59,7 @@ AND
 		 WHERE username LIKE '#{pattern}'
 		 LIMIT 30"
 =end
-		result = Profile.where("username = '#{pattern}'").limit(30)
+		result = Profile.where("username LIKE '#{pattern}'").limit(30)
 	
 		return result	
 	end

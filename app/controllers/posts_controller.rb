@@ -85,6 +85,29 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def vote
+		@post = Post.find(params[:post])
+		if !current_profile.liked? @post
+			@post.liked_by current_profile
+			@notification = Notification.new
+			@notification.notified_by_id = current_profile.id
+			@notification.profile_id = @post.profile_id
+			@notification.post_id = @post.id
+			@notification.notification_type = "like"
+			@notification.save
+
+		elsif current_profile.liked? @post
+			@post.unliked_by current_profile
+		end
+
+		respond_to do |format|
+			format.js {
+			}
+			format.json {}
+			format.html {}
+		end
+	end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

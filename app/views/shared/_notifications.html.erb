@@ -1,0 +1,62 @@
+<div class="modal fade in" id="notifications-modal" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title"> Notifications </h4>
+			</div>
+			<div class="modal-body notifications-body">
+				<ul>
+					<% current_profile.notifications.order(created_at: :desc).each do |notification| %>
+						<% if notification.notification_type == "comment" %>
+							<a href="#" class="notifications-menu-item">
+								<li class="notifications-item">
+									<div class="ac-item-container">
+										<div class="small-thumb-container">
+											<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
+										</div>
+										<div class="item-info">
+											<p class="username-item"><%=notification.notified_by.username%> commented on your photo</p>
+											<img class="small-thumb" style="width: 30px; height: 30px; float: right;"src=<%=notification.post.image.thumb%>>
+
+										</div>
+									</div>
+								</li>
+						<% elsif notification.notification_type == "like" %>
+							<a href="#" class="notifications-menu-item">
+								<li class="notifications-item">
+									<div class="ac-item-container">
+										<div class="small-thumb-container">
+											<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
+										</div>
+										
+											<span class="username-item"><%=notification.notified_by.username%> liked your photo</span>
+											<img style="width: 30px; height: 30px; float: right;"src=<%=notification.post.image.thumb%>>
+
+										
+									</div>
+								</li>
+
+						<% elsif notification.notification_type == "follower" %>
+							<a href="<%=profile_path(notification.notified_by)%>" class="notifications-menu-item">
+								<li class="notifications-item">
+									<div class="ac-item-container">
+										<div class="small-thumb-container">
+											<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
+										</div>
+										<div class="item-info">
+											<p class="username-item"><%=notification.notified_by.username%> started following you</p>
+											<img class="small-thumb" style="width: 30px; height: 30px; float: right;"src=<%=notification.notified_by.profile_image.thumb%>>
+
+										</div>
+									</div>
+								</li>
+
+						<% end %>
+						</a>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

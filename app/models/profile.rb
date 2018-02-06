@@ -43,6 +43,22 @@ class Profile < ApplicationRecord
 							OR profile_id = :profile_id", profile_id: self.id)
 	end
 
+	def suggestions
+		follower_ids = "SELECT follower_id FROM relationships
+										WHERE followed_id = :id"
+		following_ids = "SELECT followed_id FROM relationships
+										WHERE follower_id = :id"
+		sql = "SELECT followed_id AS profile_id
+					FROM relationships 
+					GROUP BY followed_id
+					ORDER BY COUNT(follower_id) DESC
+					LIMIT 20"
+		
+		popular = Profile.where("(id IN (#{sql}) AND NOT id = :id) OR (id IN (#{follower_ids}) AND id NOT IN (#{following_ids}))", id: self.id)
+		#popular << Profile.where("profile_id IN #{follower_ids} AND profile_id NOT IN #{following_ids}")
+		return popular
+	end
+
 	def search(pattern)
 =begin
  _following_ids = "SELECT followed_id FROM relationships

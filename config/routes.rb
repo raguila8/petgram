@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 	get '/get_comments', to: 'comments#get_comments', as: :get_comments
 	get '/autocomplete', to: 'profiles#autocomplete', as: :autocomplete
 	get '/vote', to: 'posts#vote', as: :vote
+	get '/discover', to: 'profiles#discover', as: :discover
 
 	#patch '/profiles/:id/edit' => 'profiles#update'
 

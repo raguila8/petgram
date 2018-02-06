@@ -1,23 +1,41 @@
-<div class="followers-modal" id="modal">
-	<div class="modal_content">
-		<div class="modal_header">Followers</div>
-		<ul class="contact-list">
-			<% @profile.followers.each do |profile| %>
-				<li>
-					<a href=<%=profile_path(profile)%>>
-						<% if !profile.profile_image %>
-							<%= image_tag profile.profile_image.thumb.url %>
-						<% else %>
-							<%= image_tag '/profile_default.png', style: "width: 30px; height: 30px;"  %>
-						<% end %>
-					</a>
-					<div class="profile-name">
-						<a href=<%=profile_path(profile)%>><%=profile.name%></a>
-						<span><%=profile.name%></span>
-					</div>
-				</li>
-			<% end %>
-		</ul>
+<div class="modal fade in" id="followers-modal" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title"> Followers </h4>
+		</div>
+		<div class="modal-body notifications-body relationships-body">
+			<ul>
+				<% current_profile.followers.each do |follower| %>
+					<li class="profile-li">
+						<div class="profile-item-container">
+							<div class="profile-info-container">
+								<a href="<%=profile_path(follower.id)%>"class="profile-thumb-container">
+									<img class="profile-thumb" src="/profile_default.png"></img>
+								</a>
+								<div class="profile-information-container">
+									<div class="profile-information-username">
+										<a href="<%=profile_path(follower.id)%>"class="username-link"><%=follower.username%></a>
+									</div>
+									<div class="profile-information-name"><%=follower.name%></div>
+								</div>
+								
+							</div>
+							<div class="follow-btn-container">
+								<span class="follow-btn">
+									<% if !current_profile.following?(follower) %>
+									<button class="follow">Follow</button>
+									<% else %>
+										<button class="following">Following</button>
+									<% end %>
+								</span>
+							</div>
+						</div>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+		</div>
 	</div>
 </div>
-<div class="modal_overlay"></div>

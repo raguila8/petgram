@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-	$(".profile-followers").on('click', function() {
+	/*$(".profile-followers").on('click', function() {
 		$(".followers-modal").addClass("modal-active");
 		$(".modal_overlay").addClass("modal_overlay_active");
 	});
@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', function() {
 		$(".modal_overlay").removeClass("modal_overlay_active");
 		$(".followers-modal").removeClass("modal-active");
 		$(".following-modal").removeClass("modal-active");
-	});
+	});*/
 
 	/******************************* Image Preview ***************/
 

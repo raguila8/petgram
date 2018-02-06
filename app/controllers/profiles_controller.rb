@@ -70,6 +70,11 @@ include ProfilesHelper
 		end
 	end
 
+	def discover
+		@suggestions = current_profile.suggestions
+		Post.order(cached_votes_score: :desc)
+	end
+
 	private
 		
 		def profile_update_params

@@ -172,6 +172,11 @@ $(document).ready(function() {
 		$('.page-overlay').css("display", "none");
 	});
 
+	$('.container').on('click', '.modal-meta-top .close', function() {
+		$('.img-modal').remove();
+		$('.page-overlay').css("display", "none");
+	});
+
 	/****************************** Get More Comments *****************/
 			
 	var page = 2;

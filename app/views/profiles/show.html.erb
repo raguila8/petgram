@@ -3,54 +3,101 @@
 <%= render 'shared/main_nav_bar' %>
 <%= render 'shared/image_upload_modal' %>
 <div id="profile-body">
+<div class="container">
+	<div class="frame" style="margin-bottom: 100px;">
+		<div class="center-card first-card">
+			<div class="profile-card">			
+				<div class="image">
+					<div class="circle-1"></div>
+					<div class="circle-2"></div>
+					<img src="/default-dog.png" width="70" height="70" alt="<%=@profile.name%>">
+				</div>
+
+				<div class="card-name"><%=@profile.name%></div>
+				<div class="card-animal"><%=@profile.animal%></div>
+				<span class="card-animal" style="position: relative; padding-top: 10px; margin-top: 10px;"><%=@profile.bio%></span><br>
+
+				<% if current_profile == @profile %>
+					<div class="card-actions">
+						<%= button_to "Edit Profile", edit_profile_path(@profile), :method => "get", class: "card-btn" %>
+					</div>
+				<% else %>
+					<div class="card-actions">
+						<button class="card-btn">Follow</button>	
+					</div>
+				<% end %>
+			</div>
+		
+			<div class="card-stats">
+				<div class="card-box">
+					<span class="card-value"><%=@profile.posts.count%></span>
+					<span class="card-parameter">Posts</span>
+				</div>
+				<div class="card-box" id="followers-toggle" data-toggle="modal" data-target="#followers-modal">
+					<span class="card-value"><%=@profile.followers.count%></span>
+					<span class="card-parameter">Followers</span>
+				</div>
+				<div class="card-box" id="following-toggle" data-toggle="modal" data-target="#following-modal">
+					<span class="card-value"><%=@profile.following.count%></span>
+					<span class="card-parameter">Following</span>
+				</div>
+			</div>
+  	</div>
+	</div>
+
+
+
+
+<!--
+
 <article>
 	<section>
 		<div class="content">
 			<div class="header">
 				<div class="header_img">
 					<div class="header_img-container">
-						<!----------- Profile image goes here -------------->
+						
 						<img src="/me.jpg" alt="profile img"/>
 						<div class="avatar">
-							<%= form_for(@profile, :url => profile_path(@profile)) do |f| %>
+							<%# form_for(@profile, :url => profile_path(@profile)) do |f| %>
 								<label class="avatar_change" for="profile_image">
 									<input type="file" name="profile_image" id="photo" style="height: auto;">
 								</label>
-							<% end %>
+							<%# end %>
 						</div>
 					</div>
 				</div>
 				<div class="header_data">
 					<div class="header_data-name">
-						<h2><%= @profile.username %></h2>
-						<%= link_to "Edit Profile", edit_profile_path(@profile), class: "edit-profile" %>
+						<h2><%# @profile.username %></h2>
+						<%# link_to "Edit Profile", edit_profile_path(@profile), class: "edit-profile" %>
 					</div>
 					<div class="profile-stats">
 						<a class="profile-posts">
-							<div class="profile-stat-number"><%=@profile.posts.count %></div>
+							<div class="profile-stat-number"><%#@profile.posts.count %></div>
 							<span>posts</span>
 						</a>
 						<a class="profile-followers">
-							<div class="profile-stat-number"><%=@profile.followers.count %></div>
+							<div class="profile-stat-number"><%#@profile.followers.count %></div>
 							<span id="followers-toggle" data-toggle="modal" data-target="#followers-modal">followers</span>
 						</a>
 						<a class="profile-following">
-							<div class="profile-stat-number"><%=@profile.following.count %></div>
+							<div class="profile-stat-number"><%#@profile.following.count %></div>
 							<span id="following-toggle" data-toggle="modal" data-target="#following-modal">following</span>
 						</a>
 					</div>
 					<div class="profile-info">
-						<h4 class="profile-name"><%=@profile.name%></h4>
-						<span><%=@profile.bio%></span><br>
-						<h4 class="profile-name"><%=@profile.animal%></h4>
+						<h4 class="profile-name"><%#@profile.name%></h4>
+						<span><%#@profile.bio%></span><br>
+						<h4 class="profile-name"><%#@profile.animal%></h4>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 </article>
+-->
 
-<div class="container">
 <div class="row">
 	<% @profile.posts.order(created_at: :desc).each do |post| %>
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">

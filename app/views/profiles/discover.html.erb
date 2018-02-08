@@ -1,5 +1,6 @@
 <%= javascript_include_tag "discover" %>
 <%= javascript_include_tag "home" %>
+<%= javascript_include_tag "image_modal" %>
 <%= render 'shared/followers_modal' %>
 <%= render 'shared/following_modal' %>
 <%= render 'shared/main_nav_bar' %>
@@ -152,8 +153,8 @@
 	<div class="row" style="margin-top: 5%;">
 		<% @popular.each do |post| %>
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-				<a href="#">
-					<div class="profile-post-container">
+				<a>
+					<div class="profile-post-container" id="post-container-<%=post.id%>">
 						<%= image_tag post.image.profile_post.url, class: "profile-post-img img-responsive" %>
 						<div class="img-hover-buttons">
 								<p>	<%=image_tag "/dog-pawprint-on-a-heart3.png", class: "img-hover-heart"%> <span class="img-hover-likes">&nbsp;<%=post.get_upvotes.size%></span>
@@ -168,3 +169,4 @@
 	</div>
 </div>
 </div>
+<div class="page-overlay"></div>

@@ -1,0 +1,17 @@
+<% @comments.each do |comment| %>
+	var html1 = "<li><div class='comment-img'>";
+	var html2;
+  <% if !comment.profile.profile_image.profile.url.nil? %>
+  	html2 = "<a href='<%=profile_path(comment.profile.id)%>'><img src='<%=comment.profile.profile_image.profile.url%>'/></a>";
+	<% else %>
+		html2 = "<a href='<%=profile_path(comment.profile.id)%>'><img src='/default-dog.png'/></a>";
+	<% end %>
+	var html3 = "</div><div class='comment-text'><strong><a href='<%=profile_path(comment.profile.id)%>'><%=comment.profile.username%></a></strong><p><%=comment.content.strip()%></p> <span class='date sub-text'>on <%= comment.created_at.strftime("%a, %d %b %Y, %I:%M %P") %></span></div></li>";
+
+
+	$(".img-comment-list").prepend(html1 + html2 + html3);
+<% end %>
+
+<% if !@more %>
+	$('.more-comments-link').remove();
+<% end %>

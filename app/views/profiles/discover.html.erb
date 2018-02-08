@@ -1,8 +1,170 @@
-<div class="profile-card">
-  <img src="https://www.imore.com/sites/imore.com/files/styles/xlarge/public/field/image/2017/11/bad-selfie-close.jpg?itok=vRV1QO4c" alt="John" style="width:100%">
-  <h1>John Doe</h1>
-  <p class="title">CEO & Founder, Example</p>
-  <p>Harvard University</p>
- 
- <p><button>Contact</button></p>
+<%= javascript_include_tag "discover" %>
+<%= javascript_include_tag "home" %>
+<%= render 'shared/followers_modal' %>
+<%= render 'shared/following_modal' %>
+<%= render 'shared/main_nav_bar' %>
+<%= render 'shared/image_upload_modal' %>
+
+<div class="discover-body">
+<div class="container">
+	<div class="explore" style="margin-top: 10%;">
+		<h1>Discover People</h1>
+	</div>
+
+	<div class="carousel slide" data-type="multi" id="myCarousel">
+		<div class = "frame">
+
+			<div class="carousel-inner">
+
+				<div class="item active">
+					
+	
+  				<div class="center-card first-card">
+
+						<div class="profile-card">
+							
+							<div class="image">
+								<div class="circle-1"></div>
+								<div class="circle-2"></div>
+								<img src="http://100dayscss.com/codepen/jessica-potter.jpg" width="70" height="70" alt="Jessica Potter">
+							</div>
+			
+							<div class="card-name">Jessica Potter</div>
+							<div class="card-animal">Visual Artist</div>
+			
+							<div class="card-actions">
+								<button class="card-btn">Follow</button>
+								
+							</div>
+						</div>
+		
+						<div class="card-stats">
+							<div class="card-box">
+								<span class="card-value">523</span>
+								<span class="card-parameter">Posts</span>
+							</div>
+							<div class="card-box">
+								<span class="card-value">1387</span>
+								<span class="card-parameter">Followers</span>
+							</div>
+							<div class="card-box">
+								<span class="card-value">146</span>
+								<span class="card-parameter">Following</span>
+							</div>
+						</div>
+  				</div>
+				</div>
+				<% @suggestions.each do |profile| %>
+				<div class="item">		
+  				<div class="center-card second-card">
+    
+						<div class="profile-card">
+							
+							<div class="image">
+								<div class="circle-1"></div>
+								<div class="circle-2"></div>
+								<% if !profile.profile_image.profile.url.nil? %>
+									<img src="<%=profile.profile_image.profile.url%>" width="70" height="70" alt="<%=profile.username%>">
+								<% else %>
+									<img src="/default-dog.png" width="70" height="70" alt="<%=profile.username%>">
+								<% end %>
+							</div>
+			
+							<div class="card-name"><%=profile.name%></div>
+							<div class="card-animal"><%=profile.animal%></div>
+			
+							<div class="card-actions">
+								<button class="card-btn">Follow</button>
+								
+							</div>
+						</div>
+		
+						<div class="card-stats">
+							<div class="card-box">
+								<span class="card-value"><%=profile.posts.count%></span>
+								<span class="card-parameter">Posts</span>
+							</div>
+							<div class="card-box">
+								<span class="card-value"><%=profile.followers.count%></span>
+								<span class="card-parameter">Followers</span>
+							</div>
+							<div class="card-box">
+								<span class="card-value"><%=profile.following.count%></span>
+								<span class="card-parameter">Following</span>
+							</div>
+						</div>
+  				</div>
+				</div>
+			<% end %>
+<!--
+				<div class="item">
+					<div class="center-card third-card">
+    
+						<div class="profile-card">
+							
+							<div class="image">
+								<div class="circle-1"></div>
+								<div class="circle-2"></div>
+								<img src="http://100dayscss.com/codepen/jessica-potter.jpg" width="70" height="70" alt="Jessica Potter">
+							</div>
+			
+							<div class="card-name">Jessica Potter</div>
+							<div class="card-animal">Visual Artist</div>
+			
+							<div class="card-actions">
+								<button class="card-btn">Follow</button>
+								
+							</div>
+						</div>
+		
+						<div class="card-stats">
+							<div class="card-box">
+								<span class="card-value">523</span>
+								<span class="card-parameter">Posts</span>
+							</div>
+							<div class="card-box">
+								<span class="card-value">1387</span>
+								<span class="card-parameter">Followers</span>
+							</div>
+							<div class="card-box">
+								<span class="card-value">146</span>
+								<span class="card-parameter">Following</span>
+							</div>
+						</div>
+					</div>
+  			</div>
+		-->		
+			</div>
+			<a href="#myCarousel" class="carousel-control left" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<a href="#myCarousel" class="carousel-control right" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		</a>
+
+		</div>
+	</div>
+
+<div class="explore">
+	<h1>Explore</h1>
+</div>
+
+	<div class="row" style="margin-top: 5%;">
+		<% @popular.each do |post| %>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+				<a href="#">
+					<div class="profile-post-container">
+						<%= image_tag post.image.profile_post.url, class: "profile-post-img img-responsive" %>
+						<div class="img-hover-buttons">
+								<p>	<%=image_tag "/dog-pawprint-on-a-heart3.png", class: "img-hover-heart"%> <span class="img-hover-likes">&nbsp;<%=post.get_upvotes.size%></span>
+							&nbsp;<span class="img-hover-comment glyphicon glyphicon-comment"></span>&nbsp;<span class="img-hover-comments"><%=post.comments.count%></span>
+						</p>
+				
+						</div>
+					</div>
+				</a>
+			</div>
+		<% end %>
+	</div>
+</div>
 </div>

@@ -45,6 +45,9 @@ Rails.application.routes.draw do
 	get '/autocomplete', to: 'profiles#autocomplete', as: :autocomplete
 	get '/vote', to: 'posts#vote', as: :vote
 	get '/discover', to: 'profiles#discover', as: :discover
+	get '/post_modal', to: 'posts#post_modal', as: :post_modal
+	get '/get_modal_comments', to: 'comments#get_modal_comments', as: :get_modal_comments
+	post '/modal_comments', to: 'comments#create_modal_comment', as: :modal_comments
 
 	#patch '/profiles/:id/edit' => 'profiles#update'
 

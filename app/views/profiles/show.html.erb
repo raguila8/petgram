@@ -1,3 +1,4 @@
+<%= javascript_include_tag "image_modal" %>
 <%= render 'shared/following_modal' %>
 <%= render 'shared/main_nav_bar' %>
 <%= render 'shared/image_upload_modal' %>
@@ -51,14 +52,16 @@
 
 <div class="container">
 <div class="row">
-	<% @profile.posts.each do |post| %>
+	<% @profile.posts.order(created_at: :desc).each do |post| %>
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-			<a href="#">
-				<div class="profile-post-container">
+			<a>
+				<div class="profile-post-container" id="post-container-<%=post.id%>">
 				<%= image_tag post.image.profile_post.url, class: "profile-post-img img-responsive" %>
 				<div class="img-hover-buttons">
-					<a href="#"><%=image_tag "/dog-pawprint-on-a-heart.png", style: "float: left; width: 25px; height: auto;"%></a>
-					<a href="#" class="glyphicon glyphicon-comment" style="float: right; width: 32px; height: auto; font-size: 25px;"></a>
+						<p>	<%=image_tag "/dog-pawprint-on-a-heart3.png", class: "img-hover-heart"%> <span class="img-hover-likes">&nbsp;<%=post.get_upvotes.size%></span>
+							&nbsp;<span class="img-hover-comment glyphicon glyphicon-comment"></span>&nbsp;<span class="img-hover-comments"><%=post.comments.count%></span>
+						</p>
+			
 				</div>
 				</div>
 			</a>
@@ -69,4 +72,4 @@
 <%= link_to "Log out", destroy_user_session_path, method: :delete %>
 </div>
 <%= render 'shared/followers_modal' %>
-
+<div class="page-overlay"></div>

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 	include ProfilesHelper
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+	protect_from_forgery :except => :vote
 
   # GET /posts
   # GET /posts.json
@@ -106,6 +107,18 @@ class PostsController < ApplicationController
 			format.json {}
 			format.html {}
 		end
+	end
+
+	def post_modal
+		@post = Post.find(params[:post_id])
+		@prev = params[:prev] if params[:prev].to_i >= 0	
+		@next = params[:next] if params[:next].to_i >= 0
+		respond_to do |format|
+			format.html {}
+
+			format.js {}
+		end
+
 	end
 
   private

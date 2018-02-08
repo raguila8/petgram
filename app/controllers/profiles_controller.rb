@@ -72,7 +72,7 @@ include ProfilesHelper
 
 	def discover
 		@suggestions = current_profile.suggestions
-		Post.order(cached_votes_score: :desc)
+		@popular = Post.order(cached_votes_score: :desc)
 	end
 
 	private

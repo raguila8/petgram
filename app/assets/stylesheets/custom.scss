@@ -1182,7 +1182,20 @@ img {
 	backface-visibility: hidden;
 }
 
+.profile-post-container:before {
+	content: '';
+  position: absolute; 
+  bottom: 0;
+	right: 0;
+	left: 0;
+	z-index: 1;
+  transition: height 0.5s ease-out;
+  background: linear-gradient(to bottom, transparent 0%, black 100%);
+}
+
 .img-hover-buttons {
+	width: 100%;
+	z-index: 101;
 	transition: .5s ease;
 	opacity: 0;
 	position: absolute;
@@ -1193,15 +1206,17 @@ img {
 	text-align: center;
 }
 
-.profile-post-container:hover {
-	
-	opacity: 0.6;
-	.img-hover-buttons {
-		opacity: 1;
-	}
+.img-hover-buttons .glyphicon:hover {
+	color: white;
+	opacity: 1;
 }
 
-.profile-post-img:hover .img-hover-buttons {
+.profile-post-container:hover:before {
+		top: 0;
+		cursor: pointer;
+}
+
+.profile-post-container:hover .img-hover-buttons {
 	opacity: 1;
 }
 
@@ -1470,4 +1485,558 @@ input[type=file] {
 
 /***************************discover page***************/
 
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:600,300);
+
+$brown: #786450;
+
+.frame {
+ 
+  height: 400px;
+  border-radius: 2px;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	text-align: center;
+  box-shadow: 1px 2px 10px 0px rgba(0,0,0,0.3);
+	background-image: url(/pet-background-gold.jpg);
+	
+	background-size:contain;
+
+	  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EEBE6C', endColorstr='#CA7C4E',GradientType=1 ); 
+  color: $brown;
+	font-family: 'Open Sans', Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.center-card {
+	display: inline-block;
+	position: relative;
+	margin-left: 0.5%;
+	margin-right: 0.5%;
+	width: 320px;
+	
+	max-height: 300px;
+  margin-top: 50px;
+	height: 299px;
+	background: #fff;
+	border-radius: 3px;
+	overflow: hidden;
+	box-shadow: 10px 10px 15px 0 rgba(0,0,0,0.3);
+}
+
+.carousel-inner {
+	
+}
+
+@media (max-width: 700px) {
+	.active > div { display: none; }
+	.active > div:first-child { display: inline-block; }
+
+	.left {
+		left: 30px;
+		font-size: 30px
+	}
+	
+	.right {
+		right-margin: 300px;
+		font-size: 30px;
+	}
+}
+
+
+@media (max-width: 1200px) {
+	.active > div { display: none; }
+	.active > div:first-child { display: inline-block; }
+	.active > div:first-child + div {display: inline-block; }
+	
+	.center-card {
+		
+	}
+}
+
+
+.profile-card {
+	float: left;
+	width: 200px;
+	height: 320px;
+	text-align: center;
+	
+	.image {
+		position: relative;
+		width: 70px;
+		height: 70px;
+		margin: 38px auto 0 auto;
+		
+		.circle-1 {
+			position: absolute;
+			box-sizing: border-box;
+			width: 76px;
+			height: 76px;
+			top: -3px;
+			left: -3px;
+			border-width: 1px;
+			border-style: solid;
+			border-color: $brown $brown $brown transparent;
+			border-radius: 50%;
+			transition: all 1.5s ease-in-out;
+		}
+		
+		.circle-2 {
+			@extend .circle-1;
+			width: 82px;
+			height: 82px;
+			top: -6px;
+			left: -6px;
+			border-color: $brown transparent $brown $brown;
+		}
+		
+		img {
+			display: block;
+			border-radius: 50%;
+			background: #F5E8DF;
+		}
+		
+		&:hover {
+			cursor: pointer;
+			
+			.circle-1 {
+				transform: rotate(360deg);
+			}
+			
+			.circle-2 {
+				transform: rotate(-360deg);
+			}
+			
+		}
+		
+	}
+	
+	.card-name {
+		font-size: 15px;
+		font-weight: 600;
+		margin-top: 20px;
+	}
+	
+	.card-animal {
+		font-size: 11px;
+		line-height: 15px;
+	}
+	
+	.card-actions {
+		margin-top: 33px;
+		
+		.card-btn {
+			display: block;
+			width: 120px;
+			height: 30px;
+			margin: 0 auto 10px auto;
+			background: none;
+			border: 1px solid $brown;
+			border-radius: 15px;
+			font-size: 12px;
+			font-weight: 600;
+			box-sizing: border-box;
+			transition: all .3s ease-in-out;
+			color: $brown;
+			
+			&:hover {
+				background: $brown;
+				color: #fff;
+			}
+		}
+	}
+	
+}
+
+.card-stats {
+	float: left;
+	
+	.card-box {
+		box-sizing: border-box;
+		width: 120px;
+		height: 99px;
+		background: #F5E8DF;
+		text-align: center;
+		padding-top: 28px;
+		transition: all .4s ease-in-out;
+		
+		&:hover {
+			background: #E1CFC2;
+			cursor: pointer;
+		}
+		
+		&:nth-child(2) {
+			margin: 1px 0;
+		}
+		
+	}
+	
+	span {
+		display: block;
+	}
+	
+	.card-value {
+		font-size: 18px;
+		font-weight: 600;
+	}
+	
+	.card-parameter {
+		font-size: 11px;
+	}
+	
+}
+
+.carousel-inner {
+	overflow: initial;
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
+
+.carousel {
+	
+	
+}
+
+.carousel-control.left, .carousel-control.right {
+	background-image: none;
+}
+
+.carousel-control.left {
+	left: -5%;
+}
+
+.carousel-control.right {
+	right: -5%;
+}
+
+.discover-body {
+	position: absolute;
+	width: 100%;
+	background-color: #ebeeef;
+
+}
+
+.img-hover-heart {
+	display: inline-block; 
+	width: 25px; 
+	height: auto;
+}
+
+.img-hover-likes {
+	color: white; 
+	font-size: 18px; 
+	font-family: Poppins-Bold;
+}
+
+.img-hover-comment {
+	display: inline-block; 
+	top: 5px;
+	width: 32px; 
+	height: auto; 
+	font-size: 21px; 
+	color: white;
+}
+
+.img-hover-comments {
+	display: inline-block;
+	color: white; 
+	font-size: 20px; 
+	font-family: Poppins-Bold;
+}
+
+@media (max-width: 1100px) {
+	.img-hover-heart {
+	width: 20px;
+}
+
+.img-hover-likes { 
+	font-size: 15px; 
+}
+
+.img-hover-comment {
+	width: 25px; 
+	font-size: 16px; 
+}
+
+.img-hover-comments {
+	font-size: 15px; 
+}
+
+}
+
+@media (max-width: 700px) {
+	.img-hover-heart {
+	width: 15px;
+}
+
+.img-hover-likes { 
+	font-size: 12px; 
+}
+
+.img-hover-comment {
+	width: 19px; 
+	font-size: 13px; 
+	top: 2px
+}
+
+.img-hover-comments {
+	font-size: 12px; 
+}
+
+}
+
+
+.explore h1 {
+	font-size: 50px;
+	font-family: Poppins-Bold;
+	text-align:center;
+	margin-top: 10%;
+color: rgba(0,0,0,0.6);
+text-shadow: 2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
+}
+
+@media (max-width: 950px) {
+	.explore h1 {
+		margin-top: 18%;
+	}
+}
+
+/***************************Image Modal ****************************/
+
+.img-modal {
+	display: block;
+	z-index: 1050;
+}
+
+.page-overlay {
+		opacity: 0.5;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+		display: none;
+}
+
+
+
+/* CSS used here will be applied after bootstrap.css */
+
+.img-modal .modal-dialog {
+    /* An arbitrary minimum height. Feel free to modify this one as well */
+    min-height: 350px;
+    height: 80%;
+}
+
+.img-modal .modal-content, .img-modal .modal-body, .img-modal .row, .img-modal .modal-image {
+    height: 100%;
+}
+
+.modal-content {
+    border-radius: 0;
+}
+
+.modal-body {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.modal-image {
+    background: #000;
+    padding: 0;
+}
+
+.modal-image img {
+    margin: 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+    
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.img-modal .img-modal-btn {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: black;
+    opacity: 0;
+    font-size: 1.5em;
+    width: 45px;
+    color: #fff;
+    transition: opacity .2s ease-in;
+}
+
+.img-modal .modal-image:hover .img-modal-btn {
+    opacity: 0.4;  
+}
+
+.img-modal .modal-image:hover .img-modal-btn:hover {
+   opacity: 0.75;   
+}
+
+.img-modal .img-modal-btn.right {
+    right: 0;
+}
+
+.img-modal .img-modal-btn i {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: -.75em;
+}
+
+.img-modal .modal-meta {
+    position: relative;   
+    height: 100%;
+}
+
+.img-modal .modal-meta-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 45px;
+    padding: 5px 10px;
+    overflow-y: auto;
+}
+
+.img-poster {
+	padding-bottom: 5px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.img-modal .modal-meta-top .img-poster img {
+    height: 70px;
+    width: 70px;
+    float: left;
+    margin-right: 15px;
+}
+
+.img-comment-list li {
+	padding: 0;
+	margin: 0;
+}
+
+.dont-break-out {
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.img-modal .modal-meta-top .img-poster strong {
+    display: block; 
+    padding-top: 15px;
+}
+
+.img-modal .modal-meta-top .img-poster span {
+    display: block;   
+    color: #aaa;
+    font-size:.9em;
+}
+
+.img-modal .modal-meta-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    border-top: solid 1px #ccc;
+}
+
+.img-modal .img-comment-list {
+    list-style: none;  
+    padding: 0;
+}
+.img-modal .img-comment-list li {
+    margin:0;
+    margin-top:10px;
+}
+
+.img-modal .img-comment-list li > div {
+    display:table-cell;
+}
+
+.img-modal .img-comment-list img {
+    border-radius:50%;
+    width: 42px;
+    height: 42px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.img-modal .img-comment-list p {
+    margin: 0;
+}
+
+.img-modal .img-comment-list span {
+    font-size: .8em; 
+    color: #aaa;
+}
+
+@media only screen and (max-width : 992px) {
+    .modal-content {
+        border-radius: 0;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+    
+    .img-modal .modal-image {
+        height: calc(100% - 100px);
+    }
+    
+    .img-modal .modal-meta {
+        height: auto;
+    }
+    
+    .img-modal .modal-meta-top {
+        position: static;
+        padding-top: 15px;
+    }
+    
+    .img-modal .modal-meta-bottom {
+        position: static;
+        margin: 0 -15px;
+    }
+}
+
+.img-modal .like-container {
+	display: inline-block;
+}
+
+.img-modal .bold-text {
+	position: relative;
+	display: inline-block !important;
+	top: -8px;
+	    font-family: Poppins-Regular;
+    font-size: 12px !important;
+    line-height: 1.7;
+    color: #666666 !important;
+}
+
+.like-container a > img {
+	display: block;
+	width: 25px !important;
+	height: 25px !important;
+}
 

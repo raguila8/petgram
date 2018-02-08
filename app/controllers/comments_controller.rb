@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+	include ProfilesHelper
 	def create
 		@comment = Comment.new(comment_params)
 		respond_to do |format|
@@ -19,6 +20,29 @@ class CommentsController < ApplicationController
 				}
 			end	
 		end
+	end
+
+	def create_modal_comment
+		@comment = Comment.new(comment_params)
+		respond_to do |format|
+			if @comment.save
+				format.html {
+					#flash[:success] = "New comment posted!"
+					#redirect_to home_path
+				}
+				format.json { 
+					render json: @comment 
+				}
+				format.js {
+					@notification = Notification.new
+					@notification.notified_by_id = current_profile.id
+					@notification.profile_id = @comment.post.profile_id
+					@notification.post_id = @comment.post.id
+					@notification.notification_type = "comment"
+				}
+			end	
+		end
+
 	end
 
 	def get_comments
@@ -45,7 +69,25 @@ class CommentsController < ApplicationController
 					offset = page * 5 - 1
 					all_comments = @post.comments
 					@comments = all_comments.order(created_at: :desc)[(offset - 4)..offset]
-					if all_comments.size > offset
+					if all_comments.size > offset + 1
+						@more = true
+					end
+				}
+			end
+		end
+	end
+		
+	def get_modal_comments
+		@post = Post.find(params[:post_id])
+		page = params[:page].to_i
+		@more = false
+		respond_to do |format|
+			if @post && !page.nil?	
+				format.js {
+					offset = page * 10 - 1
+					all_comments = @post.comments
+					@comments = all_comments.order(created_at: :desc)[(offset - 9)..offset]
+					if all_comments.size > offset + 1
 						@more = true
 					end
 				}

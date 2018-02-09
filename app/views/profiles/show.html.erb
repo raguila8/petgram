@@ -8,14 +8,32 @@
 		<div class="center-card first-card">
 			<div class="profile-card">			
 				<div class="image">
-					<div class="circle-1"></div>
-					<div class="circle-2"></div>
-					<img src="/default-dog.png" width="70" height="70" alt="<%=@profile.name%>">
+					<% if !@profile.profile_image.profile.url.nil? %>
+						<div class="profile-thumbnail" style="background-image: url('<%=@profile.profile_image.profile.url%>')">
+					<% else %>
+						<div class="profile-thumbnail" style="background-image: url('/default-dog.png')">
+					<% end %>
+						<span class="glyphicon glyphicon-camera">
+						</span>
+					</div>
+					<div class="circle-1">
+					</div>
+
+					<% if current_profile == @profile %>
+						<%= form_for @profile, :url => update_profile_image_path, html: { multipart: true, class: "profile-img-edit" } do |f| %>
+							<label style="cursor: pointer;">
+								<div class="circle-2"></div>
+								<%=f.file_field :profile_image, class: "profile-img-file" %>
+							</label>
+						<% end %>
+					<% else %>
+						<div class="circle-2"></div>
+					<% end %>
 				</div>
 
 				<div class="card-name"><%=@profile.name%></div>
 				<div class="card-animal"><%=@profile.animal%></div>
-				<span class="card-animal" style="position: relative; padding-top: 10px; margin-top: 10px;"><%=@profile.bio%></span><br>
+				<span class="card-animal" style="position: relative; padding-top: 10px; margin-top: 10px;"><%=@profile.bio%></span>
 
 				<% if current_profile == @profile %>
 					<div class="card-actions">
@@ -29,7 +47,7 @@
 			</div>
 		
 			<div class="card-stats">
-				<div class="card-box">
+				<div class="card-box card-box-posts">
 					<span class="card-value"><%=@profile.posts.count%></span>
 					<span class="card-parameter">Posts</span>
 				</div>
@@ -42,7 +60,8 @@
 					<span class="card-parameter">Following</span>
 				</div>
 			</div>
-  	</div>
+  	</div><br>
+		<a href="<%=destroy_user_session_path%>" data-method="delete"> <button type="button" class="btn btn-default btn-cirlce" title="Log out"><i class="glyphicon glyphicon-log-out"></i></button></a>
 	</div>
 
 
@@ -98,7 +117,7 @@
 </article>
 -->
 
-<div class="row">
+<div class="row profile-posts-gallery">
 	<% @profile.posts.order(created_at: :desc).each do |post| %>
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 			<a>

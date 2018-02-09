@@ -1587,6 +1587,36 @@ $brown: #786450;
 			border-radius: 50%;
 			transition: all 1.5s ease-in-out;
 		}
+
+		.profile-thumbnail {
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			background-size: cover;
+			background-position: center;
+			vertical-align: center;
+			text-align: center;
+			background-blend-mode: multiply;
+			color: transparent;
+			transition: all .3s ease;
+			text-decoration: none;
+		}
+
+		.profile-thumbnail span {
+			display: inline-block;
+			color: transparent;
+			font-size: 15px;
+			margin-top: 27.5px;
+			margin-bottom: 27.5px;
+		}
+
+		.profile-thumbnail:hover {
+			background-color: rgba(0,0,0,.5);
+			z-index: 500;
+			color: #fff;
+			transition: all .3s ease;
+			text-decoration: none;
+		}
 		
 		.circle-2 {
 			@extend .circle-1;
@@ -1613,6 +1643,20 @@ $brown: #786450;
 			.circle-2 {
 				transform: rotate(-360deg);
 			}
+
+			.profile-thumbnail {
+			background-color: rgba(0,0,0,.5);
+			
+			border-radius: 50%;
+			color: #fff;
+			
+			text-decoration: none;
+		}
+
+		.profile-thumbnail span {
+			color: #fff;
+		}
+
 			
 		}
 		
@@ -1630,7 +1674,7 @@ $brown: #786450;
 	}
 	
 	.card-actions {
-		margin-top: 33px;
+		margin-top: 10px;
 		
 		.card-btn {
 			display: block;
@@ -1653,6 +1697,35 @@ $brown: #786450;
 		}
 	}
 	
+}
+
+#profile-body .frame {
+	height: 450px;
+}
+
+.frame .btn-cirlce {
+	width: 70px;
+	height: 70px;
+	text-align: center;
+	margin-top: 15px;
+	padding: 0;
+	font-size: 12px;
+	line-height: 1.4278;
+	border-radius: 100%;
+	color: #78644F;
+}
+
+.btn-cirlce i {
+	font-size: 12px;
+	line-height: 1.4278;
+	color: #78644F;
+}
+
+.frame .btn:hover {
+	background-color: #786450;
+	i {
+		color: white;
+	}
 }
 
 .card-stats {

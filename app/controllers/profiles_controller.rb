@@ -13,6 +13,19 @@ include ProfilesHelper
 		@profile.email = @profile.user.email
 	end
 
+	def update_profile_image
+		@profile = current_profile
+		if @profile.update_attributes(profile_image_update_params)
+			# Handle a successful update
+			flash[:success] = "Profile image updated"
+		else
+			#redirect_to edit_profile_path(@profile.id)
+			flash[:error] = "profile image did not update"
+		end
+		redirect_to @profile
+
+	end
+
 	def update
 		@profile = Profile.find(params[:id])
 		@user = @profile.user
@@ -79,6 +92,10 @@ include ProfilesHelper
 		
 		def profile_update_params
 			params.require(:profile).permit(:username, :name, :bio, :animal)
+		end
+
+		def profile_image_update_params
+			params.require(:profile).permit(:profile_image)
 		end
 
 		def profile_create_params

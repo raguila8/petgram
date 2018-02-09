@@ -7,96 +7,105 @@
 <%= render 'shared/image_upload_modal' %>
 
 <div class="discover-body">
-<div class="container">
-	<div class="explore" style="margin-top: 10%;">
-		<h1>Discover People</h1>
-	</div>
+	<div class="container">
+		<% if @suggestions %>
+			<div class="explore" style="margin-top: 10%;">
+				<h1>Discover People</h1>
+			</div>
 
-	<div class="carousel slide" data-type="multi" id="myCarousel">
-		<div class = "frame">
+			<div class="carousel slide" data-type="multi" id="myCarousel">
+				<div class = "frame">
+					<div class="carousel-inner">
+						<div class="item active">
+  						<div class="center-card first-card">
+								<div class="profile-card">
+									<div class="image">
+										<div class="circle-1"></div>
+										<div class="circle-2"></div>
+										<% if @suggestions.first.profile_image.profile.url.nil? %>
+											<img src="/default-dog.png" width="70" height="70" alt="Jessica Potter">
+										<% else %>
+											<img src="<%=@suggestions.first.profile_image.profile.url%>" width="70" height="70" alt="Jessica Potter">
+										<% end %>
+									</div>
 
-			<div class="carousel-inner">
-
-				<div class="item active">
-					
-	
-  				<div class="center-card first-card">
-
-						<div class="profile-card">
-							
-							<div class="image">
-								<div class="circle-1"></div>
-								<div class="circle-2"></div>
-								<img src="http://100dayscss.com/codepen/jessica-potter.jpg" width="70" height="70" alt="Jessica Potter">
-							</div>
+									<div class="card-name"><%=@suggestions.first.username%></div>
+									<div class="card-animal"><%=@suggestions.first.name%></div>
 			
-							<div class="card-name">Jessica Potter</div>
-							<div class="card-animal">Visual Artist</div>
-			
-							<div class="card-actions">
-								<button class="card-btn">Follow</button>
-								
-							</div>
-						</div>
+									<div class="card-actions">
+										<% if current_profile.following?(@suggestions.first) %>
+											<button class="card-btn following-btn-<%=@suggestions.first.id%>">Following</button>
+										<% else %>
+											<button class="card-btn follow-btn-<%=@suggestions.first.id%>">Follow</button>
+										<% end %>
+									</div>
+								</div>
 		
-						<div class="card-stats">
-							<div class="card-box">
-								<span class="card-value">523</span>
-								<span class="card-parameter">Posts</span>
-							</div>
-							<div class="card-box">
-								<span class="card-value">1387</span>
-								<span class="card-parameter">Followers</span>
-							</div>
-							<div class="card-box">
-								<span class="card-value">146</span>
-								<span class="card-parameter">Following</span>
-							</div>
+								<div class="card-stats">
+									<a href="<%=profile_path(@suggestions.first.id)%>">
+										<div class="card-box">	
+											<span class="card-value"><%=@suggestions.first.posts.count%></span>
+											<span class="card-parameter">Posts</span>
+										</div>
+									</a>
+									<div class="card-box">
+										<span class="card-value"><%=@suggestions.first.followers.count%></span>
+										<span class="card-parameter">Followers</span>
+									</div>
+									<div class="card-box">
+										<span class="card-value"><%=@suggestions.first.following.count%></span>
+										<span class="card-parameter">Following</span>
+									</div>
+								</div>
+  						</div>
 						</div>
-  				</div>
-				</div>
-				<% @suggestions.each do |profile| %>
-				<div class="item">		
-  				<div class="center-card second-card">
+					<% @suggestions[1..@suggestions.count].each do |profile| %>
+						<div class="item">		
+  						<div class="center-card second-card">
     
-						<div class="profile-card">
+								<div class="profile-card">
 							
-							<div class="image">
-								<div class="circle-1"></div>
-								<div class="circle-2"></div>
-								<% if !profile.profile_image.profile.url.nil? %>
-									<img src="<%=profile.profile_image.profile.url%>" width="70" height="70" alt="<%=profile.username%>">
-								<% else %>
-									<img src="/default-dog.png" width="70" height="70" alt="<%=profile.username%>">
-								<% end %>
-							</div>
+									<div class="image">
+										<div class="circle-1"></div>
+										<div class="circle-2"></div>
+										<% if !profile.profile_image.profile.url.nil? %>
+											<img src="<%=profile.profile_image.profile.url%>" width="70" height="70" alt="<%=profile.username%>">
+										<% else %>
+											<img src="/default-dog.png" width="70" height="70" alt="<%=profile.username%>">
+										<% end %>
+									</div>
 			
-							<div class="card-name"><%=profile.name%></div>
-							<div class="card-animal"><%=profile.animal%></div>
+									<div class="card-name"><%=profile.name%></div>
+									<div class="card-animal"><%=profile.animal%></div>
 			
-							<div class="card-actions">
-								<button class="card-btn">Follow</button>
-								
-							</div>
-						</div>
+									<div class="card-actions card-actions-<%=profile.id%>">
+										<% if current_profile.following?(profile) %>
+											<button class="card-btn unfollow-btn following-btn-<%=profile.id%>" id= "following-btn-<%=profile.id%>">Unfollow</button>
+											<%# button_to "Unfollow", unfollow_path( :followed => profile.id ), :method => :delete, :class => "card-btn unfollow-btn", :id => "following-btn-#{profile.id}", :remote => true %>
+										<% else %>
+											<%# button_to "Follow", follow_path( :followed => profile.id ), :method => :post, :class => "card-btn follow-btn" :id => "follow-btn-#{profile.id}", :remote => true %>
+											<button class="card-btn follow-btn follow-btn-<%=profile.id%>" id= "follow-btn-<%=profile.id%>">Follow</button>
+										<% end %>
+									</div>
+								</div>
 		
-						<div class="card-stats">
-							<div class="card-box">
-								<span class="card-value"><%=profile.posts.count%></span>
-								<span class="card-parameter">Posts</span>
-							</div>
-							<div class="card-box">
-								<span class="card-value"><%=profile.followers.count%></span>
-								<span class="card-parameter">Followers</span>
-							</div>
-							<div class="card-box">
-								<span class="card-value"><%=profile.following.count%></span>
-								<span class="card-parameter">Following</span>
-							</div>
+								<div class="card-stats">
+									<div class="card-box">
+										<span class="card-value"><%=profile.posts.count%></span>
+										<span class="card-parameter">Posts</span>
+									</div>
+									<div class="card-box">
+										<span class="card-value"><%=profile.followers.count%></span>
+										<span class="card-parameter">Followers</span>
+									</div>
+									<div class="card-box">
+										<span class="card-value"><%=profile.following.count%></span>
+										<span class="card-parameter">Following</span>
+									</div>
+								</div>
+  						</div>
 						</div>
-  				</div>
-				</div>
-			<% end %>
+					<% end %>
 <!--
 				<div class="item">
 					<div class="center-card third-card">
@@ -135,16 +144,16 @@
 					</div>
   			</div>
 		-->		
+				</div>
+				<a href="#myCarousel" class="carousel-control left" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</a>
+				<a href="#myCarousel" class="carousel-control right" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
 			</div>
-			<a href="#myCarousel" class="carousel-control left" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left"></span>
-		</a>
-		<a href="#myCarousel" class="carousel-control right" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right"></span>
-		</a>
-
 		</div>
-	</div>
+	<% end %>
 
 <div class="explore">
 	<h1>Explore</h1>

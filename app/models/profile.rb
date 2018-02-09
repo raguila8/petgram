@@ -18,6 +18,7 @@ class Profile < ApplicationRecord
 
 	validates :username, presence: true, length: { maximum: 25 },
 												uniqueness: true
+	validates :bio, length: { maximum: 150 }
 
 	
 	# Follows a user
@@ -53,8 +54,12 @@ class Profile < ApplicationRecord
 					GROUP BY followed_id
 					ORDER BY COUNT(follower_id) DESC
 					LIMIT 20"
+		other_profiles = "SELECT id
+											FROM profiles"
+
+		popular = Profile.where("(id IN (#{sql}) AND NOT id = :id AND NOT id IN (#{following_ids})) OR (id IN (#{follower_ids}) AND id NOT IN (#{following_ids}) OR (id IN (#{other_profiles}) AND NOT id IN (#{following_ids}) AND NOT id = :id))", id: self.id).limit(30)
+
 		
-		popular = Profile.where("(id IN (#{sql}) AND NOT id = :id) OR (id IN (#{follower_ids}) AND id NOT IN (#{following_ids}))", id: self.id)
 		#popular << Profile.where("profile_id IN #{follower_ids} AND profile_id NOT IN #{following_ids}")
 		return popular
 	end

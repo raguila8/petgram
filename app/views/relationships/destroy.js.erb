@@ -1,0 +1,5 @@
+$('.card-actions').find('button#following-btn-<%=@profile.id%>').remove();
+
+var html1 = "<button class='card-btn follow-btn' id= 'follow-btn-<%=@profile.id%>'>Follow</button>";
+
+$('.card-actions-<%=@profile.id%>').append(html1);

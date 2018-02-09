@@ -48,6 +48,9 @@ Rails.application.routes.draw do
 	get '/post_modal', to: 'posts#post_modal', as: :post_modal
 	get '/get_modal_comments', to: 'comments#get_modal_comments', as: :get_modal_comments
 	post '/modal_comments', to: 'comments#create_modal_comment', as: :modal_comments
+	patch '/update_profile_img', to: 'profiles#update_profile_image', as: :update_profile_image
+	post '/follow', to: 'relationships#create', as: :follow
+	get '/unfollow', to: 'relationships#destroy', as: :unfollow
 
 	#patch '/profiles/:id/edit' => 'profiles#update'
 

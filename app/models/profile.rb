@@ -36,6 +36,15 @@ class Profile < ApplicationRecord
 		self.following.include?(other_user)
 	end
 
+	def unread_notifications?
+		self.notifications.each do |n|
+			if n.read == false
+				return true
+			end
+		end
+		return false
+	end
+
 	# Defines a feed
 	def feed
 		following_ids = "SELECT followed_id FROM relationships

@@ -15,61 +15,105 @@
 				<ul>
 					<% current_profile.notifications.order(created_at: :desc).each do |notification| %>
 						<% if notification.notification_type == "comment" %>
-							<a href="#" class="notifications-menu-item">
-								<li class="notifications-item">
+								<% if !notification.read %>
+									<li class="notifications-item" style="background-color: #ebeeef;">
+								<% else %>
+									<li class="notifications-item">
+								<% end %>
 									<div class="ac-item-container">
+										<a href="<%=profile_path(notification.notified_by)%>" class="notifications-menu-item">
 										<div class="small-thumb-container">
-											<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
-										</div>
+											<% if notification.notified_by.profile_image.thumb.url %>
+												<img class="small-thumb" style="width: 30px; height: 30px;"src="<%=notification.notified_by.profile_image.thumb.url%>">
+											<% else %>
+												<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
+											<% end %>
+										</div>&nbsp;&nbsp;
+										</a>
 										<!--<div class="item-info">
 											<p class="username-notificaation"><%#notification.notified_by.username%> commented on your photo</p>
 											<img class="small-thumb" style="width: 30px; height: 30px; float: right;"src=<%#notification.post.image.thumb%>>
 
 										</div>-->
-								
-										<span class="notifications-username"><%=notification.notified_by.username%></span>&nbsp; <span class="notifcations-text"> commented on your photo</span>
-											<img style="width: 30px; height: 30px; float: right;"src=<%=notification.post.image.thumb%>>
+										<a href="<%=profile_path(notification.notified_by)%>" class="notifications-menu-item">
+
+										<span class="notifications-username"><%=notification.notified_by.username%></span></a>&nbsp; <span class="notifcations-text"> commented on your photo</span>
+											<a href="<%=post_path(notification.post.id)%>" class="notifications-menu-item">
+
+												<img style="width: 30px; height: 30px; float: right;"src=<%=notification.post.image.thumb%>>
+											</a>
 
 
 									</div>
 								</li>
 						<% elsif notification.notification_type == "like" %>
-							<a href="#" class="notifications-menu-item">
-								<li class="notifications-item">
+								<% if !notification.read %>
+									<li class="notifications-item" style="background-color: #ebeeef;">
+								<% else %>
+									<li class="notifications-item">
+								<% end %>
 									<div class="ac-item-container">
+										<a href="<%=profile_path(notification.notified_by)%>" class="notifications-menu-item">
 										<div class="small-thumb-container">
-											<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
-										</div>
-										
-											<span class="notifications-username"><%=notification.notified_by.username%></span>&nbsp; <span class="notifcations-text"> liked your photo</span>
-											<img style="width: 30px; height: 30px; float: right;"src=<%=notification.post.image.thumb%>>
-
+											<% if notification.notified_by.profile_image.thumb.url %>
+												<img class="small-thumb" style="width: 30px; height: 30px;"src="<%=notification.notified_by.profile_image.thumb.url%>">
+											<% else %>
+												<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
+											<% end %>
+										</div>&nbsp;&nbsp;
+										</a>
+										<a href="<%=profile_path(notification.notified_by)%>" class="notifications-menu-item">
+											<span class="notifications-username"><%=notification.notified_by.username%></span></a>&nbsp; <span class="notifcations-text"> liked your photo</span>
+											<a href="<%=post_path(notification.post.id)%>">
+												<img style="width: 30px; height: 30px; float: right;"src=<%=notification.post.image.thumb%>>
+											</a>
 										
 									</div>
 								</li>
 
 						<% elsif notification.notification_type == "follower" %>
-							<a href="<%=profile_path(notification.notified_by)%>" class="notifications-menu-item">
-								<li class="notifications-item">
+								<% if !notification.read %>
+									<li class="notifications-item" style="background-color: #ebeeef;">
+								<% else %>
+									<li class="notifications-item">
+								<% end %>
+
 									<div class="ac-item-container">
+										<div style="display: inline-block;">
+										<a href="<%=profile_path(notification.notified_by)%>" class="notifications-menu-item">
+
 										<div class="small-thumb-container">
-											<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
-										</div>
+											<% if notification.notified_by.profile_image.thumb.url %>
+												<img class="small-thumb" style="width: 30px; height: 30px;"src="<%=notification.notified_by.profile_image.thumb.url%>">
+											<% else %>
+												<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
+											<% end %>
+										</div>&nbsp;&nbsp;
+									</a>
 <!--
 										<div class="item-info">
 											<p class="username-item"><%#notification.notified_by.username%> started following you</p>
 											<img class="small-thumb" style="width: 30px; height: 30px; float: right;"src=<%#notification.notified_by.profile_image.thumb%>>
 
 										</div>-->
-										<span class="notifications-username"><%=notification.notified_by.username%></span>&nbsp; <span class="notifcations-text"> started following you</span>
-											<img style="width: 30px; height: 30px; float: right;"src=<%=notification.notified_by.profile_image.thumb%>>
-
+										<a href="<%=profile_path(notification.notified_by)%>" class="notifications-menu-item">
+										<span class="notifications-username"><%=notification.notified_by.username%></span></a>&nbsp; <span class="notifcations-text"> started following you</span>
+										</div>
+									
+											<div class="card-actions card-actions-<%=notification.notified_by.id%>" style="margin: 0; float: right;">
+										<% if current_profile.following?(notification.notified_by) %>
+											<button style="margin: 0;"class="card-btn unfollow-btn following-btn-<%=notification.notified_by.id%>" id= "following-btn-<%=notification.notified_by.id%>">Unfollow</button>
+											<%# button_to "Unfollow", unfollow_path( :followed => profile.id ), :method => :delete, :class => "card-btn unfollow-btn", :id => "following-btn-#{profile.id}", :remote => true %>
+										<% else %>
+											<%# button_to "Follow", follow_path( :followed => profile.id ), :method => :post, :class => "card-btn follow-btn" :id => "follow-btn-#{profile.id}", :remote => true %>
+											<button style="margin: 0;" class="card-btn follow-btn follow-btn-<%=notification.notified_by.id%>" id= "follow-btn-<%=notification.notified_by.id%>">Follow</button>
+										<% end %>
+									</div>
 
 									</div>
 								</li>
 
 						<% end %>
-						</a>
 					<% end %>
 				</ul>
 				<% end %>

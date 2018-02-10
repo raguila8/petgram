@@ -87,6 +87,15 @@ include ProfilesHelper
 		@suggestions = current_profile.suggestions
 		@popular = Post.order(cached_votes_score: :desc)
 	end
+	
+	def read_notifications
+		if current_profile.notifications.count > 0
+			current_profile.notifications.each do |n|
+				n.read = true
+				n.save
+			end
+		end
+	end
 
 	private
 		

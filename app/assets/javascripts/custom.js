@@ -17,6 +17,10 @@ $(document).on('turbolinks:load', function() {
 
 	/******************************* Image Preview ***************/
 
+	// Need token for ajax call
+	var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
+
+
 
 	var preview = $(".upload-preview img");
 
@@ -44,5 +48,74 @@ $(document).on('turbolinks:load', function() {
 		});
 	}
 
+
+	/******************** Load more comments for posts#show view ************/
+	var page = 2;
+	$('#post-show-container').on('click', '.more-comments-link', function() {
+		var id = $(this).attr('id');
+		var post_id = parseInt(id.substring(14, id.length));
+			
+		$.ajax({
+			type: "GET",
+			url: "/get_comments",
+			headers: {
+				Accept: "text/javascript; charset=utf-8",
+				"Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8'
+			},
+			data: {
+				post_id: post_id,
+				page: page
+			},
+			success: function(data) {
+				page = page + 1
+			}
+		});
+	});
 	
+	/************************* Submit form on enter for posts#edit view *******/
+
+	
+	// This mimics an ajax submission form when user presses enter button
+	// inside the comment text area.
+	$('#post-edit-container').on('keypress', '.post-container textarea', function(e) {	
+		if (e.which == 13 && !e.shiftKey) {
+			var id = $(this).attr('id');
+			var post_id = parseInt(id.substring(15, id.length));
+
+			$form = $(this).closest('form')[0];
+			//var valuesToSubmit = $form.serialize;
+			$.ajax({
+				url: "/posts/" + post_id,  // submits it to the given url of the form
+				headers: {
+					Accept: "text/html; charset=utf-8",
+					"Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8'
+				},
+				type: 'PATCH',
+				data: {
+					post: {	
+						description: $($form).find('textarea[name="post[description]"]').val()
+					},
+					authenticity_token: AUTH_TOKEN
+				}
+			});
+		}
+	});
+
+	/**************************** Mark notifications as read **************/
+
+	$('.navbar .glyphicon-heart').on('click', function() {
+		$.ajax({
+			url: "/read_notifications",  // submits it to the given url of the form
+			headers: {
+				Accept: "text/javascript; charset=utf-8",
+				"Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8'
+			},
+			type: 'GET',		
+			data: {
+				authenticity_token: AUTH_TOKEN
+			}
+		});
+
+	});
+
 });

@@ -165,7 +165,6 @@ $(document).ready(function() {
 
 	$('body').on('click', '.modal-content', function(e) {
 		e.stopPropagation();
-		console.log("wljd");
 	});
 
 	$(document).on('click', function() {

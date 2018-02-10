@@ -1,0 +1,19 @@
+<div class="modal fade in post-settings-modal" id="post-settings-modal" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-body post-settings-body">
+				<ul class="post-settings-list">
+					<%= link_to post_path(@current_post.id) do %>
+						<li>Go to post</li>
+					<% end %>
+					<% if @current_post.profile = current_profile %>
+						<%= link_to edit_post_path(@current_post.id) do %>
+							<li>Edit post</li>
+						<% end %>
+						<li class="post-settings-delete" id="post-delete-<%=@current_post.id%>">Delete</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

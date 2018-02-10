@@ -12,6 +12,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+		@post = Post.find(params[:id])
   end
 
   # GET /posts/new
@@ -21,7 +22,15 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+		@post = Post.find(params[:id])
   end
+
+	def open_post_settings_modal
+		@current_post = Post.find(params[:post_id])
+		respond_to do |format|
+			format.js {}
+		end
+	end
 
   # POST /posts
   # POST /posts.json
@@ -46,7 +55,8 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if @post.update(post_params)
+      @post.update_attributes(:description => params[:post][:description])
+			if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -59,9 +69,10 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+		@post = Post.find(params[:post_id])
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to current_profile, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

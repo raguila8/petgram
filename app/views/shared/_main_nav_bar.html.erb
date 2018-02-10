@@ -12,7 +12,11 @@
       			</button>
 						<a id="image-upload-toggle"><button class="glyphicon glyphicon-plus" data-toggle="modal" data-target="#image-upload-modal"></button></a>
       			<a href="<%=discover_path%>"><button class="glyphicon glyphicon-eye-open"></button></a>
-      			<a><button class="glyphicon glyphicon-heart" data-toggle="modal" data-target="#notifications-modal"></button></a>
+						<% if current_profile.unread_notifications? %>
+      				<a><span class="glyphicon glyphicon-asterisk"></span><button class="glyphicon glyphicon-heart" data-toggle="modal" data-target="#notifications-modal"></button></a>
+						<% else %>
+							<a><button class="glyphicon glyphicon-heart" data-toggle="modal" data-target="#notifications-modal"></button></a>
+						<% end %>
       		<a href=<%=profile_path(Profile.find_by(username: current_user.username)) %>><button class="glyphicon glyphicon-user"></button></a>
 					</div>
 				</div>
@@ -22,7 +26,7 @@
         				<input type="text" id="main-search" class="form-control" placeholder="Search">
         				<!--<span class="input-group-btn">
           				<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>-->
-        				</span>	
+        			
       				</div>
     				</form>
 					</div>	

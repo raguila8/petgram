@@ -4,8 +4,8 @@ $(document).ready( function() {
 	var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
 
 	/************************ Unfollow **************/
-	$('body').on('click', '.unfollow-btn', function(event) {
-	  event.stopImmediatePropagation();
+	$('body').on('click', '.unfollow-btn', function() {
+
 		var id = $(this).attr('id');
 		var profile_id = parseInt(id.substring(14, id.length));
 		$(".following-btn-" + profile_id).remove();
@@ -24,8 +24,7 @@ $(document).ready( function() {
 	});
 
 	/****************************** Follow *****************/
-	$('body').on('click', '.follow-btn', function(event) {
-		event.stopImmediatePropagation();
+	$('body').on('click', '.follow-btn', function() {
 		var id = $(this).attr('id');
 		var profile_id = parseInt(id.substring(11, id.length));
 		$(".follow-btn-" + profile_id).remove();

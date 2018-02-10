@@ -1,6 +1,27 @@
-<h1>Editing Post</h1>
-
-<%= render 'form', post: @post %>
-
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<%= render 'shared/main_nav_bar' %>
+<%= render 'shared/image_upload_modal' %>
+<div class="container" id="post-edit-container">
+<div class="row">
+	<div class="col-md-offset-2 col-lg-offset-2 col-sm-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-12 post-container">
+		<div class="thumbnail">
+			<div class="modal-header">
+				<a href=<%=profile_path(@post.profile)%>>
+					<% if !@post.profile.profile_image %>
+						<%= image_tag @post.profile.profile_image.thumb.url %>
+					<% else %>
+						<%= image_tag '/profile_default.png', style: "width: 30px; height: 30px;", class:"round-thumb" %>
+					<% end %>
+					<span class="username-feed"><%=@post.profile.username%></span>
+				</a>
+			</div>
+			<%= image_tag @post.image.profile_post1.url, class: "img-responsive feed-img"%>
+			<div class="caption">
+				<div style="clear: both"></div>
+				<%= form_for(@post) do |f| %>
+					<%= f.text_area :description, autofocus: true, class: "comment-text-area", id: "post-text-area-#{@post.id}" %>
+				<% end %>
+				
+			</div>
+		</div>
+	</div>
+</div>

@@ -54,6 +54,8 @@ Rails.application.routes.draw do
 	get '/unfollow', to: 'relationships#destroy', as: :unfollow
 	get '/following_modal', to: 'relationships#following_modal', as: :following_modal
 	get 'followers_modal', to: 'relationships#followers_modal', as: :followers_modal
+	get '/post_settings_modal', to: 'posts#open_post_settings_modal', as: :post_settings_modal
+	get '/read_notifications', to: 'profiles#read_notifications', as: :read_notifications
 
 	#patch '/profiles/:id/edit' => 'profiles#update'
 

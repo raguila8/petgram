@@ -71,9 +71,13 @@ class PostsController < ApplicationController
 			if signed_in?
 				format.html {
 					@profile = current_profile
-					@post = Post.new
-					@posts = current_profile.posts.build
-					@feed_items = current_profile.feed.order(created_at: :desc)[0..19]
+					if @profile.following.count == 0
+						redirect_to discover_path
+					else
+						@post = Post.new
+						@posts = current_profile.posts.build
+						@feed_items = current_profile.feed.order(created_at: :desc)[0..19]
+					end
 				}
 
 				format.js {
@@ -90,15 +94,20 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:post])
 		if !current_profile.liked? @post
 			@post.liked_by current_profile
-			@notification = Notification.new
-			@notification.notified_by_id = current_profile.id
-			@notification.profile_id = @post.profile_id
-			@notification.post_id = @post.id
-			@notification.notification_type = "like"
-			@notification.save
-
+			if current_profile != @post.profile
+				@notification = Notification.new
+				@notification.notified_by_id = current_profile.id
+				@notification.profile_id = @post.profile_id
+				@notification.post_id = @post.id
+				@notification.notification_type = "like"
+				@notification.save
+			end
 		elsif current_profile.liked? @post
 			@post.unliked_by current_profile
+			if current_profile != @post.profile
+				@notification = Notification.find_by(:profile_id => @post.profile_id, :notified_by => current_user.id, :post_id => @post.id, :notification_type => "like")
+				@notification.destroy
+			end
 		end
 
 		respond_to do |format|

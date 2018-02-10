@@ -3,4 +3,4 @@ var htmlString =
 		"<p>"	+
 			"<span style=\"clear:both; margin-top: 25px; padding-right: 6px;\", class=\"bold-text\"> <%=@comment.profile.username%></span> <span class=\"comment-styles\"><%=@comment.content%></span>"	+
 		 "</p>"
-$('.comment-section').append(htmlString);
+$('#comment-section-<%=@comment.post_id%>').append(htmlString);

@@ -1,6 +1,4 @@
 <%= javascript_include_tag "home" %>
-<%= render 'shared/followers_modal' %>
-<%= render 'shared/following_modal' %>
 <%= render 'shared/main_nav_bar' %>
 <%= render 'shared/image_upload_modal' %>
 
@@ -19,6 +17,9 @@
 									<%= image_tag '/profile_default.png', style: "width: 30px; height: 30px;", class:"round-thumb" %>
 								<% end %>
 								<span class="username-feed"><%=post.profile.username%></span>
+								<% if current_profile == post.profile %>
+								<span title="Post settings" class="glyphicon glyphicon-cog" style="float: right;"></span>
+								<% end %>
 							</a>
 
 						</div>
@@ -50,8 +51,17 @@
 								<span style="clear:both; padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px; bottom: 10px;", class="more-comments-link" id="more-comments-<%=post.id%>">Load more comments</span>
 							<% end %>
 						<% post.comments.order(created_at: :desc)[0..4].reverse.each do |comment| %>
-							<p>
-								<span style="clear:both; margin-top: 25px; padding-right: 6px;", class="bold-text"> <%=comment.profile.username%></span> <span class="comment-styles"><%=comment.content%></span>
+							<p id="comment-<%=comment.id%>">
+								<% if current_profile == comment.profile %>
+									<span style="clear:both; margin-top: 25px; padding-right: 6px;", class="bold-text"> <%=comment.profile.username%></span> <span class="comment-styles"><%=comment.content%></span>
+
+									<%= link_to destroy_comment_path(:comment_id => comment.id), style: "float: right;", :method => :delete, :data => { :confirm => "Are you sure?" }, :remote  => true do %>
+										<span class="glyphicon glyphicon-remove"></span>
+
+									<% end %>
+								<% else %>
+									<span style="clear:both; margin-top: 25px; padding-right: 6px;", class="bold-text"> <%=comment.profile.username%></span> <span class="comment-styles"><%=comment.content%></span>
+								<% end %>
 							</p>
 						<% end %>
 						</div>

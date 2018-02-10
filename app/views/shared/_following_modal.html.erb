@@ -1,13 +1,14 @@
-<div class="modal fade in" id="following-modal" role="dialog">
+<div class="modal fade in following-modal" id="following-modal" role="dialog">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<button type="button" class="close-btn"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+
 			<h4 class="modal-title"> Following </h4>
 		</div>
 		<div class="modal-body notifications-body relationships-body">
 			<ul>
-				<% current_profile.following.each do |following| %>
+				<% @user_profile.following.each do |following| %>
 					<li class="profile-li">
 						<div class="profile-item-container">
 							<div class="profile-info-container">
@@ -22,11 +23,16 @@
 								</div>
 								
 							</div>
-							<div class="follow-btn-container">
-								<span class="follow-btn">		
-									<button class="following">Following</button>
-								</span>
-							</div>
+							<div class="card-actions card-actions-<%=following.id%>" style="float: right;">
+										<% if current_profile.following?(following) %>
+											<button class="card-btn unfollow-btn following-btn-<%=following.id%>" id= "following-btn-<%=following.id%>">Unfollow</button>
+											<%# button_to "Unfollow", unfollow_path( :followed => profile.id ), :method => :delete, :class => "card-btn unfollow-btn", :id => "following-btn-#{profile.id}", :remote => true %>
+										<% else %>
+											<%# button_to "Follow", follow_path( :followed => profile.id ), :method => :post, :class => "card-btn follow-btn" :id => "follow-btn-#{profile.id}", :remote => true %>
+											<button class="card-btn follow-btn follow-btn-<%=following.id%>" id= "follow-btn-<%=following.id%>">Follow</button>
+										<% end %>
+									</div>
+
 						</div>
 					</li>
 				<% end %>

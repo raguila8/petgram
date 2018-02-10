@@ -6,6 +6,12 @@
 				<h4 class="modal-title"> Notifications </h4>
 			</div>
 			<div class="modal-body notifications-body">
+				<% if current_profile.notifications.count == 0 %>
+					<div class="bone-heart-container">
+						<img src="/bones.png" alt="heart">
+						<p>You can see who liked and commented on your posts here.</p>
+					</div>
+				<% else %>
 				<ul>
 					<% current_profile.notifications.order(created_at: :desc).each do |notification| %>
 						<% if notification.notification_type == "comment" %>
@@ -15,11 +21,16 @@
 										<div class="small-thumb-container">
 											<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
 										</div>
-										<div class="item-info">
-											<p class="username-notificaation"><%=notification.notified_by.username%> commented on your photo</p>
-											<img class="small-thumb" style="width: 30px; height: 30px; float: right;"src=<%=notification.post.image.thumb%>>
+										<!--<div class="item-info">
+											<p class="username-notificaation"><%#notification.notified_by.username%> commented on your photo</p>
+											<img class="small-thumb" style="width: 30px; height: 30px; float: right;"src=<%#notification.post.image.thumb%>>
 
-										</div>
+										</div>-->
+								
+										<span class="notifications-username"><%=notification.notified_by.username%></span>&nbsp; <span class="notifcations-text"> commented on your photo</span>
+											<img style="width: 30px; height: 30px; float: right;"src=<%=notification.post.image.thumb%>>
+
+
 									</div>
 								</li>
 						<% elsif notification.notification_type == "like" %>
@@ -30,7 +41,7 @@
 											<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
 										</div>
 										
-											<span class="notifications-username"><%=notification.notified_by.username%></span> <span class="notifcations-text"> liked your photo</span>
+											<span class="notifications-username"><%=notification.notified_by.username%></span>&nbsp; <span class="notifcations-text"> liked your photo</span>
 											<img style="width: 30px; height: 30px; float: right;"src=<%=notification.post.image.thumb%>>
 
 										
@@ -44,11 +55,16 @@
 										<div class="small-thumb-container">
 											<img class="small-thumb" style="width: 30px; height: 30px;"src="/profile_default.png">
 										</div>
+<!--
 										<div class="item-info">
-											<p class="username-item"><%=notification.notified_by.username%> started following you</p>
-											<img class="small-thumb" style="width: 30px; height: 30px; float: right;"src=<%=notification.notified_by.profile_image.thumb%>>
+											<p class="username-item"><%#notification.notified_by.username%> started following you</p>
+											<img class="small-thumb" style="width: 30px; height: 30px; float: right;"src=<%#notification.notified_by.profile_image.thumb%>>
 
-										</div>
+										</div>-->
+										<span class="notifications-username"><%=notification.notified_by.username%></span>&nbsp; <span class="notifcations-text"> started following you</span>
+											<img style="width: 30px; height: 30px; float: right;"src=<%=notification.notified_by.profile_image.thumb%>>
+
+
 									</div>
 								</li>
 
@@ -56,6 +72,7 @@
 						</a>
 					<% end %>
 				</ul>
+				<% end %>
 			</div>
 		</div>
 	</div>

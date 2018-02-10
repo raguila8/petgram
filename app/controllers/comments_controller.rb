@@ -4,6 +4,14 @@ class CommentsController < ApplicationController
 		@comment = Comment.new(comment_params)
 		respond_to do |format|
 			if @comment.save
+					if current_profile != @comment.post.profile.id
+						@notification = Notification.new
+						@notification.notified_by_id = current_profile.id
+						@notification.profile_id = @comment.post.profile_id
+						@notification.post_id = @comment.post.id
+						@notification.notification_type = "comment"
+						@notification.save
+					end
 				format.html {
 					#flash[:success] = "New comment posted!"
 					#redirect_to home_path
@@ -12,20 +20,53 @@ class CommentsController < ApplicationController
 					render json: @comment 
 				}
 				format.js {
-					@notification = Notification.new
-					@notification.notified_by_id = current_profile.id
-					@notification.profile_id = @comment.post.profile_id
-					@notification.post_id = @comment.post.id
-					@notification.notification_type = "comment"
+			
 				}
 			end	
 		end
+	end
+
+	def destroy 
+		@comment = Comment.find(params[:comment_id])
+		respond_to do |format|
+			if current_profile != @comment.post.profile.id
+=begin
+				@notification = Notification.find_by(:notified_by_id => current_profile,
+											:profile_id => @comment.post.profile.id,
+											:post_id => @comment.post.id,
+											:notification_type => "comment")
+				
+				@notification.destroy
+=end
+			end
+			@comment_id = @comment.id
+			@comment.destroy
+				format.html {
+					#flash[:success] = "New comment posted!"
+					#redirect_to home_path
+				}
+				format.json { 
+					render json: @comment 
+				}
+				format.js {
+			
+				}
+		end	
 	end
 
 	def create_modal_comment
 		@comment = Comment.new(comment_params)
 		respond_to do |format|
 			if @comment.save
+				if current_profile != @comment.post.profile.id
+						@notification = Notification.new
+						@notification.notified_by_id = current_profile.id
+						@notification.profile_id = @comment.post.profile_id
+						@notification.post_id = @comment.post.id
+						@notification.notification_type = "comment"
+						@notification.save
+				end
+
 				format.html {
 					#flash[:success] = "New comment posted!"
 					#redirect_to home_path
@@ -33,13 +74,7 @@ class CommentsController < ApplicationController
 				format.json { 
 					render json: @comment 
 				}
-				format.js {
-					@notification = Notification.new
-					@notification.notified_by_id = current_profile.id
-					@notification.profile_id = @comment.post.profile_id
-					@notification.post_id = @comment.post.id
-					@notification.notification_type = "comment"
-				}
+				format.js {}
 			end	
 		end
 

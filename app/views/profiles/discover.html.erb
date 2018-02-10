@@ -1,8 +1,8 @@
 <%= javascript_include_tag "discover" %>
+<%= javascript_include_tag "relationships" %>
 <%= javascript_include_tag "home" %>
 <%= javascript_include_tag "image_modal" %>
-<%= render 'shared/followers_modal' %>
-<%= render 'shared/following_modal' %>
+<%= javascript_include_tag "relationships_modal" %>
 <%= render 'shared/main_nav_bar' %>
 <%= render 'shared/image_upload_modal' %>
 
@@ -32,27 +32,38 @@
 									<div class="card-name"><%=@suggestions.first.username%></div>
 									<div class="card-animal"><%=@suggestions.first.name%></div>
 			
-									<div class="card-actions">
+									<div class="card-actions card-actions-<%=@suggestions.first.id%>">
 										<% if current_profile.following?(@suggestions.first) %>
-											<button class="card-btn following-btn-<%=@suggestions.first.id%>">Following</button>
+											<button class="card-btn unfollow-btn following-btn-<%=@suggestions.first.id%>" id= "following-btn-<%=@suggestions.first.id%>">Unfollow</button>
 										<% else %>
-											<button class="card-btn follow-btn-<%=@suggestions.first.id%>">Follow</button>
+											<button class="card-btn follow-btn follow-btn-<%=@suggestions.first.id%>" id= "follow-btn-<%=@suggestions.first.id%>">Follow</button>
+	
 										<% end %>
 									</div>
 								</div>
 		
 								<div class="card-stats">
 									<a href="<%=profile_path(@suggestions.first.id)%>">
-										<div class="card-box">	
+										<div class="card-box" style="cursor: default;">	
 											<span class="card-value"><%=@suggestions.first.posts.count%></span>
 											<span class="card-parameter">Posts</span>
 										</div>
 									</a>
-									<div class="card-box">
+									<% if @suggestions.first.followers.count == 0 %>
+										<div class="card-box" style="cursor: default;"id="followers-<%=@suggestions.first.id%>">
+
+									<% else %>
+										<div class="card-box followers-modal-toggle" id="followers-<%=@suggestions.first.id%>">
+									<% end %>
 										<span class="card-value"><%=@suggestions.first.followers.count%></span>
 										<span class="card-parameter">Followers</span>
 									</div>
-									<div class="card-box">
+									
+									<% if @suggestions.first.following.count == 0 %>
+										<div class="card-box" style="cursor: default;" id="following-<%=@suggestions.first.id%>">
+									<% else %>
+										<div class="card-box following-modal-toggle" id="following-<%=@suggestions.first.id%>">
+									<% end %>
 										<span class="card-value"><%=@suggestions.first.following.count%></span>
 										<span class="card-parameter">Following</span>
 									</div>
@@ -90,15 +101,25 @@
 								</div>
 		
 								<div class="card-stats">
-									<div class="card-box">
+									<div class="card-box" style="cursor: default;">
 										<span class="card-value"><%=profile.posts.count%></span>
 										<span class="card-parameter">Posts</span>
 									</div>
-									<div class="card-box">
+									
+									<% if profile.followers.count == 0 %>
+										<div class="card-box" style="cursor: default;" id="followers-<%=profile.id%>">
+									<% else %>
+										<div class="card-box followers-modal-toggle" id="followers-<%=profile.id%>">
+									<% end %>
 										<span class="card-value"><%=profile.followers.count%></span>
 										<span class="card-parameter">Followers</span>
 									</div>
-									<div class="card-box">
+									
+									<% if profile.following.count == 0 %>
+										<div class="card-box" style="cursor: default;" id="following-<%=profile.id%>">
+									<% else %>
+										<div class="card-box following-modal-toggle" id="following-<%=profile.id%>">
+									<% end %>
 										<span class="card-value"><%=profile.following.count%></span>
 										<span class="card-parameter">Following</span>
 									</div>

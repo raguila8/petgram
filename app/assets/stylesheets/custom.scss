@@ -7,7 +7,9 @@
   url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-
+body {
+	background-color: #ebeeef;
+}
 
 .main-form-container {
 	margin-top: 8%;
@@ -369,6 +371,27 @@
 
 .notifications-body a:hover {
 	color: #666666;
+}
+
+.bone-heart-container {
+	text-align: center;
+	margin-bottom: 20px;
+	img {
+		text-align: center;
+		display: inline-block;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+}
+
+
+#notifications-modal .modal-dialog{
+	overflow-y : initial !important;
+
+	ul {
+			height: 80vh;
+			overflow-y: auto;
+	}
 }
 
 
@@ -1303,6 +1326,16 @@ img {
 	color: #666666;
 }
 
+.glyphicon-cog {
+	float: right;
+	cursor: pointer;
+}
+
+.glyphicon-cog:hover {
+	font-weight: bold;
+	color: #262626;
+}
+
 .hidden-submit {
 	border: 0 none;
 	height: 0;
@@ -1881,6 +1914,73 @@ text-shadow: 2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
 	}
 }
 
+.followers-modal {
+	display: block;
+	position: fixed;
+	z-index: 9050;	
+	visibility: visible;
+	
+	.modal-dialog {
+		width: 100%;
+	}
+}
+
+.following-modal {
+	display: block;
+	position: fixed;
+	z-index: 9050;	
+	visibility: visible;
+	
+	.modal-dialog {
+		width: 100%;
+	}
+
+}
+
+.close-btn {
+	-webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+		    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+
+.close-btn:hover {
+	opacity: 0.8;
+}
+
+	.modal .card-actions {
+		margin-top: 10px;
+		
+		.card-btn {
+			display: block;
+			width: 80px;
+			height: 30px;
+			margin: 0 auto 10px auto;
+			background: none;
+			border: 1px solid $brown;
+			border-radius: 15px;
+			font-size: 12px;
+			font-weight: 600;
+			box-sizing: border-box;
+			transition: all .3s ease-in-out;
+			color: $brown;
+			
+			&:hover {
+				background: $brown;
+				color: #fff;
+			}
+		}
+	}
+
 /***************************Image Modal ****************************/
 
 .img-modal {
@@ -2118,5 +2218,12 @@ text-shadow: 2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
 	display: block;
 	width: 25px !important;
 	height: 25px !important;
+}
+
+.comment-section span.glyphicon-remove {
+	color: red;
+	opacity: 0.5;
+	float: right;
+	cursor: pointer;
 }
 

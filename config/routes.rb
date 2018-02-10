@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
 	get '/home', to: 'posts#home', as: :home
 	post '/comments', to: 'comments#create', as: :comments
+	delete '/comments', to: 'comments#destroy', as: :destroy_comment
 	get '/get_comments', to: 'comments#get_comments', as: :get_comments
 	get '/autocomplete', to: 'profiles#autocomplete', as: :autocomplete
 	get '/vote', to: 'posts#vote', as: :vote
@@ -51,6 +52,8 @@ Rails.application.routes.draw do
 	patch '/update_profile_img', to: 'profiles#update_profile_image', as: :update_profile_image
 	post '/follow', to: 'relationships#create', as: :follow
 	get '/unfollow', to: 'relationships#destroy', as: :unfollow
+	get '/following_modal', to: 'relationships#following_modal', as: :following_modal
+	get 'followers_modal', to: 'relationships#followers_modal', as: :followers_modal
 
 	#patch '/profiles/:id/edit' => 'profiles#update'
 

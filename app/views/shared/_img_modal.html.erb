@@ -36,7 +36,10 @@
 									</a>
 								</div>&nbsp;&nbsp;
 								<span class="bold-text likes-count-<%=@post.id%>"> <%=@post.get_upvotes.size%> <%="like".pluralize(@post.get_upvotes.size)%></span>
-
+								
+								<% if current_profile == @post.profile %>
+									<span title="Post settings" class="glyphicon glyphicon-cog" style="float: right;"></span>
+								<% end %>
 
 								
 								<p><%=@post.description.strip()%></p>
@@ -46,10 +49,10 @@
 									<p class="more-comments-link" id="more-comments-<%=@post.id%>" style="padding: 20px 20px 0 20px; text-align: center; font-family: Poppins-Bold; font-size: 1em; font-weight: 900;">Load more comments</p>
 							<% end %>
 
-							<ul class="dont-break-out img-comment-list">
+							<ul class="dont-break-out comment-section img-comment-list img-comment-list-<%=@post.id%>">
 
 								<% @post.comments.order(created_at: :desc)[0..9].reverse.each do |comment| %>
-                	<li>
+                	<li id="comment-<%=comment.id%>">
                   	<div class="comment-img">
                     	<% if !comment.profile.profile_image.profile.url.nil? %>
                 				<a href=""><img src="<%=comment.profile.profile_image.profile.url%>"/></a>
@@ -61,6 +64,12 @@
                     	<strong><a href=""><%=comment.profile.username%></a></strong>
                     	<p><%=comment.content.strip()%></p> <span class="date sub-text">on <%= comment.created_at.strftime("%a, %d %b %Y, %I:%M %P") %></span>
                   	</div>
+
+										<% if current_profile == comment.profile %>
+												
+												<span class="glyphicon glyphicon-remove" id="comment-delete-<%=comment.id%>"></span>
+										<% end %>
+
                 	</li>
 								<% end %>
               </ul>

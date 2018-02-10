@@ -1,5 +1,6 @@
 <%= javascript_include_tag "image_modal" %>
-<%= render 'shared/following_modal' %>
+<%= javascript_include_tag "relationships_modal" %>
+<%= javascript_include_tag "relationships" %>
 <%= render 'shared/main_nav_bar' %>
 <%= render 'shared/image_upload_modal' %>
 <div id="profile-body">
@@ -51,11 +52,22 @@
 					<span class="card-value"><%=@profile.posts.count%></span>
 					<span class="card-parameter">Posts</span>
 				</div>
-				<div class="card-box" id="followers-toggle" data-toggle="modal" data-target="#followers-modal">
+				
+				<% if @profile.followers.count == 0 %>
+					<div class="card-box" style="cursor: default;" id="followers-<%=@profile.id%>">
+				<% else %>
+					<div class="card-box followers-modal-toggle" id="followers-<%=@profile.id%>">
+				<% end %>
 					<span class="card-value"><%=@profile.followers.count%></span>
 					<span class="card-parameter">Followers</span>
 				</div>
-				<div class="card-box" id="following-toggle" data-toggle="modal" data-target="#following-modal">
+
+				
+				<% if @profile.following.count == 0 %>
+					<div class="card-box" style="cursor: default;" id="following-<%=@profile.id%>">
+				<% else %>
+					<div class="card-box following-modal-toggle" id="following-<%=@profile.id%>">
+				<% end %>
 					<span class="card-value"><%=@profile.following.count%></span>
 					<span class="card-parameter">Following</span>
 				</div>
@@ -135,7 +147,5 @@
 	<% end %>
 </div>
 </div>
-<%= link_to "Log out", destroy_user_session_path, method: :delete %>
 </div>
-<%= render 'shared/followers_modal' %>
 <div class="page-overlay"></div>

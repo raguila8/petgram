@@ -201,30 +201,6 @@ $(document).ready(function() {
 			});
 		});
 
-	/************************** Delete Comment ***********************/
-
-	$('.container').on('click', '.comment-section span.glyphicon-remove', function() {
-
-		if (window.confirm("Are you sure?")) {
-			var id = $(this).attr('id');
-			var comment_id = parseInt(id.substring(15, id.length));
-
-		$.ajax({
-				type: "DELETE",
-				url: "/comments",
-				headers: {
-					Accept: "text/javascript; charset=utf-8",
-					"Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8'
-				},
-				data: {
-					comment_id: comment_id,
-					authenticity_token: AUTH_TOKEN
-				}
-			});
-		}
-
-	});
-
 	/************************* Submit comment on enter ******************/
 	
 	// This mimics an ajax submission form when user presses enter button

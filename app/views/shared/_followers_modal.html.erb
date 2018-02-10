@@ -1,13 +1,13 @@
-<div class="modal fade in" id="followers-modal" role="dialog">
+<div class="modal fade in followers-modal" id="followers-modal" role="dialog">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<button type="button" class="close-btn"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 			<h4 class="modal-title"> Followers </h4>
 		</div>
 		<div class="modal-body notifications-body relationships-body">
 			<ul>
-				<% current_profile.followers.each do |follower| %>
+				<% @user_profile.followers.each do |follower| %>
 					<li class="profile-li">
 						<div class="profile-item-container">
 							<div class="profile-info-container">
@@ -22,15 +22,19 @@
 								</div>
 								
 							</div>
-							<div class="follow-btn-container">
-								<span class="follow-btn">
-									<% if !current_profile.following?(follower) %>
-									<button class="follow">Follow</button>
-									<% else %>
-										<button class="following">Following</button>
-									<% end %>
-								</span>
-							</div>
+							
+								<div class="card-actions card-actions-<%=follower.id%>" style="float: right;">
+										<% if current_profile.following?(follower) %>
+											<button class="card-btn unfollow-btn following-btn-<%=follower.id%>" id= "following-btn-<%=follower.id%>">Unfollow</button>
+											<%# button_to "Unfollow", unfollow_path( :followed => profile.id ), :method => :delete, :class => "card-btn unfollow-btn", :id => "following-btn-#{profile.id}", :remote => true %>
+										<% else %>
+											<%# button_to "Follow", follow_path( :followed => profile.id ), :method => :post, :class => "card-btn follow-btn" :id => "follow-btn-#{profile.id}", :remote => true %>
+											<button class="card-btn follow-btn follow-btn-<%=follower.id%>" id= "follow-btn-<%=follower.id%>">Follow</button>
+										<% end %>
+									</div>
+								
+
+							
 						</div>
 					</li>
 				<% end %>

@@ -16,6 +16,7 @@ gem 'bootstrap-will_paginate'
 gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'jquery-turbolinks'
 
 # Javascript display engine for mathematics
 gem 'mathjax-rails'

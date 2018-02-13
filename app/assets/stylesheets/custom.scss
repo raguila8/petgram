@@ -175,7 +175,56 @@ body {
 
 #select-profile-label {
 	color: #808080;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
+	clear: both;
+	display: block;
+}
+
+.profile-selection-page {
+	.profile-btn-container {
+		float: left;
+		margin-bottom: 30px;
+		p {
+			text-align: center;
+			font-family: Poppins-Bold;
+			font-size: 14px;
+		}
+	}
+	.profile-img-container {
+			img {
+				width: 100%;
+				height: auto;
+				border-radius: 50%;
+				border: 2px solid grey;
+				cursor: pointer;
+				&:hover {
+					border: 3px solid black;
+				}
+			}
+			
+			width: 100%;
+			background-size: cover;
+			background-position: center;
+			vertical-align: center;
+			text-align: center;
+			background-blend-mode: multiply;
+			color: transparent;
+			transition: all .3s ease;
+			text-decoration: none;
+		}
+
+		form {
+			margin-top: 20px;
+		}
+
+	.login100-form-btn {
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+
 }
 
 
@@ -2327,5 +2376,81 @@ text-shadow: 2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
 	}
 }
 
+
+/*********** Welcome page ********************/
+
+.welcome-page {
+	.wrap-login100 {
+		width: 500px;
+	}
+}
+
+.profile-pic-selector {
+	font-family: Poppins-Regular;
+	cursor: pointer;
+	font-size: 12px;
+	
+}
+
+#select-profile-image-modal {
+	.modal-dialog {
+		overflow-y: initial !important;
+	}
+
+	.modal-footer {
+		input {
+			width: 30px !important;
+			font-size: 12px;
+			float: right;
+			
+			vertical-align: middle;
+		}
+
+		.select_profile_image_preview {
+			img {
+				border-radius: 50%;
+				float: left;
+				border: 1px solid black;
+				width: 60px;
+				height: 60px;
+			}
+		}
+	}
+
+	.modal-body {
+		height: 600px;
+		overflow-y: auto;
+
+		.select_profile_image_container {
+
+			margin-bottom: 20px;
+
+			img {
+				width: 100%;
+				height: auto;
+				margin-bottom: 15px;
+				margin-top: 15px;
+				border-radius: 50%;
+				border: 2px solid grey;
+				cursor: pointer;
+				&:hover {
+					border: 3px solid black;
+				}
+			
+			}
+		}
+
+
+	}
+}
+
+.welcome-page .skip {
+	display: block;
+	width: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
 
 

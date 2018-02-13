@@ -15,7 +15,8 @@ class RegistrationsController < Devise::RegistrationsController
 			profile.save
 			sign_in(@user, scope: :user)
 			flash[:success] = "Welcome to Petgram!"
-			redirect_to edit_profile_path(profile.id)
+			#redirect_to edit_profile_path(profile.id)
+			redirect_to welcome_path(:id => profile.id)
 			#:controller => 'profile', :action => 'edit'
 		else
 			render 'new'

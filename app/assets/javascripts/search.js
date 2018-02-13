@@ -1,4 +1,5 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
+	if ($('#main-search').length) {
 			
 	$('#main-search').autocomplete({
 		source: function( request, response ) {
@@ -25,4 +26,5 @@ $(document).ready(function() {
 			/*return $( "<li class=\"profile-item\">" + "<img style=\"width: 30px; height: 30px;\" src=\"/profile_default.png\", class=\"small-thumb\">" +  "<div class=\"item-info\"><span class=\"username-item\">" + item.username + "</span><br><span class=\"name-item\">" + item.name + "</span></div></li>" ).appendTo( ul );
 */		
 	};
+	}
 });

@@ -1,0 +1,33 @@
+<%= javascript_include_tag "welcome" %>
+<div class="modal fade in" id="select-profile-image-modal" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title"> Select Profile Image </h4>
+			</div>
+			<div class="modal-body">
+
+				<div id="profile_images_container">
+					<% 115.times do |i|%>
+						<div class="col-md-1 col-lg-1 col-sm-2 col-xs-3 select_profile_image_container">
+    					<img src="profile_icons/<%=i + 1%>.png"/>
+						</div>
+    			<% end %>
+				</div>
+				<%= form_for @profile, url: update_profile_image_path(:path => 'welcome/default'), html: {class: "login101-form"} do |f| %>
+					<%= f.hidden_field :profile_image, :value => "/profile_icons/5.png", id: "profile_image_input" %>
+			</div>
+			<div class="modal-footer">
+				<div class="col-md-1 col-lg-1 col-sm-1 col-xs-1 select_profile_image_preview">
+    					<img src="profile_icons/<%=5%>.png"/>
+						</div>
+
+				<div class="actions">
+					<%= f.submit "Submit", class: "login100-form-btn login101-form-btn" %>
+				</div>
+			<% end%>
+			</div>
+		</div>
+	</div>
+</div>

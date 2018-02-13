@@ -1,5 +1,5 @@
 <%= render 'shared/main_nav_bar' %>
-<div class="limiter">
+<div class="limiter profile-selection-page">
 	<div class="container-login100">
 		<div class="wrap-login100 main-form-container">
 			<%# render 'shared/edit_account_header' %>
@@ -9,23 +9,45 @@
 				</span>
 			</div>
 
-			<div class="profiles-gate-container">
-				<div class="centered-div list-profiles-container">	
+			<div class="profiles-gate-container">		
+
+				<% @user.profiles.each do |profile| %>
+					<a class="profile-link" href=<%= profile_path(profile) %> data-method="delete", data-confirm="Are you sure?">
+						<div class="col-md-3 col-lg-3 col-sm-3 col-xs-4 profile-btn-container"> 
+							<div class="profile-img-container">
+								<% if profile.profile_image.profile.url %>
+								<img src="<%=profile.profile_image.profile_post2.url%>">
+								<% else %>
+									<img src="/profile_icons/28.png">
+								<% end %>
+							</div>
+							<p><%=profile.username%></p>
+						</div>							
+					</a>
+
+				<% end %>
+
+
+
+
+
+
+<!--
 					<ul class="choose-profile">
-						<% @user.profiles.each do |profile| %>
+						<%# @user.profiles.each do |profile| %>
 							<li class="profile">
 								<div id="hover-wrapper">
-									<a class="profile-link" href=<%= profile_path(profile) %> data-method="delete", data-confirm="Are you sure?">
-										<!--<div class="avatar-wrapper">-->
+									<a class="profile-link" href=<%# profile_path(profile) %> data-method="delete", data-confirm="Are you sure?">
+							
 											<div class="profile-icon" style="background-image:url(https://assets.nflxext.com/ffe/profiles/avatars_v2/320x320/PICON_025.png);"></div>
-										<!--</div>-->
-										<span class="profile-name"><%=profile.username%></span>
+										<!
+										<span class="profile-name"><%#profile.username%></span>
 									</a>
 								</div>
 							</li>
-						<% end %>
-					</ul>
-				<form action=<%=user_path(current_user)%> method="get">
+						<%# end %>
+					</ul>-->
+				<form style="clear: both;" action=<%=user_path(current_user)%> method="get">
 					<input type="submit" name="commit" value="Go back" class="login100-form-btn">
 				</form>
 

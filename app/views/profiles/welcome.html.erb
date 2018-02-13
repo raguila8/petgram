@@ -1,0 +1,48 @@
+<%= render 'shared/select_profile_image_modal' %>
+
+<div class="limiter">
+	<div class="container-login100 welcome-page">
+		<div class="wrap-login100">
+			<div class="login100-form-title" style="background-image: url(/welcome3.png);">
+				<span class="login100-form-title-1">
+					
+				</span>
+			</div>
+
+
+			<%# render 'shared/error_messages' %>
+			<div class="profile-card" style="float: none; height: auto; margin: auto; padding-bottom: 30px;">
+			<div class="image">
+					<% if !@profile.profile_image.profile.url.nil? %>
+						<div class="profile-thumbnail" style="background-image: url('<%=@profile.profile_image.profile.url%>')">
+					<% else %>
+						<div class="profile-thumbnail" style="background-image: url('/default-dog.png')">
+					<% end %>
+						<span class="glyphicon glyphicon-camera">
+						</span>
+					</div>
+					<div class="circle-1">
+					</div>
+
+					<% if current_profile == @profile %>
+						<%= form_for @profile, :url => update_profile_image_path(:path => 'edit'), html: { multipart: true, class: "profile-img-edit" } do |f| %>
+							<label style="cursor: pointer;">
+								<div class="circle-2"></div>
+								<%=f.file_field :profile_image, class: "profile-img-file" %>
+							</label>
+						<% end %>
+					<% else %>
+						<div class="circle-2"></div>
+					<% end %>
+				</div>
+				<div class="card-name" style="font-family: Poppins-Regular">Add a profile photo</div>
+				<p class="profile-pic-selector btn-link" data-toggle="modal" data-target="#select-profile-image-modal"> Choose from our list </p>
+				<div>
+				<span class="btn-link"> <%= link_to "Skip", set_pet_type_path, class: "btn btn-default", style:"margin-top: 10px;" %></span>
+
+				</div>
+
+		</div>
+	</div>
+</div>	
+

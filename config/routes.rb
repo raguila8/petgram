@@ -56,12 +56,16 @@ Rails.application.routes.draw do
 	get 'followers_modal', to: 'relationships#followers_modal', as: :followers_modal
 	get '/post_settings_modal', to: 'posts#open_post_settings_modal', as: :post_settings_modal
 	get '/read_notifications', to: 'profiles#read_notifications', as: :read_notifications
+	get '/welcome', to: 'profiles#welcome', as: :welcome
+	get '/set_pet_type', to: 'profiles#set_pet_type', as: :set_pet_type
+	patch '/edit_pet_type', to: 'profiles#edit_pet_type', as: :edit_pet_type
+	get '/change_profile', to: 'profiles#change_profile', as: :change_profile
 
 	#patch '/profiles/:id/edit' => 'profiles#update'
 
 	devise_scope :user do
 		authenticated :user do
-			root 'profiles#show'
+			root 'posts#home'
 		end
 
 		unauthenticated do

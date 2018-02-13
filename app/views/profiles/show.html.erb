@@ -22,7 +22,7 @@
 					</div>
 
 					<% if current_profile == @profile %>
-						<%= form_for @profile, :url => update_profile_image_path, html: { multipart: true, class: "profile-img-edit" } do |f| %>
+						<%= form_for @profile, :url => update_profile_image_path(:path => 'show'), html: { multipart: true, class: "profile-img-edit" } do |f| %>
 							<label style="cursor: pointer;">
 								<div class="circle-2"></div>
 								<%=f.file_field :profile_image, class: "profile-img-file" %>

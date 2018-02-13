@@ -1,10 +1,10 @@
 class ProfilesController < ApplicationController
 include ApplicationHelper
 include ProfilesHelper
-	before_action :logged_in_user, only: [:edit, :update, :new, :create, :show]
-	before_action :correct_user, only: [:edit, :update]
+	#before_action :logged_in_user, only: [:edit, :update, :new, :create, :show]
+	#before_action :correct_user, only: [:edit, :update]
 	def show
-		@profile = Profile.find_by(user_id: current_user.id)
+		@profile = Profile.find(params[:id])
 		@post = Post.new
 	end
 
@@ -22,8 +22,35 @@ include ProfilesHelper
 			#redirect_to edit_profile_path(@profile.id)
 			flash[:error] = "profile image did not update"
 		end
-		redirect_to @profile
 
+		if params[:path] == 'show'
+			redirect_to @profile
+		elsif params[:path] == 'edit' 
+			redirect_to edit_profile_path(@profile.id)
+		elsif params[:path] == 'welcome'
+			redirect_to set_pet_type_path
+		elsif params[:path] == 'welcome/default'
+			@profile.update_attributes(:profile_image => File.open(File.join(Rails.root, "/public/#{params[:profile][:profile_image]}")))
+			redirect_to set_pet_type_path
+		end
+
+	end
+
+	def set_pet_type
+		@profile = current_profile
+	end
+
+	def edit_pet_type
+		@profile = current_profile
+		if @profile.update_attributes(profile_pet_type_params)
+			# Handle a successful update
+			flash[:success] = "Profile updated"
+			redirect_to discover_path
+		else
+			#redirect_to edit_profile_path(@profile.id)
+			flash[:error] = "profile update did not work"
+			render 'set_pet_type'
+		end
 	end
 
 	def update
@@ -97,6 +124,20 @@ include ProfilesHelper
 		end
 	end
 
+	def welcome
+		@profile = Profile.find(params[:id])
+	end
+		
+	def animal_type
+		
+	end
+
+	def change_profile
+		@profile = Profile.find(params[:id])
+		current_user.update_attributes(:username => @profile.username)
+		redirect_to @profile
+	end
+
 	private
 		
 		def profile_update_params
@@ -109,6 +150,10 @@ include ProfilesHelper
 
 		def profile_create_params
 			params.require(:profile).permit(:username, :name, :animal)
+		end
+
+		def profile_pet_type_params
+			params.require(:profile).permit(:name, :animal)
 		end
 
 		# Confirms the correct user

@@ -1,12 +1,41 @@
 <%= render 'shared/main_nav_bar' %>
-<div class="limiter">
+<div class="limiter profile-edit-page">
 	<div class="container-login100">
 		<div class="wrap-login100 main-form-container">
 			<%= render 'shared/edit_account_header' %>	
+			<div class="profile-card" style="float: none; height: auto; margin: auto;">
+			<div class="image">
+					<% if !@profile.profile_image.profile.url.nil? %>
+						<div class="profile-thumbnail" style="background-image: url('<%=@profile.profile_image.profile.url%>')">
+					<% else %>
+						<div class="profile-thumbnail" style="background-image: url('/default-dog.png')">
+					<% end %>
+						<span class="glyphicon glyphicon-camera">
+						</span>
+					</div>
+					<div class="circle-1">
+					</div>
+
+					<% if current_profile == @profile %>
+						<%= form_for @profile, :url => update_profile_image_path(:path => 'edit'), html: { multipart: true, class: "profile-img-edit" } do |f| %>
+							<label style="cursor: pointer;">
+								<div class="circle-2"></div>
+								<%=f.file_field :profile_image, class: "profile-img-file" %>
+							</label>
+						<% end %>
+					<% else %>
+						<div class="circle-2"></div>
+					<% end %>
+				</div>
+				<div class="card-name"><%=@profile.username%></div>
+
+				</div>
+
 
 			<%= form_for(@profile, :url => edit_profile_path, html: { class: 'login100-form validate-form', novalidate: true }) do |f| %>
 				
 				<%= render 'shared/error_messages' %>
+	
 
 				<div class="field wrap-input100 validate-input m-b-26">
     			<span class="label-input100" style="font-size: 12px; width:90px;">Username</span>

@@ -37,7 +37,7 @@ $(document).on('turbolinks:load', function() {
 		$('.img-responsive100').css({"border" : "4px solid #808080" });
 	});
 
-	if ($("#profile-body").length) {
+	if ($("#profile-body").length || $('.profile-edit-page').length) {
 		$('.profile-img-file').on('change', function() {
 			$('.profile-img-edit').submit();
 		});
@@ -117,5 +117,10 @@ $(document).on('turbolinks:load', function() {
 		});
 
 	});
+
+	if ($('body').length) {
+		console.log("lwkflke");
+		$('.image-picker').imagepicker();
+	}
 
 });

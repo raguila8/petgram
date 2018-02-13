@@ -1,0 +1,40 @@
+<div class="limiter">
+	<div class="container-login100 welcome-page">
+		<div class="wrap-login100">
+			<div class="login100-form-title" style="background-image: url(/welcome3.png);">
+				<span class="login100-form-title-1">
+					
+				</span>
+			</div>
+
+
+			<%# render 'shared/error_messages' %>
+			<%= form_for(@profile, :url => edit_pet_path, html: { class: 'login100-form validate-form', novalidate: true }) do |f| %>
+				
+				<%= render 'shared/error_messages' %>
+	
+				<div class="field wrap-input100 validate-input m-b-26">
+    			<span class="label-input100" style="font-size: 12px; width:90px;"></span>
+    			<%= f.text_field :name, class: "input100", autocomplete: "Name", placeholder: "Enter name" %>
+					<span class="focus-input100"></span>
+  			</div>
+
+  			<div class="field wrap-input100 validate-input m-b-26">
+    			<%# f.label :email %>
+					<span class="label-input100" style="font-size: 12px; width:90px;">What kind of Pet is it?</span>
+    			<%= f.text_field :animal, class: "input100", autocomplete: "animal", placeholder: "Enter Pet type" %>
+					<span class="focus-input100"></span>
+  			</div>
+
+				
+				<div class="actions container-login100-form-btn">
+  				<%= f.submit "Submit", class: "login100-form-btn" %>
+  			</div>
+
+			<% end %>
+
+
+		</div>
+	</div>
+</div>	
+

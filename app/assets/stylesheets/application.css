@@ -14,6 +14,8 @@
  *= require auth_stylesheets
  *= require jquery.Jcrop
  *= require jquery-ui
+ *= require bootstrap-select
+ *= image-picker
  *= require custom.scss
  *= require_self
  */

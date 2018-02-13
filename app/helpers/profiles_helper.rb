@@ -23,4 +23,5 @@ module ProfilesHelper
 	def current_profile
 		Profile.find_by(username: current_user.username)
 	end
+
 end

@@ -33,6 +33,5 @@ $(document).on('turbolinks:load', function() {
 						"<div class='item-info'><p class='username-item'>" + item.username + "</p><span class='name-item'>" + item.name + 
 							"</span></div></li></div></a>").appendTo( ul );
 
-	};
 	}
 });

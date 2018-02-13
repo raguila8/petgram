@@ -510,12 +510,12 @@ body {
 
 #profile-body {
 	background: #ebeeef;
-	padding-top: 67px
+	padding-top: 74px
 }
 
 @media (max-width: 950px) {
 	#profile-body {
-		padding-top: 50px;
+		padding-top: 58px;
 	}
 }
 
@@ -893,6 +893,11 @@ img {
 .small-thumb-container, .item-info {
 	display: inline-block;
 	vertical-align: middle;
+}
+
+.ui-menu-item .ui-state-active {
+  background: #fafafa;
+	border: 1px solid #e5e5e5;
 }
 
 .item-info {
@@ -1693,11 +1698,36 @@ $brown: #786450;
 	height: 320px;
 	text-align: center;
 	
+	.profile-card-username {
+		font-family: Poppins-Bold !important;
+			font-size: 14px;
+			color: #786450;
+
+
+		a {
+			font-family: Poppins-Bold !important;
+			font-size: 14px;
+			color: #786450;
+			&:hover {
+				color: grey;
+			}
+		}
+
+		padding-top: 5px;
+		padding-bottom: 10px;
+	}
+
+	.card-bio {
+		font-family: Poppins-Regular;
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+	
 	.image {
 		position: relative;
 		width: 70px;
 		height: 70px;
-		margin: 38px auto 0 auto;
+		margin: 0 auto 0 auto;
 		
 		.circle-1 {
 			position: absolute;
@@ -1788,9 +1818,15 @@ $brown: #786450;
 	}
 	
 	.card-name {
-		font-size: 15px;
+		font-size: 13px;
 		font-weight: 600;
-		margin-top: 20px;
+		margin-top: 12px;
+		a {
+			&:hover {
+				color: black;
+				font-weight: 700;
+			}
+		}
 	}
 	
 	.card-animal {
@@ -2453,4 +2489,7 @@ text-shadow: 2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
 	margin-top: 30px;
 }
 
-
+.ui-menu .ui-menu-item:hover, .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus {
+    background-color: red;
+    font-weight: bold;
+}

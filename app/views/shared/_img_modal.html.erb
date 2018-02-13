@@ -17,7 +17,7 @@
               <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
               <div class="dont-break-out img-poster clearfix">
 								<% if !@post.profile.profile_image.profile.url.nil? %>
-                	<a href=""><img class="img-circle" src="<%=@post.profile.profile_image.profile.url%>"/></a>
+                	<a href=""><img class="img-circle" src="<%=@post.profile.profile_image.profile_post2.url%>"/></a>
 								<% else %>
 									<a href=""><img class="img-circle" src="/default-dog.png"/></a>
 								<% end %>
@@ -38,7 +38,7 @@
 								<span class="bold-text likes-count-<%=@post.id%>"> <%=@post.get_upvotes.size%> <%="like".pluralize(@post.get_upvotes.size)%></span>
 								
 								<% if current_profile == @post.profile %>
-									<span title="Post settings" class="glyphicon glyphicon-cog" id="post-settings=<%=@post.id%>""style="float: right;"></span>
+									<span title="Post settings" class="glyphicon glyphicon-cog" id="post-settings=<%=@post.id%>" style="float: right;"></span>
 								<% end %>
 
 								
@@ -55,7 +55,7 @@
                 	<li id="comment-<%=comment.id%>">
                   	<div class="comment-img">
                     	<% if !comment.profile.profile_image.profile.url.nil? %>
-                				<a href=""><img src="<%=comment.profile.profile_image.profile.url%>"/></a>
+                				<a href=""><img src="<%=comment.profile.profile_image.profile_post2.url%>"/></a>
 											<% else %>
 												<a href=""><img src="/default-dog.png"/></a>
 											<% end %>

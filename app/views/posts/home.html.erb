@@ -13,7 +13,7 @@
 						<div class="modal-header">
 							<a href=<%=profile_path(post.profile)%>>
 								<% if !post.profile.profile_image %>
-									<%= image_tag post.profile.profile_image.thumb.url %>
+									<%= image_tag post.profile.profile_image.profile_post2.url %>
 								<% else %>
 									<%= image_tag '/profile_default.png', style: "width: 30px; height: 30px;", class:"round-thumb" %>
 								<% end %>

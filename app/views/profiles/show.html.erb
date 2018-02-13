@@ -8,7 +8,8 @@
 <div class="container">
 	<div class="frame" style="margin-bottom: 100px;">
 		<div class="center-card first-card">
-			<div class="profile-card">			
+			<div class="profile-card">
+				<p class="profile-card-username"><%=@profile.username%></p>
 				<div class="image">
 					<% if !@profile.profile_image.profile.url.nil? %>
 						<div class="profile-thumbnail" style="background-image: url('<%=@profile.profile_image.profile.url%>')">
@@ -35,7 +36,7 @@
 
 				<div class="card-name"><%=@profile.name%></div>
 				<div class="card-animal"><%=@profile.animal%></div>
-				<span class="card-animal" style="position: relative; padding-top: 10px; margin-top: 10px;"><%=@profile.bio%></span>
+				<span class="card-animal card-bio" style="position: relative; padding-top: 10px; margin-top: 10px;"><%=@profile.bio%></span>
 
 				<% if current_profile == @profile %>
 					<div class="card-actions">

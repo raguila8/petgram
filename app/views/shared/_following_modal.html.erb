@@ -13,7 +13,11 @@
 						<div class="profile-item-container">
 							<div class="profile-info-container">
 								<a href="<%=profile_path(following.id)%>"class="profile-thumb-container">
-									<img class="profile-thumb" src="/profile_default.png"></img>
+									<% if following.profile_image.profile_post2.url %>
+										<img class="profile-thumb" src="<%=following.profile_image.profile_post2.url%>">
+									<% else %>
+										<img class="profile-thumb" src="/profile_default.png"></img>
+									<% end %>
 								</a>
 								<div class="profile-information-container">
 									<div class="profile-information-username">
@@ -23,6 +27,7 @@
 								</div>
 								
 							</div>
+							<% if following != current_profile %>
 							<div class="card-actions card-actions-<%=following.id%>" style="float: right;">
 										<% if current_profile.following?(following) %>
 											<button class="card-btn unfollow-btn following-btn-<%=following.id%>" id= "following-btn-<%=following.id%>">Unfollow</button>
@@ -32,6 +37,7 @@
 											<button class="card-btn follow-btn follow-btn-<%=following.id%>" id= "follow-btn-<%=following.id%>">Follow</button>
 										<% end %>
 									</div>
+								<% end %>
 
 						</div>
 					</li>

@@ -6,7 +6,7 @@
 			<div class="profile-card" style="float: none; height: auto; margin: auto;">
 			<div class="image">
 					<% if !@profile.profile_image.profile.url.nil? %>
-						<div class="profile-thumbnail" style="background-image: url('<%=@profile.profile_image.profile.url%>')">
+						<div class="profile-thumbnail" style="background-image: url('<%=@profile.profile_image.profile_post2.url%>')">
 					<% else %>
 						<div class="profile-thumbnail" style="background-image: url('/default-dog.png')">
 					<% end %>

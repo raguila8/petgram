@@ -1,8 +1,9 @@
+<%= javascript_include_tag "search" %>
 <nav class="navbar navbar-fixed-top navbar-default">
   <div class="container-fluid">
 		<div class="container">
     		<div class="navbar-header">	
-      		<a class="navbar-brand pull-left" href=<%=home_path%>>Home</a>
+      		<a class="navbar-brand pull-left" style="padding: 0; padding-top; 30px; padding-bottom: 5px;"href=<%=home_path%>><img src ="/pet_home2.png" style=" margin-left: 15px; padding-top: 6px; width: 40px; height: auto;"></a>
 				</div>
 				<div class="navbar-header pull-right">
 					<div class="pull-right right-nav-buttons">
@@ -10,14 +11,14 @@
       				<span class="sr-only">Toggle navigation</span>
         			<span class="glyphicon glyphicon-search"></span>
       			</button>
-						<a id="image-upload-toggle"><button class="glyphicon glyphicon-plus" data-toggle="modal" data-target="#image-upload-modal"></button></a>
-      			<a href="<%=discover_path%>"><button class="glyphicon glyphicon-eye-open"></button></a>
+						<a id="image-upload-toggle"><button class="glyphicon glyphicon-plus"style="font-size: 20px;" data-toggle="modal" data-target="#image-upload-modal"></button></a>
+      			<a href="<%=discover_path%>"><button><img src="/discover-icon.png" style="width: 20px; height: 20px;"></button></a>
 						<% if current_profile.unread_notifications? %>
-      				<a><span class="glyphicon glyphicon-asterisk"></span><button class="glyphicon glyphicon-heart" data-toggle="modal" data-target="#notifications-modal"></button></a>
+      				<a><span class="glyphicon glyphicon-asterisk"></span><button data-toggle="modal" data-target="#notifications-modal"><img src="/pet-heart-icon2.png" style="width: 20px; height: 20px;"></button></a>
 						<% else %>
-							<a><button class="glyphicon glyphicon-heart" data-toggle="modal" data-target="#notifications-modal"></button></a>
+							<a><button data-toggle="modal" data-target="#notifications-modal"><img src="/pet-heart-icon2.png" style="width: 20px; height: 20px;"></button></a>
 						<% end %>
-      		<a href=<%=profile_path(Profile.find_by(username: current_user.username)) %>><button class="glyphicon glyphicon-user"></button></a>
+      		<a href=<%=profile_path(Profile.find_by(username: current_user.username)) %>><button><img src="/cat_profile_icon2.svg" style="width: 20px; height: 20px;"></button></a>
 					</div>
 				</div>
 					<div class="navbar-collapse collapse" id="navbar-mid-collapse">

@@ -20,18 +20,23 @@
 						<div class="item active">
   						<div class="center-card first-card">
 								<div class="profile-card">
+									<p class="profile-card-username"><%=link_to @suggestions.first.username, profile_path(@suggestions.first.id)%></p>
+									<a href="<%=profile_path(@suggestions.first.id) %>">
 									<div class="image">
 										<div class="circle-1"></div>
+										
 										<div class="circle-2"></div>
+										<a href="<%=profile_path(@suggestions.first.id) %>">
 										<% if @suggestions.first.profile_image.profile.url.nil? %>
 											<img src="/default-dog.png" width="70" height="70" alt="Jessica Potter">
 										<% else %>
-											<img src="<%=@suggestions.first.profile_image.profile.url%>" width="70" height="70" alt="Jessica Potter">
+											<img src="<%=@suggestions.first.profile_image.profile_post2.url%>" width="70" height="70" alt="Jessica Potter">
 										<% end %>
 									</div>
-
-									<div class="card-name"><%=@suggestions.first.username%></div>
-									<div class="card-animal"><%=@suggestions.first.name%></div>
+									</a>				
+					
+									<div class="card-name"><%=@suggestions.first.name %></div>
+									<div class="card-animal"><%=@suggestions.first.animal%></div>
 			
 									<div class="card-actions card-actions-<%=@suggestions.first.id%>">
 										<% if current_profile.following?(@suggestions.first) %>
@@ -44,12 +49,10 @@
 								</div>
 		
 								<div class="card-stats">
-									<a href="<%=profile_path(@suggestions.first.id)%>">
 										<div class="card-box" style="cursor: default;">	
 											<span class="card-value"><%=@suggestions.first.posts.count%></span>
 											<span class="card-parameter">Posts</span>
 										</div>
-									</a>
 									<% if @suggestions.first.followers.count == 0 %>
 										<div class="card-box" style="cursor: default;"id="followers-<%=@suggestions.first.id%>">
 
@@ -76,17 +79,20 @@
   						<div class="center-card second-card">
     
 								<div class="profile-card">
-							
+									<p class="profile-card-username"><%=link_to profile.username, profile_path(profile.id)%></p>
+
+									<a href="<%=profile_path(profile.id)%>">
 									<div class="image">
 										<div class="circle-1"></div>
 										<div class="circle-2"></div>
 										<% if !profile.profile_image.profile.url.nil? %>
-											<img src="<%=profile.profile_image.profile.url%>" width="70" height="70" alt="<%=profile.username%>">
+											<img src="<%=profile.profile_image.profile_post2.url%>" width="70" height="70" alt="<%=profile.username%>">
 										<% else %>
 											<img src="/default-dog.png" width="70" height="70" alt="<%=profile.username%>">
 										<% end %>
 									</div>
-			
+									</a>			
+
 									<div class="card-name"><%=profile.name%></div>
 									<div class="card-animal"><%=profile.animal%></div>
 			

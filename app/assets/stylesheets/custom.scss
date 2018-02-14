@@ -34,6 +34,10 @@ body {
 	}
 }
 
+.default-background-color {
+	background-color: #ebeeef;
+}
+
 
 
 #error_explanation {
@@ -189,6 +193,17 @@ body {
 			font-family: Poppins-Bold;
 			font-size: 14px;
 		}
+		@media (max-width: 600px) {
+			p {
+				font-size: 11px;
+			}
+		}
+	
+		@media (max-width: 400px) {
+				p {
+					font-size: 8px;
+				}
+		}
 	}
 	.profile-img-container {
 			img {
@@ -202,15 +217,34 @@ body {
 				}
 			}
 			
+			span {
+				width: 100%;
+				height: auto;
+				cursor: pointer;
+				font-size: 100%;
+				vertical-align: middle;
+				align-items: center;
+			}
+			
 			width: 100%;
 			background-size: cover;
 			background-position: center;
 			vertical-align: center;
 			text-align: center;
 			background-blend-mode: multiply;
-			color: transparent;
 			transition: all .3s ease;
 			text-decoration: none;
+
+			.add-profile-icon {
+				width: 100%;
+				height: auto;
+				border-radius: 50%;
+				cursor: pointer;
+				&:hover {
+					border: 3px solid green;
+				}
+				
+			}
 		}
 
 		form {
@@ -2489,7 +2523,17 @@ text-shadow: 2px 8px 6px rgba(0,0,0,0.2),0px -5px 35px rgba(255,255,255,0.3);
 	margin-top: 30px;
 }
 
+.welcome-page .image {
+	margin-top: 20px;
+}
+
 .ui-menu .ui-menu-item:hover, .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus {
     background-color: red;
     font-weight: bold;
+}
+
+.profile-edit-page {
+	.image {
+		margin-top: 20px;
+	}
 }

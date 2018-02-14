@@ -16,9 +16,11 @@ class Profile < ApplicationRecord
 	# This is for the email_field for the form in profiles#edit view.
 	attr_accessor :email
 
-	validates :username, presence: true, length: { maximum: 25 },
+	validates :username, presence: true, length: { maximum: 20 },
 												uniqueness: true
 	validates :bio, length: { maximum: 150 }
+	validates :animal, length: { maximum: 25 }
+	validates :name, length: {maximum: 25 }
 
 	
 	# Follows a user

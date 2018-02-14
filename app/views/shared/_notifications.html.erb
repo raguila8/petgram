@@ -16,7 +16,7 @@
 					<% current_profile.notifications.order(created_at: :desc).each do |notification| %>
 						<% if notification.notification_type == "comment" %>
 								<% if !notification.read %>
-									<li class="notifications-item" style="background-color: #ebeeef;">
+									<li class="notifications-item default-background-color">
 								<% else %>
 									<li class="notifications-item">
 								<% end %>

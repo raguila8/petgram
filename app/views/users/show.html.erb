@@ -24,17 +24,25 @@
 								<p><%=profile.username%></p>
 							</div>
 						<% end %>
-						<!--<div style="float: left;" class="profile">
-							<div class="hover-wrapper" id="add-profile-li">
-							<a class="profile-link" href=<%#new_profile_path %>>
-								<div class="addProfileIcon">
-									<span class="glyphicon glyphicon-plus-sign"></span>
+
+
+						<div class="col-md-3 col-lg-3 col-sm-3 col-xs-4 profile-btn-container"> 
+							<a class="profile-link" href="<%=new_profile_path%>">
+
+								<div class="profile-img-container">
+									<img class = "add-profile-icon" src="/add-profile-icon.svg">
 								</div>
-								<span class="profile-name">Add Profile</span>
 							</a>
-							</div>
-						</div>-->
-					<!--<span class="login100-form-btn">
+							<p>Add Profile</p>
+						</div>
+
+
+
+
+
+
+
+						<!--<span class="login100-form-btn">
 						<a href=<%#user_path(current_user)%>>Go back</a
 					</span>-->
 					<form style="clear: both;"action=<%=delete_profiles_path%> method="get">

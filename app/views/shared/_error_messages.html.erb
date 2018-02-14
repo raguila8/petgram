@@ -1,6 +1,6 @@
 <% if devise_controller? || controller_name == 'users'%>
 	<% model = @user %>
-<% elsif controller_name == 'profiles' && (action_name == 'edit' || action_name == 'new' || action_name == 'create') %>
+<% elsif controller_name == 'profiles' && (action_name == 'edit' || action_name == 'new' || action_name == 'create') || action_name == 'set_pet_type' || action_name == 'edit_pet_type' %>
 	<% model = @profile %>
 <% elsif controller_name == 'profiles' && action_name == 'update' %>
 

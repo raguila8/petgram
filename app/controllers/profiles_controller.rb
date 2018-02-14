@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
 include ApplicationHelper
 include ProfilesHelper
-	#before_action :logged_in_user, only: [:edit, :update, :new, :create, :show]
+	before_action :logged_in_user
 	#before_action :correct_user, only: [:edit, :update]
 	def show
 		@profile = Profile.find(params[:id])
@@ -48,7 +48,7 @@ include ProfilesHelper
 			redirect_to discover_path
 		else
 			#redirect_to edit_profile_path(@profile.id)
-			flash[:error] = "profile update did not work"
+			flash[:danger] = "profile update did not work"
 			render 'set_pet_type'
 		end
 	end
@@ -94,7 +94,12 @@ include ProfilesHelper
 		else
 			profile = Profile.find(params[:id])
 			if current_user.username = profile.username
-				current_user.username = current_user.profiles.first.username
+				current_user.profiles.each do |p|
+					if current_user.username != p.username
+						current_user.update_attributes(:username => p.username)
+						break
+					end
+				end
 			end
 			profile.destroy
 			redirect_to user_path
@@ -161,6 +166,14 @@ include ProfilesHelper
 			@profile = Profile.find(params[:id])
 			# this allows user to update any profile that beongs to him
 			redirect_to(root_url) unless @profile.user == current_user
+		end
+
+		def logged_in_user
+			if !user_signed_in?
+				flash[:error] = "You need to sign in or sign up before continuing."
+
+				redirect_to new_user_session_path
+			end
 		end
 
 		

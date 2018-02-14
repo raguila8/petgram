@@ -14,7 +14,7 @@
 						<a id="image-upload-toggle"><button class="glyphicon glyphicon-plus"style="font-size: 20px;" data-toggle="modal" data-target="#image-upload-modal"></button></a>
       			<a href="<%=discover_path%>"><button><img src="/discover-icon.png" style="width: 20px; height: 20px;"></button></a>
 						<% if current_profile.unread_notifications? %>
-      				<a><span class="glyphicon glyphicon-asterisk"></span><button data-toggle="modal" data-target="#notifications-modal"><img src="/pet-heart-icon2.png" style="width: 20px; height: 20px;"></button></a>
+      				<a id="pet-heart-icon"><span class="glyphicon glyphicon-asterisk"></span><button data-toggle="modal" data-target="#notifications-modal"><img src="/pet-heart-icon2.png" style="width: 20px; height: 20px;"></button></a>
 						<% else %>
 							<a><button data-toggle="modal" data-target="#notifications-modal"><img src="/pet-heart-icon2.png" style="width: 20px; height: 20px;"></button></a>
 						<% end %>

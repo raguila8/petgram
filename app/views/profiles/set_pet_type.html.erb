@@ -7,8 +7,6 @@
 				</span>
 			</div>
 
-
-			<%# render 'shared/error_messages' %>
 			<div class="profile-card" style="float: none; height: auto; margin: auto; padding-bottom: 30px;">
 			<div class="image" style="cursor: initial;">
 					<% if !@profile.profile_image.profile.url.nil? %>
@@ -25,7 +23,7 @@
 
 				<%= form_for(@profile, :url => edit_pet_type_path, html: { class: 'login100-form validate-form', novalidate: true }) do |f| %>
 				
-				<%# render 'shared/error_messages' %>
+				<%= render 'shared/error_messages' %>
 	
 
   			<div class="field wrap-input100 validate-input m-b-26">

@@ -9,6 +9,10 @@
 				</span>
 			</div>
 
+			<%= content_tag(:div, flash[:error], :id => "error_explanation") if flash[:error] %>
+				<%# content_tag(:div, flash[:notice], :id => "error_explanation") if flash[:notice] %>
+				<%= content_tag(:div, flash[:alert], :id => "error_explanation") if flash[:alert] %>
+  
 
 			<%# render 'shared/error_messages' %>
 			<div class="profile-card" style="float: none; height: auto; margin: auto; padding-bottom: 30px;">

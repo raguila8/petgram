@@ -103,7 +103,7 @@ $(document).on('turbolinks:load', function() {
 
 	/**************************** Mark notifications as read **************/
 
-	$('.navbar .glyphicon-heart').on('click', function() {
+	$('#notifications-modal').on('hidden.bs.modal', function() {
 		$.ajax({
 			url: "/read_notifications",  // submits it to the given url of the form
 			headers: {

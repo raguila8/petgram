@@ -11,10 +11,15 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
+
 //= require jquery
+//= require jquery.turbolinks
+//= require turbolinks
 //= require auth_javascripts/animsition.min.js
 //= require bootstrap
+//= require jquery-ui
 //= require auth_javascripts
+//= require search
+//= require custom
 //= require cable.js
 

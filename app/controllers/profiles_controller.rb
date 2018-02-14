@@ -2,7 +2,8 @@ class ProfilesController < ApplicationController
 include ApplicationHelper
 include ProfilesHelper
 	before_action :logged_in_user
-	#before_action :correct_user, only: [:edit, :update]
+	before_action :correct_profile, only: [:edit, :update, :welcome, :destroy]
+
 	def show
 		@profile = Profile.find(params[:id])
 		@post = Post.new
@@ -162,20 +163,13 @@ include ProfilesHelper
 		end
 
 		# Confirms the correct user
-		def correct_user
+		def correct_profile
 			@profile = Profile.find(params[:id])
-			# this allows user to update any profile that beongs to him
-			redirect_to(root_url) unless @profile.user == current_user
+			# this allows user to update any profile that belongs to him only
+			redirect_to(root_url) unless @profile == current_profile
 		end
 
-		def logged_in_user
-			if !user_signed_in?
-				flash[:error] = "You need to sign in or sign up before continuing."
-
-				redirect_to new_user_session_path
-			end
-		end
-
+		
 		
 			# if user is not logged in, user is redirected to login page
 =begin

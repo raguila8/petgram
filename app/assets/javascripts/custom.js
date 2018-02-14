@@ -118,9 +118,4 @@ $(document).on('turbolinks:load', function() {
 
 	});
 
-	if ($('body').length) {
-		console.log("lwkflke");
-		$('.image-picker').imagepicker();
-	}
-
 });

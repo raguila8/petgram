@@ -17,11 +17,11 @@
               <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
               <div class="dont-break-out img-poster clearfix">
 								<% if !@post.profile.profile_image.profile.url.nil? %>
-                	<a href=""><img class="img-circle" src="<%=@post.profile.profile_image.profile_post2.url%>"/></a>
+                	<a href="<%=profile_path(@post.profile.id)%>"><img class="img-circle" src="<%=@post.profile.profile_image.profile_post2.url%>"/></a>
 								<% else %>
-									<a href=""><img class="img-circle" src="/default-dog.png"/></a>
+									<a href="<%=profile_path(@post.profile.id)%>"><img class="img-circle" src="/default-dog.png"/></a>
 								<% end %>
-                <strong><a href=""><%=@post.profile.name%></a></strong>
+                <strong><a href="<%=profile_path(@post.profile.id)%>"><%=@post.profile.username%></a></strong>
                 <span><%= time_ago_in_words(@post.created_at) %> ago</span><br>
 								
 								<div class="like-container">
@@ -55,13 +55,13 @@
                 	<li id="comment-<%=comment.id%>">
                   	<div class="comment-img">
                     	<% if !comment.profile.profile_image.profile.url.nil? %>
-                				<a href=""><img src="<%=comment.profile.profile_image.profile_post2.url%>"/></a>
+                				<a href="<%=profile_path(comment.profile.id)%>"><img src="<%=comment.profile.profile_image.profile_post2.url%>"/></a>
 											<% else %>
-												<a href=""><img src="/default-dog.png"/></a>
+												<a href="<%=profile_path(comment.profile.id)%>"><img src="/default-dog.png"/></a>
 											<% end %>
                   	</div>
                   	<div class="comment-text">
-                    	<strong><a href=""><%=comment.profile.username%></a></strong>
+                    	<strong><a href="<%=profile_path(comment.profile.id)%>"><%=comment.profile.username%></a></strong>
                     	<p><%=comment.content.strip()%></p> <span class="date sub-text">on <%= comment.created_at.strftime("%a, %d %b %Y, %I:%M %P") %></span>
                   	</div>
 

@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
+	include ApplicationHelper
 	include ProfilesHelper
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+	before_action :logged_in_user
+	before_action :correct_post, only: [:edit, :update, :destroy]
 	protect_from_forgery :except => :vote
 
   # GET /posts
@@ -81,14 +84,13 @@ class PostsController < ApplicationController
 		respond_to do |format|
 			if signed_in?
 				format.html {
-					@profile = current_profile
-					if @profile.following.count == 0
-						redirect_to discover_path
-					else
+					@profile = current_profile	
 						@post = Post.new
 						@posts = current_profile.posts.build
 						@feed_items = current_profile.feed.order(created_at: :desc)[0..19]
-					end
+						if @feed_items.count == 0
+							redirect_to discover_path
+						end
 				}
 
 				format.js {
@@ -146,6 +148,12 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     end
+
+		def correct_post
+			@post = Post.find(params[:id])		
+		redirect_to(root_url) unless @post.profile == current_profile
+
+		end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params

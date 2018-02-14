@@ -37,9 +37,7 @@
 								</div>&nbsp;&nbsp;
 								<span class="bold-text likes-count-<%=@post.id%>"> <%=@post.get_upvotes.size%> <%="like".pluralize(@post.get_upvotes.size)%></span>
 								
-								<% if current_profile == @post.profile %>
 									<span title="Post settings" class="glyphicon glyphicon-cog" id="post-settings=<%=@post.id%>" style="float: right;"></span>
-								<% end %>
 
 								
 								<p><%=@post.description.strip()%></p>

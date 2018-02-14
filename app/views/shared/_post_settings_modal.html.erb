@@ -6,7 +6,7 @@
 					<%= link_to post_path(@current_post.id) do %>
 						<li>Go to post</li>
 					<% end %>
-					<% if @current_post.profile = current_profile %>
+					<% if @current_post.profile == current_profile %>
 						<%= link_to edit_post_path(@current_post.id) do %>
 							<li>Edit post</li>
 						<% end %>

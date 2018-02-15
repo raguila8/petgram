@@ -24,10 +24,6 @@ gem 'mathjax-rails'
 # Allows posts to be voted on
 gem 'acts_as_votable'
 
-# Provides a simple helper to get an HTML select list of countries
-gem 'country_select'
-# a collection of all country flags in SVG 
-gem 'flag-icons-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

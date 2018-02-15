@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(version: 20180205214705) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["profile_id"], name: "index_comments_on_profile_id"
-    t.index [nil], name: "index_comments_on_post"
-    t.index [nil], name: "index_comments_on_profile"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -71,6 +69,7 @@ ActiveRecord::Schema.define(version: 20180205214705) do
     t.datetime "updated_at", null: false
     t.string "profile_image"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+    t.index ["username"], name: "index_profiles_on_username"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -84,9 +83,9 @@ ActiveRecord::Schema.define(version: 20180205214705) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

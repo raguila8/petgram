@@ -280,6 +280,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
 	config.secret_key = '800724fbe4ef408b0db44c11ddab92a30b1b2b2732089be34b45d151ad1d6a195e8621c43b8eeff760e534897175c5fac391cce726ef0c96ffa8d960e61bd496'
+	config.mailer_sender = "rodrigoaguilar887@gmail.com"
 
 
 end

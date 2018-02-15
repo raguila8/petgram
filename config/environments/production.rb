@@ -91,4 +91,13 @@ Rails.application.configure do
 
 	Rails.application.config.assets.precompile += %w( *.js ^[^_]*.css *.css.erb )
 
+	config.action_mailer.default_url_options = { :host => 'glacial-basin-59424.herokuapp.com' }
+ActionMailer::Base.smtp_settings = {
+  :address          => "smtp.sendgrid.net",
+  :port             => "25",
+  :authentication   => :plain,
+  :user_name        => ENV['SENDGRID_USERNAME'],
+  :password         => ENV['SENDGRID_PASSWORD'],
+  :domain           => ENV['SENDGRID_DOMAIN']
+}
 end

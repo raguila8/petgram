@@ -2,6 +2,8 @@
 
 Petgram is a full stack instagram-like web app. It is a photo sharing web application dedicated to pets. Petgram has all the instagram web functionalities with some added features, such as the ability to upload images in the browser and the ability to create different profiles for different pets with the same account.
 
+![Petgram app preview](/images/petgram1.png)
+
 [View Project](https://glacial-basin-59424.herokuapp.com/) 
 
 

@@ -22,7 +22,9 @@ Profile.create!(user_id: user.id, name: "Choco", username: "raguila8", bio: "I a
 	animal = Faker::Pokemon.name
 	name = Faker::Name.first_name
 	bio = Faker::Lorem.sentence
-	Profile.create(user_id: user.id, name: name, animal: animal, username: user.username, bio: bio)
+	num = rand(115) + 1
+	profile_image = File.open(File.join(Rails.root, "/public/profile_icons/#{num}.png"))
+	Profile.create(user_id: user.id, name: name, animal: animal, username: user.username, bio: bio, profile_image: profile_image)
 end
 
 # Following relationships

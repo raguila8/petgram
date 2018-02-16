@@ -39,6 +39,12 @@ include ProfilesHelper
 
 	def set_pet_type
 		@profile = current_profile
+		if @profile.profile_image.profile.url.nil?
+			num = rand(115) + 1
+			default_image = File.open(File.join(Rails.root, "/public/profile_icons/#{num}.png"))
+
+			@profile.update_attributes(:profile_image => default_image)
+		end
 	end
 
 	def edit_pet_type

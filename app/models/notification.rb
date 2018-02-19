@@ -4,7 +4,7 @@ class Notification < ApplicationRecord
 	belongs_to :post, class_name: "Post", optional: true
 	validates :profile_id, presence: true
 	validates :notified_by_id, presence: true
-	validates :notification_type, presence: true
+	validates :notification_type, presence: true, inclusion: { in: %w(like comment follower) }
 
 	
 end

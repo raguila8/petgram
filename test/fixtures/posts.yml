@@ -1,9 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  description: MyText
-  image: MyString
+  description: doggie
+  image: 'test1.jpg'
+ 
+
+
+  profile: one
 
 two:
-  description: MyText
-  image: MyString
+  description: Another one
+  image: 'test2.jpg'
+  profile: one

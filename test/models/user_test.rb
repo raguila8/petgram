@@ -77,7 +77,7 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	test "user has_many profiles" do
-		assert_equal 2, @user1.profiles.size
+		assert_equal 2, @user1.profiles.count
 	end
 
 	test "profiles depend on user" do

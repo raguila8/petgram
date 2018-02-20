@@ -1,5 +1,8 @@
 #app/conarollers/registrations_controller.rb
 class RegistrationsController < Devise::RegistrationsController
+include ApplicationHelper
+	before_action :logged_in_user, only: [:edit, :update, :destroy]
+	before_action :correct_user, only: [:edit, :update, :destroy]
 	# inherit from devise controller
 	def new
 		super

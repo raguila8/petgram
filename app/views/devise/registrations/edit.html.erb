@@ -1,4 +1,4 @@
-
+<% provide(:title, "Change Password") %>
 <%= render 'shared/main_nav_bar' %>
 <%= render 'shared/image_upload_modal' %>
 
@@ -8,7 +8,7 @@
 
 			<%= render 'shared/edit_account_header' %>	
 
-			<%= form_for(resource, as: resource_name, url: edit_user_registration_path, html: { method: :patch, class: 'login100-form validate-form' }) do |f| %>
+			<%= form_for(resource, as: resource_name, url: edit_user_registration_path(current_user.id), html: { method: :patch, class: 'login100-form validate-form' }) do |f| %>
   			
 				<%= render 'shared/error_messages' %>
 	

@@ -1,9 +1,13 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-=begin  test "should get new" do
-    get users_new_url
-    assert_response :success
-=end  end
+
+	def setup
+		@user = users(:rodrigo)
+	end
+
+	test "should get new" do
+	
+	end
 
 end

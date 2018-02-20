@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   	delete 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
 		get 'cancel_registration', to: 'registrations#cancel', as: :cancel_user_registration
 		get 'sign_up', to: 'registrations#new', as: :new_user_registration
-		get 'change_password', to: 'registrations#edit', as: :edit_user_registration
-		patch '/change_password', to: 'registrations#update', as: :update_edit_user_registration
+		get 'change_password/:id', to: 'registrations#edit', as: :edit_user_registration
+		patch '/change_password/:id', to: 'registrations#update', as: :update_edit_user_registration
 		put '/user_registration', to: 'registrations#update'
 		delete '/user_registration', to: 'registrations#destroy'
 		post '/user_registration', to: 'registrations#create'

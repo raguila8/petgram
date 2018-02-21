@@ -10,9 +10,7 @@ $(document).on('turbolinks:load', function() {
 					query: request.term
 				},
 				success: function(data) {
-					
 					response(data.suggestions);
-					console.log(data.suggestions);
 				}
 			});
 		},

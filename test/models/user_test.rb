@@ -81,9 +81,9 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	test "profiles depend on user" do
-		assert_equal 2, Profile.count
+		assert_equal 3, Profile.count
 		@user1.destroy
-		assert_equal 0, Profile.count
+		assert_equal 1, Profile.count
 	end
 
 end

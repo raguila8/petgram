@@ -26,6 +26,7 @@ end
 CarrierWave.configure do |config|
 
 	if Rails.env.production? || Rails.env.staging?
+=begin
   	config.fog_provider = 'fog/aws'                        # required
   	config.fog_credentials = {
     	provider:              'AWS',                        # required
@@ -35,7 +36,8 @@ CarrierWave.configure do |config|
  	 	}
 		config.storage :fog
   	config.fog_directory  = ENV["AWS_BUCKET"]              # required
-
+=end
+		config.storage :file
 	elsif Rails.env.development?
 		config.storage :file
 

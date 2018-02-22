@@ -10,7 +10,7 @@ user = User.new(username: "raguila8", email: "rodrigoaguilar887@gmail.com", pass
 user.save
 Profile.create!(user_id: user.id, name: "Choco", username: "raguila8", bio: "I am a brown dog", animal: "Dog")
 
-99.times do |n|
+20.times do |n|
 	username = Faker::Internet.user_name
 	email = Faker::Internet.email
 	user = User.new(username: username, email: email, password: "password", password_confirmation: "password")
@@ -30,8 +30,8 @@ end
 # Following relationships
 profiles = Profile.all
 profile  = profiles.first
-following = profiles[2..50]
-followers = profiles[3..40]
+following = profiles[2..19]
+followers = profiles[3..19]
 following.each { |followed| profile.follow(followed) }
 followers.each { |follower| follower.follow(profile) }
 

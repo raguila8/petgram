@@ -91,7 +91,7 @@ AND
 		 WHERE username LIKE '#{pattern}'
 		 LIMIT 30"
 =end
-		result = Profile.where("username LIKE '#{pattern}' OR name LIKE '#{pattern}'").limit(30)
+		result = Profile.where("username LIKE :pattern OR name LIKE :pattern", pattern: pattern).limit(30)
 	
 		return result	
 	end

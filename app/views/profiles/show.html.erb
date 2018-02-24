@@ -1,9 +1,7 @@
-<%= javascript_include_tag "image_modal" %>
-<%= javascript_include_tag "relationships_modal" %>
-<%= javascript_include_tag "relationships" %>
-<%= javascript_include_tag "post_settings_modal" %>
-<%= render 'shared/main_nav_bar' %>
-<%= render 'shared/image_upload_modal' %>
+<%# javascript_include_tag "image_modal" %>
+<%# javascript_include_tag "relationships_modal" %>
+<%# javascript_include_tag "relationships" %>
+<%# javascript_include_tag "post_settings_modal" %>
 <div id="profile-body">
 <div class="container">
 	<div class="frame" style="margin-bottom: 100px;">
@@ -85,59 +83,6 @@
 		<a href="<%=destroy_user_session_path%>" data-method="delete"> <button type="button" class="btn btn-default btn-cirlce" title="Log out"><i class="glyphicon glyphicon-log-out"></i></button></a>
 	</div>
 
-
-
-
-<!--
-
-<article>
-	<section>
-		<div class="content">
-			<div class="header">
-				<div class="header_img">
-					<div class="header_img-container">
-						
-						<img src="/me.jpg" alt="profile img"/>
-						<div class="avatar">
-							<%# form_for(@profile, :url => profile_path(@profile)) do |f| %>
-								<label class="avatar_change" for="profile_image">
-									<input type="file" name="profile_image" id="photo" style="height: auto;">
-								</label>
-							<%# end %>
-						</div>
-					</div>
-				</div>
-				<div class="header_data">
-					<div class="header_data-name">
-						<h2><%# @profile.username %></h2>
-						<%# link_to "Edit Profile", edit_profile_path(@profile), class: "edit-profile" %>
-					</div>
-					<div class="profile-stats">
-						<a class="profile-posts">
-							<div class="profile-stat-number"><%#@profile.posts.count %></div>
-							<span>posts</span>
-						</a>
-						<a class="profile-followers">
-							<div class="profile-stat-number"><%#@profile.followers.count %></div>
-							<span id="followers-toggle" data-toggle="modal" data-target="#followers-modal">followers</span>
-						</a>
-						<a class="profile-following">
-							<div class="profile-stat-number"><%#@profile.following.count %></div>
-							<span id="following-toggle" data-toggle="modal" data-target="#following-modal">following</span>
-						</a>
-					</div>
-					<div class="profile-info">
-						<h4 class="profile-name"><%#@profile.name%></h4>
-						<span><%#@profile.bio%></span><br>
-						<h4 class="profile-name"><%#@profile.animal%></h4>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</article>
--->
-
 <div class="row profile-posts-gallery">
 	<% @profile.posts.order(created_at: :desc).each do |post| %>
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -157,4 +102,3 @@
 </div>
 </div>
 </div>
-<div class="page-overlay"></div>

@@ -5,13 +5,16 @@ class ApplicationController < ActionController::Base
 
 	private 
 
+	# login and signup pages have a different layout
 	def layout_by_resource
-    if devise_controller?
-      "auth"
-    else
-      "application"
-    end
-  end
-
-	
+		controller = controller_name
+		action = action_name
+		if controller == "sessions" || 
+			(["registrations", "profiles"].include?(controller) && 
+				action == ["new", "welcome", "set_pet_type"].include?(action))
+			"auth"
+		else
+			"application"
+		end
+	end	
 end

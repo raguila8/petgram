@@ -27,3 +27,4 @@
 
 # Ignore uploaded test images.
 /public/uploads
+/test/fixtures/files/uploads

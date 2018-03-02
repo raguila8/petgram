@@ -2,11 +2,10 @@
 
 # This queries the database for rows instantiated in profile fixture
 one:
-  follower_id: <%=Profile.find(ActiveRecord::FixtureSet.identify(:one)).id%>
-  followed_id: <%=Profile.find(ActiveRecord::FixtureSet.identify(:two)).id%>
-
+  follower: one
+  followed: two
 
 two: 
-  follower_id: <%=Profile.find(ActiveRecord::FixtureSet.identify(:two)).id%>
-  followed_id: <%=Profile.find(ActiveRecord::FixtureSet.identify(:one)).id%>
+  follower: two
+  followed: one
 

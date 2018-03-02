@@ -2,20 +2,21 @@ class ProfilesController < ApplicationController
 include ApplicationHelper
 include ProfilesHelper
 	before_action :logged_in_user
-	before_action :correct_profile, only: [:edit, :update, :welcome, :destroy]
+	before_action :find_profile, only: [:show, :edit, :update, :welcome, 
+																			:change_profile]
+	before_action :correct_profile, only: [:edit, :update, :welcome]
+	before_action :get_current_profile, only: [:update_profile_image, 
+																							:set_pet_type, :edit_pet_type ]
+	before_action :owns_profile, only: [:destroy]
 
 	def show
-		@profile = Profile.find(params[:id])
-		@post = Post.new
 	end
 
 	def edit
-		@profile = Profile.find(params[:id])
 		@profile.email = @profile.user.email
 	end
 
 	def update_profile_image
-		@profile = current_profile
 		if @profile.update_attributes(profile_image_update_params)
 			# Handle a successful update
 			flash[:success] = "Profile image updated"
@@ -38,7 +39,6 @@ include ProfilesHelper
 	end
 
 	def set_pet_type
-		@profile = current_profile
 		if @profile.profile_image.profile.url.nil?
 			num = rand(115) + 1
 			default_image = File.open(File.join(Rails.root, "/public/profile_icons/#{num}.png"))
@@ -48,20 +48,17 @@ include ProfilesHelper
 	end
 
 	def edit_pet_type
-		@profile = current_profile
 		if @profile.update_attributes(profile_pet_type_params)
 			# Handle a successful update
 			flash[:success] = "Profile updated"
 			redirect_to discover_path
 		else
-			#redirect_to edit_profile_path(@profile.id)
 			flash[:danger] = "profile update did not work"
 			render 'set_pet_type'
 		end
 	end
 
 	def update
-		@profile = Profile.find(params[:id])
 		@user = @profile.user
 		@profile.email = params[:profile][:email]
 		if @profile.update_attributes(profile_update_params) && @user.update_attributes(email: @profile.email)
@@ -69,7 +66,6 @@ include ProfilesHelper
 			flash[:success] = "Profile update"
 			redirect_to @profile
 		else
-			#redirect_to edit_profile_path(@profile.id)
 			render 'edit'
 		end
 	end
@@ -84,7 +80,6 @@ include ProfilesHelper
 		if @profile.save
 			current_user.username = @profile.username
 			flash[:success] = "New pet profile created!"
-			#redirect_to edit_profile_path(@profile.id)
 			redirect_to user_path(current_user)
 		else
 			render 'new'
@@ -99,8 +94,7 @@ include ProfilesHelper
 			@user.destroy
 			redirect_to new_user_registration_path
 		else
-			profile = Profile.find(params[:id])
-			if current_user.username = profile.username
+			if current_user.username = @profile.username
 				current_user.profiles.each do |p|
 					if current_user.username != p.username
 						current_user.update_attributes(:username => p.username)
@@ -108,8 +102,8 @@ include ProfilesHelper
 					end
 				end
 			end
-			profile.destroy
-			redirect_to user_path
+			@profile.destroy
+			redirect_to user_path(current_user)
 		end
 	end
 
@@ -137,11 +131,10 @@ include ProfilesHelper
 	end
 
 	def welcome
-		@profile = Profile.find(params[:id])
+
 	end
 
 	def change_profile
-		@profile = Profile.find(params[:id])
 		current_user.update_attributes(:username => @profile.username)
 		redirect_to @profile
 	end
@@ -166,20 +159,19 @@ include ProfilesHelper
 
 		# Confirms the correct user
 		def correct_profile
-			@profile = Profile.find(params[:id])
 			# this allows user to update any profile that belongs to him only
 			redirect_to(root_url) unless @profile == current_profile
 		end
 
-		
-		
-			# if user is not logged in, user is redirected to login page
-=begin
-		def logged_in_user
-			unless user_signed_in?
-				flash[:danger] = "Please log in."
-				redirect_to new_user_session_path
-			end
+		def owns_profile
+			redirect_to(root_url) unless current_user.profiles.include? @profile
 		end
-=end
+		
+		def get_current_profile
+			@profile = current_profile
+		end
+
+		def find_profile
+			@profile = Profile.find(params[:id])
+		end
 end

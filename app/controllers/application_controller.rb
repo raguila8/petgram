@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 		action = action_name
 		if controller == "sessions" || 
 			(["registrations", "profiles"].include?(controller) && 
-				action == ["new", "welcome", "set_pet_type"].include?(action))
+				["new", "welcome", "set_pet_type"].include?(action))
 			"auth"
 		else
 			"application"

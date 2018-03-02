@@ -16,6 +16,7 @@
  *= require jquery-ui
  *= require bootstrap-select
  *= image-picker
+ *= require flickity
  *= require custom.scss
  *= require_self
  */

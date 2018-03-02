@@ -139,10 +139,6 @@ include ProfilesHelper
 	def welcome
 		@profile = Profile.find(params[:id])
 	end
-		
-	def animal_type
-		
-	end
 
 	def change_profile
 		@profile = Profile.find(params[:id])

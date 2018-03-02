@@ -1684,6 +1684,14 @@ $brown: #786450;
 	font-family: 'Open Sans', Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	.gallery-cell {
+		display: inline-block;
+		position:relative;
+		margin-left: 0.5%;
+		margin-right: 0.5%;
+		width: 320px;
+		text-align: center;
+	}
 }
 
 .center-card {
@@ -1702,9 +1710,6 @@ $brown: #786450;
 	box-shadow: 10px 10px 15px 0 rgba(0,0,0,0.3);
 }
 
-.carousel-inner {
-	
-}
 
 @media (max-width: 700px) {
 	.active > div { display: none; }
@@ -1726,10 +1731,6 @@ $brown: #786450;
 	.active > div { display: none; }
 	.active > div:first-child { display: inline-block; }
 	.active > div:first-child + div {display: inline-block; }
-	
-	.center-card {
-		
-	}
 }
 
 

@@ -19,5 +19,6 @@
 //= require jquery-ui
 //= require image-picker
 //= require search
+//= require flickity
 //= require custom
 //= require jquery.Jcrop

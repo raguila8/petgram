@@ -23,7 +23,9 @@ class RelationshipsController < ApplicationController
 		@notification = Notification.find_by(:notified_by_id => current_profile.id,
 																				:profile_id => @profile.id,
 																				:notification_type => "follower")
-		@notification.destroy
+		if @notification
+			@notification.destroy
+		end
 		respond_to do |format|
 			format.js {}
 		end

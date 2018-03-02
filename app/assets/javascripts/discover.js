@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 /***************Carousel************/
-
+/*
 	
 	$('.carousel[data-type="multi"] .item').each(function() {
 		var next = $(this).next();
@@ -19,4 +19,11 @@ $(document).ready(function() {
     	next.children(':first-child').clone().appendTo($(this));
 		}
 	});	
+*/
+
+	$('.frame').flickity( {
+		// options
+		cellAlign: 'left',
+		wrapAround: true
+	});
 });

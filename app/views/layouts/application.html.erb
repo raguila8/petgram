@@ -15,6 +15,33 @@
 				<%= javascript_include_tag i, 'data-turbolinks-track': 'reload' %>
 			<% end %>
 		<% end %>
+		<% if Rails.env.test? %>
+ 			<style type="text/css">
+    		.modal.fade, .fade {
+      		-webkit-transition: opacity 0.01s;
+      		-moz-transition: opacity 0.01s;
+      		-ms-transition: opacity 0.01s;
+      		-o-transition: opacity 0.01s;
+      		transition: opacity 0.01s;
+    		}
+				div, a, span, footer, header {
+      -webkit-transition: none !important;
+      -moz-transition: none !important;
+      -ms-transition: none !important;
+      -o-transition: none !important;
+      transition: none !important;
+  }
+
+  .modal, #image-upload-modal {
+   
+  }
+
+  
+  .modal-backdrop {
+    display: none !important;
+  }
+ 			</style>
+		<%end%>
   </head>
 
   <body>
@@ -24,5 +51,10 @@
 		<div class="page-overlay"></div>
 
     <%= yield %>
+		<% if Rails.env.test? %>
+		<script>
+			$(".fade").removeClass("fade");
+		</script>
+		<% end %>
   </body>
 </html>

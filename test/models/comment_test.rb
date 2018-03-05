@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
-
+=begin
   def setup 
 		@comment1 = comments(:one)
 	end
@@ -32,5 +32,5 @@ class CommentTest < ActiveSupport::TestCase
 	test "should belong to post" do
 		assert_not @comment1.post.nil?
 	end
-
+=end
 end

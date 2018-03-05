@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
 	include Devise::Test::IntegrationHelpers
-
+=begin
   setup do
     @post = posts(:one)
 		@user = users(:rodrigo)

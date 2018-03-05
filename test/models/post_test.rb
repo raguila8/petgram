@@ -3,6 +3,7 @@ require 'test_helper'
 include FactoryBot::Syntax::Methods
 
 class PostTest < ActiveSupport::TestCase
+=begin
   def setup 
 		@post1 = posts(:one)
 		#image = fixture_file_upload('files/test1.jpg','image/jpg')
@@ -43,7 +44,7 @@ class PostTest < ActiveSupport::TestCase
 		@post1.destroy
 		assert_equal 0, Comment.all.count
 	end
-
+=end
 	
 
 	

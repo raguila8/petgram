@@ -1,14 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  description: doggie
-  image: 'test1.jpg'
- 
+#one:
+#  description: doggie
+#  image: 'test1.jpg'
+#  profile: one
 
+#two:
+#  description: Another one
+#  image: 'test2.jpg'
+#  profile: one
 
-  profile: one
-
-two:
-  description: Another one
-  image: 'test2.jpg'
-  profile: one

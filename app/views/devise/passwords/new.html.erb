@@ -1,16 +1,31 @@
-<h2>Forgot your password?</h2>
+<% provide(:title, "Forgot Password") %>
+<div class="limiter">
+	<div class="container-login100">
+		<div class="wrap-login100">
+			<div class="login100-form-title" style="background-image: url(/bg-01.jpg);">
+				<span class="login100-form-title-1">
+					Forgot your password?
+				</span>
+			</div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+			<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "login100-form validate-form", novalidate: :true }) do |f| %>
+  			<%= render 'shared/error_messages' %>
+	
+  			<div class="field wrap-input100 m-b-26">
+					<span class="label-input100">Email</span>
+    			<%= f.email_field :email, class: "input100", placeholder: "Enter email"%>
+					<span class="focus-input100"></span>
+  			</div>
+	
+  			<div class="actions container-login100-form-btn">
+    			<%= f.submit "Send reset instructions", class: "login100-form-btn" %>
+  			</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+				<div id="signup-login-div">
+					<span id="signup-login-span">New user? <%= link_to "Sign up now!", new_registration_path(resource_name), id: "signup-login-link" %></span>
+				</div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+			<% end %>	
+		</div>
+	</div>
+</div>	

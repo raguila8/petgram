@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
 	def layout_by_resource
 		controller = controller_name
 		action = action_name
-		if controller == "sessions" || 
-			(["registrations", "profiles"].include?(controller) && 
-				["new", "welcome", "set_pet_type"].include?(action))
+		if ["sessions", "passwords"].include?(controller) || 
+			(controller == "registrations" && action == "new") || 
+			(controller == "profiles" && ["welcome", "set_pet_type"].include?(action))
 			"auth"
 		else
 			"application"

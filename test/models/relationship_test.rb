@@ -2,7 +2,14 @@ require 'test_helper'
 
 class RelationshipTest < ActiveSupport::TestCase
   def setup
-		@relationship1 = relationships(:one)
+		#@relationship1 = relationships(:one)
+		FactoryBot.factories.clear
+		FactoryBot.find_definitions
+		
+		create(:user1)
+		create(:profile1)
+		create(:profile2)
+		@relationship1 = build(:relationship1)
 	end
 
 	test "relationship is valid" do
@@ -23,7 +30,7 @@ class RelationshipTest < ActiveSupport::TestCase
 		assert_not @relationship1.follower.nil?
 	end
 
-	test "should belong to foolwed" do
+	test "should belong to follwed" do
 		assert_not @relationship1.followed.nil?
 	end
 end

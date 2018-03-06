@@ -3,7 +3,10 @@ require 'test_helper'
 class ProfileTest < ActiveSupport::TestCase
   
 	def setup 
-		@profile1 = profiles(:one)
+		FactoryBot.factories.clear
+		FactoryBot.find_definitions
+		@user = create(:user1)
+		@profile1 = build(:profile1)
 	end
 
 	test "should be valid" do
@@ -40,31 +43,61 @@ class ProfileTest < ActiveSupport::TestCase
 	end
 
 	test "profile should have many posts" do
-		#assert_equal 2, @profile1.posts.size
+		@profile1.save
+		create(:post1)
+		create(:post2)
+		assert_equal 2, @profile1.posts.size
 	end
 
 	test "should have many following" do
+		@profile1.save
+		create(:profile2)
+		create(:relationship1)
+		create(:relationship2)
 		assert_equal 1, @profile1.following.size
 	end
 
 	test "should have many followers" do
+		@profile1.save
+		create(:profile2)
+		create(:relationship1)
+		create(:relationship2)
+
 		assert_equal 1, @profile1.followers.size
 	end
 
 	test "should have many notifications" do
-		#assert_equal 1, @profile1.notifications.size
+		@profile1.save
+		create(:profile2)
+		create(:post1)
+		create(:post2)
+		create(:notification1)
+		create(:notification2)
+
+		assert_equal 2, @profile1.notifications.size
 	end
-=begin
+
 	test "notifications depend on profile" do
-		assert_equal 1, Notification.count
+		@profile1.save
+		create(:profile2)
+		create(:post1)
+		create(:post2)
+		create(:notification1)
+		create(:notification2)
+
+		assert_equal 2, Notification.count
 		@profile1.destroy
 		assert_equal 0, Notification.count
 	end
-=end
+
 	test "posts depend on profile" do
-		#assert_equal 2, Post.count
-		#@profile1.destroy
-		#assert_equal 0, Post.count
+		@profile1.save
+		create(:post1)
+		create(:post2)
+
+		assert_equal 2, Post.count
+		@profile1.destroy
+		assert_equal 0, Post.count
 	end
 
 	
@@ -72,6 +105,11 @@ class ProfileTest < ActiveSupport::TestCase
 	# deleting a profile should delete any relationship that profile is a part of
 
 	test "followers relationship depend on profile" do
+		@profile1.save
+		create(:profile2)
+		create(:relationship1)
+		create(:relationship2)
+
 		assert_equal 2, Relationship.count
 		@profile1.destroy
 		assert_equal 0, Relationship.count

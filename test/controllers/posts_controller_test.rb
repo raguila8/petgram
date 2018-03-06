@@ -2,10 +2,17 @@ require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
 	include Devise::Test::IntegrationHelpers
-=begin
+
   setup do
-    @post = posts(:one)
-		@user = users(:rodrigo)
+		FactoryBot.factories.clear
+		FactoryBot.find_definitions
+
+		@user = create(:user1)
+		@profile = create(:profile1)
+		@post = create(:post1)
+
+    #@post = posts(:one)
+		#@user = users(:rodrigo)
   end
 
   test "should redirect home when not logged in" do
@@ -64,42 +71,4 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 		assert_not flash.empty?
 		assert_redirected_to new_user_session_path
 	end
-	
-=begin
-  test "should get new" do
-    get new_post_url
-    assert_response :success
-  end
-
-  test "should create post" do
-    assert_difference('Post.count') do
-      post posts_url, params: { post: { description: @post.description, image: @post.image } }
-    end
-
-    assert_redirected_to post_url(Post.last)
-  end
-
-  test "should show post" do
-    get post_url(@post)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_post_url(@post)
-    assert_response :success
-  end
-
-  test "should update post" do
-    patch post_url(@post), params: { post: { description: @post.description, image: @post.image } }
-    assert_redirected_to post_url(@post)
-  end
-
-  test "should destroy post" do
-    assert_difference('Post.count', -1) do
-      delete post_url(@post)
-    end
-
-    assert_redirected_to posts_url
-  end
-=end
 end

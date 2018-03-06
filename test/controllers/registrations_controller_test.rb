@@ -3,8 +3,16 @@ require 'test_helper'
 class RegistrationsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 	def setup
-		@user = users(:rodrigo)
-		@other_user = users(:other)
+		FactoryBot.factories.clear
+		FactoryBot.find_definitions
+
+		@user = create(:user1)
+		@profile = create(:profile1)
+		@other_user = create(:user2)
+		@other_profile = create(:profile2, user_id: 2)
+
+		#@user = users(:rodrigo)
+		#@other_user = users(:other)
 	end
 
 	test "should get signup_page" do
@@ -52,6 +60,5 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
 		delete user_registration_path
 		assert_not flash.empty?
 		assert_redirected_to new_user_session_path
-
 	end	
 end

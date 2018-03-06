@@ -3,15 +3,17 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
 	def setup
-		@user = User.new(username: "raguila8", email: "rodrigoaguilar887@gmail.com", password: "foobar", password_confirmation: "foobar")
-		@user1 = users(:rodrigo)
-		@profile1 = profiles(:one)
-		@profile2 =	profiles(:two)
-
+		#@user = User.new(username: "raguila8", email: "rodrigoaguilar887@gmail.com", password: "foobar", password_confirmation: "foobar")
+		#@user1 = users(:rodrigo)
+		#@profile1 = profiles(:one)
+		#@profile2 =	profiles(:two)
+		FactoryBot.factories.clear
+		FactoryBot.find_definitions
+		@user = build(:user1)
 	end
 
 	test "should be valid" do
-		assert @user.valid?
+		@user.save
 	end
 
 	test "username should be present" do
@@ -77,13 +79,21 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	test "user has_many profiles" do
-		assert_equal 2, @user1.profiles.count
+		@user.save
+		@profile1 = create(:profile1)
+		@profile2 = create(:profile2)
+
+		assert_equal 2, @user.profiles.count
 	end
 
 	test "profiles depend on user" do
-		assert_equal 3, Profile.count
-		@user1.destroy
-		assert_equal 1, Profile.count
+		@user.save
+		@profile1 = create(:profile1)
+		@profile2 = create(:profile2)
+
+		assert_equal 2, Profile.count
+		@user.destroy
+		assert_equal 0, Profile.count
 	end
 
 end

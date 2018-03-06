@@ -1,8 +1,17 @@
 require 'test_helper'
 
 class NotificationTest < ActiveSupport::TestCase
-=begin  def setup
-		@notification1 = notifications(:one)
+  def setup
+		#@notification1 = notifications(:one)		
+		FactoryBot.factories.clear
+		FactoryBot.find_definitions
+
+		create(:user1)
+		create(:profile1)
+		create(:profile2)
+		create(:post1)
+		create(:post2)
+		@notification1 = build(:notification1)
 	end
 
 	test "should be valid" do
@@ -18,7 +27,7 @@ class NotificationTest < ActiveSupport::TestCase
 	end
 
 	test "belongs to post" do
-		#assert_not @notification1.post.nil?
+		assert_not @notification1.post.nil?
 	end
 
 	test "profile_id should be present" do
@@ -44,5 +53,4 @@ class NotificationTest < ActiveSupport::TestCase
 			assert @notification1.valid?
 		end
 	end
-=end
 end

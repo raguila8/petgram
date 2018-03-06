@@ -1,22 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  username: rodrigo11
-  name: Choco
-  bio: Good boy
-  animal: Dog
-  user: rodrigo
+#one:
+#  username: rodrigo11
+#  name: Choco
+#  bio: Good boy
+#  animal: Dog
+#  user: rodrigo
 
-two:
-  username: fluffy12
-  name: Fluffy
-  bio: fluffy bunny
-  animal: Rabbit
-  user: rodrigo
+#two:
+#  username: fluffy12
+#  name: Fluffy
+#  bio: fluffy bunny
+#  animal: Rabbit
+#  user: rodrigo
 
-three: 
-  username: other11
-  name: Other Name
-  bio: lkwdl
-  animal: monkey
-  user: other
+#three: 
+#  username: other11
+#  name: Other Name
+#  bio: lkwdl
+#  animal: monkey
+#  user: other

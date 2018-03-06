@@ -4,17 +4,21 @@ require 'test_helper'
 class PostsInterfaceTest < ActionDispatch::IntegrationTest
 	include Devise::Test::IntegrationHelpers
 
-
 	def setup
-		@user = users(:rodrigo)
-		@profile = profiles(:one)
+		FactoryBot.factories.clear
+		FactoryBot.find_definitions
+
+		@user = create(:user1)
+		@profile = create(:profile1)
+		
 	end
 
+	# assert_no_css('#image-upload-modal') causes race condition
 	test "successful post submission" do
 		sign_in @user
 		visit(profile_path(@profile.id))
 		assert_css('a#image-upload-toggle')
-		assert_no_css('#image-upload-modal')
+		#assert_no_css('#image-upload-modal')
 		find('a#image-upload-toggle button').click
 		assert_css("#image-upload-modal")
 		# Valid submission

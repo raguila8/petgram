@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
 	def setup
-		@user = users(:rodrigo)
+		#@user = users(:rodrigo)
 		@user1 = User.create(username: "raguila8", email: "rodrigoaguilar887@gmail.com", password: "foobar", password_confirmation: "foobar")
 		@profile1 = Profile.create(user_id: @user1.id, name: "Choco", username: "raguila8", bio: "I am a brown dog", animal: "Dog")
 

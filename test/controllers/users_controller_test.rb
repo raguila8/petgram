@@ -4,9 +4,16 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 	include Devise::Test::IntegrationHelpers
 
 	def setup
-		@user = users(:rodrigo)
-		@user1 = User.create(username: "raguila8", email: "rodrigoaguilar887@gmail.com", password: "foobar", password_confirmation: "foobar")
-		@profile1 = Profile.create(user_id: @user1.id, name: "Choco", username: "raguila8", bio: "I am a brown dog", animal: "Dog")
+		FactoryBot.factories.clear
+		FactoryBot.find_definitions
+
+		@user = create(:user1)
+		@profile1 = create(:profile1)
+		@other_user = create(:user2)
+		@other_profile = create(:profile2, user_id: 2)
+		#@user = users(:rodrigo)
+		#@user1 = User.create(username: "raguila8", email: "rodrigoaguilar887@gmail.com", password: "foobar", password_confirmation: "foobar")
+		#@profile1 = Profile.create(user_id: @user1.id, name: "Choco", username: "raguila8", bio: "I am a brown dog", animal: "Dog")
 	end
 
 	test "should get show page when signed in" do
@@ -36,7 +43,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 	end
 
 	test "should redirect show when signed in as wrong user" do
-		sign_in @user1
+		sign_in @other_user
 		get user_path(@user.id)
 		assert_redirected_to root_path
 	end

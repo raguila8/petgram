@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This queries the database for rows instantiated in profile fixture
-one:
-  follower: one
-  followed: two
+#one:
+#  follower: one
+#  followed: two
 
-two: 
-  follower: two
-  followed: one
+#two: 
+#  follower: two
+#  followed: one
 

@@ -85,12 +85,12 @@ class PostsController < ApplicationController
 			if signed_in?
 				format.html {
 					@profile = current_profile	
-						@post = Post.new
-						@posts = current_profile.posts.build
-						@feed_items = current_profile.feed.order(created_at: :desc)[0..19]
-						if @feed_items.count == 0
-							redirect_to discover_path
-						end
+					@post = Post.new
+					@posts = current_profile.posts.build
+					@feed_items = current_profile.feed.order(created_at: :desc)[0..19]
+					if @feed_items.count == 0
+						redirect_to discover_path
+					end
 				}
 
 				format.js {

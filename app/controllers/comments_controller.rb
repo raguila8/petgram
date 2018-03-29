@@ -91,7 +91,7 @@ class CommentsController < ApplicationController
 					offset = page * 5 - 1
 					all_comments = @post.comments
 					comments = all_comments.order(created_at: :desc)[(offset - 4)..offset]
-					if all_comments.size > offset
+					if all_comments.size > offset + 1
 						@more = true
 					end
 					render json: {comments: comments, more: true}

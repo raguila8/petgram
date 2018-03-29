@@ -86,7 +86,7 @@ $(document).ready(function() {
 			},
 			success: function(myData) {
 				currentPostPage = currentPostPage + 1;
-				for (var i = 0; i < 2; i++) {
+				for (var i = 0; i < 20; i++) {
 					postPages.push(2);
 				}
 			}
